@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Banner from "./components/Banner";
 import { SafeAreaProvider  } from "react-native-safe-area-context";
+import Navigation from "./components/Navigation";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
         <StatusBar style="auto" />
         <Banner />
         <Text style={styles.text}>Started my first React Native app!</Text>
+        <Navigation/>
       </View>
     </SafeAreaProvider>
   );
@@ -24,5 +26,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#046835",
+    height: '72%'
   },
 });
