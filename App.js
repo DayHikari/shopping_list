@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Banner from "./components/Banner";
 import { SafeAreaProvider  } from "react-native-safe-area-context";
 import Navigation from "./components/Navigation";
+import ListSection from "./components/ListSection";
 
 export default function App() {
   return (
@@ -10,7 +11,7 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style="auto" />
         <Banner />
-        <Text style={styles.text}>Started my first React Native app!</Text>
+        <ListSection />
         <Navigation/>
       </View>
     </SafeAreaProvider>

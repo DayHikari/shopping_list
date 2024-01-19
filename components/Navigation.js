@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, StyleSheet, View } from "react-native";
 
 export default function () {
   return (
@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#046835",
     alignItems: "center",
     height: "8%",
-    width: "100%",
     justifyContent: "space-evenly",
   },
 });

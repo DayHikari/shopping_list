@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#046835",
     alignItems: "center",
     height: "20%",
-    width: "100%",
   },
   bannerContent: {
     flex: 1,
