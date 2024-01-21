@@ -20,7 +20,6 @@ export default function List () {
 
 const styles = StyleSheet.create({
   list: {
-    // backgroundColor: 'red',
     width: '100%',
   },
   contentContainer: {

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#046835",
     alignItems: "center",
-    height: "8%",
+    height: "11%",
     justifyContent: "space-evenly",
   },
 });
