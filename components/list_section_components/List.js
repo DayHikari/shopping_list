@@ -1,22 +1,24 @@
 import { StyleSheet, Text, ScrollView} from "react-native";
 import ListItem from "./ListItem";
+import { db, connection } from "../../database/connection";
+
 
 
 export default function List () {
   const milk = {
     _id: "Milk",
-    image: "Milk",
+    image: "milk",
     quantity: 2,
   };
   const carrots = {
     _id: "Carrots",
-    image: "Carrots",
+    image: "carrots",
     quantity: "10 bag(s)",
   };
   const kimchi = {
     _id: "Kimchi",
     image: "default",
-    quanity: "1 bag(s)",
+    quantity: "1 bag(s)",
   }
   return(
     <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
