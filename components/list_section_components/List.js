@@ -1,30 +1,36 @@
 import { StyleSheet, Text, ScrollView} from "react-native";
 import ListItem from "./ListItem";
-import { db, connection } from "../../database/connection";
+import { supabase } from "../../supabase";
+import { useState, useEffect } from "react";
 
 
 
 export default function List () {
-  const milk = {
-    _id: "Milk",
-    image: "milk",
-    quantity: 2,
-  };
-  const carrots = {
-    _id: "Carrots",
-    image: "carrots",
-    quantity: "10 bag(s)",
-  };
-  const kimchi = {
-    _id: "Kimchi",
-    image: "default",
-    quantity: "1 bag(s)",
-  }
+  const [shoppingList, setShoppingList] = useState(null)
+
+  useEffect(() => {
+    const fetchList = async () => {
+      const { data, error } = await supabase
+      .from('initial_shopping_list')
+      .select('*')
+
+      if (error) {
+        console.error("Error occured: ", error.message);
+        return;
+      };
+
+      if (data) {
+        setShoppingList(data);
+      };
+    };
+
+    fetchList();
+  }, []);
+
+
   return(
     <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
-      <ListItem itemData={milk} />
-      <ListItem itemData={carrots} />
-      <ListItem itemData={kimchi} />
+      {shoppingList && shoppingList.map((shoppingItem) => {return <ListItem itemData={shoppingItem}/>}) }
       <Text style={styles.text}>Test</Text>
       <Text style={styles.text}>Test</Text>
       <Text style={styles.text}>Test</Text>

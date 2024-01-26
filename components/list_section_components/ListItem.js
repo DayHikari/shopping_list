@@ -15,7 +15,7 @@ export default function ListItem({ itemData }) {
     <View style={styles.productLayout}>
       <Image source={imagePaths[itemData.image]} />
       <View style={styles.productTextSection}>
-        <Text style={styles.productText}>{itemData._id}</Text>
+        <Text style={styles.productText}>{itemData.product}</Text>
         <Text style={styles.productQuantity}>
           Quantity: {itemData.quantity}
         </Text>

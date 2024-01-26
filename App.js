@@ -4,7 +4,6 @@ import Banner from "./components/Banner";
 import { SafeAreaProvider  } from "react-native-safe-area-context";
 import Navigation from "./components/Navigation";
 import ListSection from "./components/ListSection";
-import { RealmProvider } from "@realm/react";
 
 export default function App() {
   return (
