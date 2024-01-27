@@ -30,7 +30,7 @@ export default function List () {
 
   return(
     <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
-      {shoppingList && shoppingList.map((shoppingItem) => {return <ListItem itemData={shoppingItem}/>}) }
+      {shoppingList && shoppingList.map((shoppingItem) => {return <ListItem key={shoppingItem.product} itemData={shoppingItem}/>}) }
       <Text style={styles.text}>Test</Text>
       <Text style={styles.text}>Test</Text>
       <Text style={styles.text}>Test</Text>
