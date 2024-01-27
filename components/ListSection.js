@@ -11,7 +11,7 @@ export default function ListSection () {
       case false:
         return;
       case "add":
-        return <AddForm />;
+        return <AddForm setOptionSelected={setOptionSelected} />;
       case "edit":
         return;
       case "delete":
@@ -23,7 +23,7 @@ export default function ListSection () {
       <List />
       {chooseOption()}
       <View style={styles.separator}/>
-      <ListOptions />
+      <ListOptions setOptionSelected={setOptionSelected}/>
     </View>
   );
 };

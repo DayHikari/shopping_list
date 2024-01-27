@@ -1,8 +1,11 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function AddForm () {
+export default function AddForm ({setOptionSelected}) {
   return (
     <View style={styles.form}>
+      <Pressable style={styles.close} onPress={() => {setOptionSelected(false)}}>
+        <Text style={styles.closeText}>X</Text>
+      </Pressable>
       <Text style={styles.header}>Add an item</Text>
       <Text style={styles.subHeaders}>Product:</Text>
       <TextInput style={styles.textInputs} placeholder="Item name" />
@@ -28,6 +31,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 5,
     borderRadius: 10,
+  },
+  close: {
+    position: "absolute",
+    top: "2%",
+    right: "3%"
+  },
+  closeText: {
+    fontSize: 17,
+    color: "#FF8833",
+    fontWeight: "700",
   },
   header: {
     fontSize: 30,
