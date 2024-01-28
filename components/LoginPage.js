@@ -59,8 +59,9 @@ export default function LoginPage({setUser, setLoggedIn}) {
       <Text style={styles.labels}>Email:</Text>
       <TextInput
         style={styles.textInputs}
-        placeholder="Enter username"
-        autoComplete="username"
+        placeholder="Enter uemail address"
+        autoComplete="email"
+        inputMode="email"
         onChangeText={(text) => {
           setEmail(text);
         }}

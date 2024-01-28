@@ -4,9 +4,10 @@ import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
 
-export default function AddForm({ setOptionSelected }) {
+export default function AddForm({ setOptionSelected, setShoppingList }) {
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSubmit = async () => {
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
@@ -32,6 +33,15 @@ export default function AddForm({ setOptionSelected }) {
       .from("initial_shopping_list")
       .insert([productObject])
       .select();
+
+    if (error) {
+      setErrorMessage(`Error: ${error}`);
+    } else {
+      setShoppingList(prev => [...prev, data[0]]);
+      setProduct("");
+      setQuantity("");
+      setErrorMessage(false)
+    }
   };
   return (
     <View style={styles.form}>
@@ -62,6 +72,7 @@ export default function AddForm({ setOptionSelected }) {
         }}
         value={quantity}
       />
+      {errorMessage && <Text>{errorMessage}</Text>}
       <Pressable style={styles.submit} onPress={handleSubmit}>
         <Text style={styles.submitText}>Submit</Text>
       </Pressable>
