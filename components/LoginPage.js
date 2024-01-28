@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Image,
   Pressable,
@@ -6,21 +7,95 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { supabase } from "../supabase";
 
-export default function LoginPage() {
+export default function LoginPage({setUser, setLoggedIn}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [signUp, setSignUp] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false)
+
+
+  const handleLogin = async () => {
+    if (!email.trim()) {
+      console.log("no email")
+      setErrorMessage("Email cannot be empty")
+    } else if (!password.trim()) {
+      setErrorMessage("Password cannot be empty")
+    } else if (password.length < 8) {
+      setErrorMessage("Password must be 8 characters long")
+    } else{
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        setErrorMessage(prev => `Error: ${error}`)
+      } else {
+        setUser(data);
+        setLoggedIn(true);
+        setEmail("");
+        setPassword("");
+        setPasswordCheck("");
+        setErrorMessage(false);
+      }
+    }
+  };
+
+  const handleSignUp = async () => {
+    if (!signUp) {
+      setSignUp(true);
+    } else {
+      setSignUp(false)
+    }
+  };
+
   return (
     <View style={styles.loginPage}>
-      <Image source={require("../assets/sun_large.png")} />
+      <Image source={require("../assets/sun_120.png")} />
       <Text style={styles.header}>Login Page</Text>
       <Text style={styles.labels}>Email:</Text>
-      <TextInput style={styles.textInputs} placeholder="Enter email address" />
+      <TextInput
+        style={styles.textInputs}
+        placeholder="Enter username"
+        autoComplete="username"
+        onChangeText={(text) => {
+          setEmail(text);
+        }}
+        value={email}
+      />
       <Text style={styles.labels}>Password:</Text>
-      <TextInput style={styles.textInputs} placeholder="Enter password" />
+      <TextInput
+        style={styles.textInputs}
+        placeholder="Enter password"
+        autoComplete="current-password"
+        secureTextEntry={true}
+        onChangeText={(text) => {
+          setPassword(text);
+        }}
+        value={password}
+      />
+      {signUp && <Text style={styles.labels}>Confirm Password:</Text>}
+      {signUp && (
+        <TextInput
+          style={styles.textInputs}
+          placeholder="Confirm password"
+          autoComplete="new-password"
+          secureTextEntry={true}
+          onChangeText={(text) => {
+            setPasswordCheck(text);
+          }}
+          value={passwordCheck}
+        />
+      )}
+      {typeof(errorMessage) === "string" && <Text>{errorMessage}</Text>}
       <View style={styles.buttonSection}>
-        <Pressable style={styles.buttons}>
+        <Pressable style={styles.buttons} onPress={handleSignUp}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </Pressable>
-        <Pressable style={styles.buttons}>
+        <Pressable style={styles.buttons} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </Pressable>
       </View>
@@ -55,7 +130,7 @@ const styles = StyleSheet.create({
     }),
   },
   textInputs: {
-    height: 35,
+    height: 40,
     width: "70%",
     backgroundColor: "white",
     borderWidth: 2,

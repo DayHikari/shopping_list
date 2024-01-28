@@ -8,15 +8,16 @@ import { useState } from "react";
 import LoginPage from "./components/LoginPage";
 
 export default function App() {
-  const[loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
         <StatusBar style="auto" />
         <Banner />
-        {!loggedIn && <LoginPage/>}
-        {loggedIn && <ListSection />}
+        {!loggedIn && <LoginPage setUser={setUser} setLoggedIn={setLoggedIn}/>}
+        {loggedIn && <ListSection/>}
         {loggedIn && <Navigation/>}
       </View>
     </SafeAreaProvider>
