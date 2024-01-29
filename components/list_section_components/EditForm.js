@@ -3,43 +3,51 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
-export default function AddForm({ setOptionSelected, setShoppingList }) {
+export default function EditForm({
+  setOptionSelected,
+  setShoppingList,
+  selectedItem,
+  setSelectedItem,
+}) {
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
 
+  const productPlaceholder = selectedItem ? selectedItem.product : "Please select an item.";
+  // const productPlaceholder = "Please select an item.";
+  const quantityPlaceholder = selectedItem ? selectedItem.quantity : "Please select an item.";
+  // const quantityPlaceholder =  "Please select an item.";
+
   const handleSubmit = async () => {
-    const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
+    const imageCheck = product ? product.toLocaleLowerCase().trim().replaceAll(" ", "_") : selectedItem.image;
 
-    let productObject;
-    if (imagePaths[imageCheck]) {
-      productObject = {
-        product: product,
-        image: imageCheck,
-        quantity: quantity,
+    const productData = product ? product : selectedItem.product;
+    const quantityData = quantity ? quantity : selectedItem.quantity;
+    const imageData = imagePaths[imageCheck] ? imageCheck : "default";
+
+    const productObject = {
+        product: productData,
+        image: imageData,
+        quantity: quantityData,
         checked: false,
       };
-    } else {
-      productObject = {
-        product: product,
-        image: "default",
-        quantity: quantity,
-        checked: false,
-      };
-    }
-
+      
     const { data, error } = await supabase
       .from("initial_shopping_list")
-      .insert([productObject])
+      .update(productObject)
+      .eq("product", selectedItem.product)
       .select();
-
+      
     if (error) {
       setErrorMessage(`Error: ${error}`);
     } else {
-      setShoppingList((prev) => [...prev, data[0]]);
+      setShoppingList((prev) =>
+        prev.map((obj) => obj.product === selectedItem.product ? data[0] : obj)
+      );
       setProduct("");
       setQuantity("");
       setErrorMessage(false);
+      setSelectedItem(false);
     }
   };
 
@@ -53,11 +61,11 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
       >
         <Text style={styles.closeText}>X</Text>
       </Pressable>
-      <Text style={styles.header}>Add an item</Text>
+      <Text style={styles.header}>Edit an item</Text>
       <Text style={styles.subHeaders}>Product:</Text>
       <TextInput
         style={styles.textInputs}
-        placeholder="Item name"
+        placeholder={productPlaceholder}
         onChangeText={(text) => {
           setProduct(text);
         }}
@@ -66,7 +74,7 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
       <Text style={styles.subHeaders}>Quantity:</Text>
       <TextInput
         style={styles.textInputs}
-        placeholder="e.g.: 2 or 1 bag or 3 boxes"
+        placeholder={quantityPlaceholder}
         onChangeText={(text) => {
           setQuantity(text);
         }}
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
     height: 270,
     left: "auto",
     right: "auto",
-    top: "3%",
+    bottom: "13%",
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",

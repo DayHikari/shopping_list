@@ -4,25 +4,27 @@ import ListOptions from "./list_section_components/ListOptions";
 import AddForm from "./list_section_components/AddForm";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
+import EditForm from "./list_section_components/EditForm";
 
-export default function ListSection () {
+export default function ListSection() {
   const [optionSelected, setOptionSelected] = useState(false);
   const [shoppingList, setShoppingList] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchList = async () => {
       const { data, error } = await supabase
-      .from('initial_shopping_list')
-      .select('*')
+        .from("initial_shopping_list")
+        .select("*");
 
       if (error) {
         console.error("Error occured: ", error.message);
         return;
-      };
+      }
 
       if (data) {
         setShoppingList(data);
-      };
+      }
     };
 
     fetchList();
@@ -33,33 +35,45 @@ export default function ListSection () {
       case false:
         return;
       case "add":
-        return <AddForm setOptionSelected={setOptionSelected} setShoppingList={setShoppingList}/>;
+        return (
+          <AddForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+          />
+        );
       case "edit":
-        return;
+        return (
+          <EditForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />
+        );
       case "delete":
         return;
     }
-  } 
-  return(
+  };
+  return (
     <View style={styles.listSection}>
-      <List shoppingList={shoppingList}/>
+      <List shoppingList={shoppingList} setSelectedItem={setSelectedItem} />
       {chooseOption()}
-      <View style={styles.separator}/>
-      <ListOptions setOptionSelected={setOptionSelected}/>
+      <View style={styles.separator} />
+      <ListOptions setOptionSelected={setOptionSelected} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   listSection: {
-    height: '72%',
-    display: 'flex',
-    alignItems: 'center',
+    height: "72%",
+    display: "flex",
+    alignItems: "center",
   },
   separator: {
     marginVertical: 5,
-    borderBottomColor: '#046835',
+    borderBottomColor: "#046835",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    width: '85%'
-  }
+    width: "85%",
+  },
 });
