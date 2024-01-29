@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
   },
   productText: {
     fontSize: 30,
+    textAlign: "center",
   },
   productQuantity: {
     fontSize: 20,
+    textAlign: "center",
   },
 });
