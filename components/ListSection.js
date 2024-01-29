@@ -5,6 +5,7 @@ import AddForm from "./list_section_components/AddForm";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
 import EditForm from "./list_section_components/EditForm";
+import DeleteForm from "./list_section_components/DeleteForm";
 
 export default function ListSection() {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -51,7 +52,14 @@ export default function ListSection() {
           />
         );
       case "delete":
-        return;
+        return (
+          <DeleteForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />
+        );
     }
   };
   return (

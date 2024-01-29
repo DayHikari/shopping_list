@@ -9,6 +9,10 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSubmit = async () => {
+    if (product === "" || quantity === "") {
+      return setErrorMessage("Please add both a prduct and quantity")
+    };
+
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
 
     let productObject;
@@ -72,7 +76,7 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
         }}
         value={quantity}
       />
-      {errorMessage && <Text>{errorMessage}</Text>}
+      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
       <Pressable style={styles.submit} onPress={handleSubmit}>
         <Text style={styles.submitText}>Submit</Text>
       </Pressable>
@@ -82,12 +86,8 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
 
 const styles = StyleSheet.create({
   form: {
-    position: "absolute",
     width: "95%",
-    height: 270,
-    left: "auto",
-    right: "auto",
-    top: "3%",
+    height: 280,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
@@ -159,6 +159,15 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     color: "#046835",
+    fontWeight: "700",
+  },
+  error: {
+    color: "red",
+    fontSize: 16,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
     fontWeight: "700",
   },
 });

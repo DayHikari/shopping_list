@@ -3,54 +3,43 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
-export default function EditForm({
+export default function DeleteForm({
   setOptionSelected,
   setShoppingList,
   selectedItem,
   setSelectedItem,
 }) {
-  const [product, setProduct] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
   const productPlaceholder = selectedItem ? selectedItem.product : "Please select an item.";
   const quantityPlaceholder = selectedItem ? selectedItem.quantity : "Please select an item.";
 
   const handleSubmit = async () => {
-    if (product === "" && quantity === "") {
-      return setErrorMessage("Please make a change before submitting")
-    };
-
-    const imageCheck = product ? product.toLocaleLowerCase().trim().replaceAll(" ", "_") : selectedItem.image;
-
-    const productData = product ? product : selectedItem.product;
-    const quantityData = quantity ? quantity : selectedItem.quantity;
-    const imageData = imagePaths[imageCheck] ? imageCheck : "default";
-
-    const productObject = {
-        product: productData,
-        image: imageData,
-        quantity: quantityData,
-        checked: false,
-      };
-      
-    const { data, error } = await supabase
-      .from("initial_shopping_list")
-      .update(productObject)
-      .eq("product", selectedItem.product)
-      .select();
-      
-    if (error) {
-      setErrorMessage(`Error: ${error}`);
+    if (!selectedItem){
+      setErrorMessage("Please select an item.");
+    } else if (!confirmed) {
+      setErrorMessage("Are you sure you want to delete?");
+      setConfirmed(prev => !prev);
     } else {
-      setShoppingList((prev) =>
-        prev.map((obj) => obj.product === selectedItem.product ? data[0] : obj)
-      );
-      setProduct("");
-      setQuantity("");
       setErrorMessage(false);
-      setSelectedItem(false);
-    }
+      setConfirmed(prev => !prev);
+      const { error } = await supabase
+        .from("initial_shopping_list")
+        .delete()
+        .eq("product", selectedItem.product)
+        
+      if (error) {
+        setErrorMessage(`Error: ${error}`);
+      } else {
+        setShoppingList((prev) =>
+          prev.filter((obj) => obj.product !== selectedItem.product)
+        );
+      
+        setErrorMessage(false);
+        setSelectedItem(false);
+      }
+    };
   };
 
   return (
@@ -63,28 +52,14 @@ export default function EditForm({
       >
         <Text style={styles.closeText}>X</Text>
       </Pressable>
-      <Text style={styles.header}>Edit an item</Text>
+      <Text style={styles.header}>Delete an item</Text>
       <Text style={styles.subHeaders}>Product:</Text>
-      <TextInput
-        style={styles.textInputs}
-        placeholder={productPlaceholder}
-        onChangeText={(text) => {
-          setProduct(text);
-        }}
-        value={product}
-      />
+      <Text style={styles.item}>{productPlaceholder}</Text>
       <Text style={styles.subHeaders}>Quantity:</Text>
-      <TextInput
-        style={styles.textInputs}
-        placeholder={quantityPlaceholder}
-        onChangeText={(text) => {
-          setQuantity(text);
-        }}
-        value={quantity}
-      />
+      <Text style={styles.item}>{quantityPlaceholder}</Text>
       {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
       <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Edit</Text>
+        <Text style={styles.submitText}>Delete</Text>
       </Pressable>
     </View>
   );
@@ -93,7 +68,7 @@ export default function EditForm({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: 280,
+    height: 270,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
@@ -118,10 +93,10 @@ const styles = StyleSheet.create({
     }),
     color: "#FF8833",
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 15,
   },
   subHeaders: {
-    fontSize: 17,
+    fontSize: 19,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
@@ -131,23 +106,16 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     paddingLeft: 20,
   },
-  textInputs: {
-    backgroundColor: "#CDEEFD",
-    width: "90%",
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#FF8833",
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 2,
-    fontSize: 15,
-    color: "#046835",
+  item: {
+    fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
     }),
+    color: "#FF8833",
     fontWeight: "700",
+    alignSelf: "center",
+    marginBottom: 10
   },
   submit: {
     borderRadius: 10,
@@ -156,7 +124,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingTop: 10,
     paddingBottom: 10,
-    margin: 10,
+    marginTop: 10,
   },
   submitText: {
     fontSize: 17,
@@ -169,7 +137,7 @@ const styles = StyleSheet.create({
   },
   error: {
     color: "red",
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
