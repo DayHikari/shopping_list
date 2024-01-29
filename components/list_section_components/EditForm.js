@@ -50,6 +50,7 @@ export default function EditForm({
       setQuantity("");
       setErrorMessage(false);
       setSelectedItem(false);
+      setOptionSelected(false);
     }
   };
 

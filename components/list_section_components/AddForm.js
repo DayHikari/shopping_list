@@ -44,6 +44,7 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
       setProduct("");
       setQuantity("");
       setErrorMessage(false);
+      setOptionSelected(false);
     }
   };
 

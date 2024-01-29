@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
 export default function DeleteForm({
@@ -38,6 +37,7 @@ export default function DeleteForm({
       
         setErrorMessage(false);
         setSelectedItem(false);
+        setOptionSelected(false);
       }
     };
   };
