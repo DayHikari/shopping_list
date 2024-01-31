@@ -64,7 +64,11 @@ export default function ListSection() {
   };
   return (
     <View style={styles.listSection}>
-      <List shoppingList={shoppingList} setSelectedItem={setSelectedItem} />
+      <List
+        shoppingList={shoppingList}
+        setSelectedItem={setSelectedItem}
+        setShoppingList={setShoppingList}
+      />
       {chooseOption()}
       <View style={styles.separator} />
       <ListOptions setOptionSelected={setOptionSelected} />

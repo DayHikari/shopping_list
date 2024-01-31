@@ -1,36 +1,75 @@
-import { StyleSheet, Text, ScrollView} from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import ListItem from "./ListItem";
 
+import { useState, useEffect } from "react";
 
+export default function List({
+  shoppingList,
+  setSelectedItem,
+  setShoppingList,
+}) {
+  const [uncheckedList, setUncheckedList] = useState(null);
+  const [checkedList, setCheckedList] = useState(null);
 
-export default function List ({shoppingList, setSelectedItem}) {
-  return(
-    <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
-      {shoppingList && shoppingList.map((shoppingItem) => {return <ListItem key={shoppingItem.product} itemData={shoppingItem} setSelectedItem={setSelectedItem}/>}) }
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
-      <Text style={styles.text}>Test</Text>
+  const filterLists = () => {
+    setUncheckedList(
+      (prevList) =>
+        (prevList = shoppingList.filter(
+          (itemObj) => itemObj["checked"] === false
+        ))
+    );
+    setCheckedList(
+      (prevList) =>
+        (prevList = shoppingList.filter((itemObj) => itemObj.checked === true))
+    );
+  };
+
+  useEffect(() => {
+    if (shoppingList) {
+      filterLists();
+    }
+  }, [shoppingList]);
+
+  return (
+    <ScrollView
+      style={styles.list}
+      contentContainerStyle={styles.contentContainer}
+    >
+      {uncheckedList &&
+        uncheckedList.map((shoppingItem) => {
+          return (
+            <ListItem
+              key={shoppingItem.product}
+              itemData={shoppingItem}
+              setSelectedItem={setSelectedItem}
+              setShoppingList={setShoppingList}
+            />
+          );
+        })}
+      {checkedList &&
+        checkedList.map((shoppingItem) => {
+          return (
+            <ListItem
+              key={shoppingItem.product}
+              itemData={shoppingItem}
+              setSelectedItem={setSelectedItem}
+              setShoppingList={setShoppingList}
+            />
+          );
+        })}
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   list: {
-    width: '100%',
+    width: "100%",
   },
   contentContainer: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   text: {
-    fontSize: 50
-  }
+    fontSize: 50,
+  },
 });

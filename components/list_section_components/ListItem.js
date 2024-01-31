@@ -1,20 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
+import { supabase } from "../../supabase";
 
-export default function ListItem({ itemData, setSelectedItem }) {
+export default function ListItem({
+  itemData,
+  setSelectedItem,
+  setShoppingList,
+}) {
   const [checked, setChecked] = useState(itemData.checked);
   const checkedImageURL = checked
     ? require("../../assets/checked.png")
     : require("../../assets/unchecked.png");
   const checkedStyle = !checked ? "productLayout" : "checkedProductLayout";
 
-  const handleCheckPress = () => {
+  const handleCheckPress = async () => {
     setChecked((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    if (checked !== itemData.checked) {
+      const updateItem = async () => {
+        const { data, error } = await supabase
+          .from("initial_shopping_list")
+          .update({ checked: checked })
+          .eq("product", itemData.product)
+          .select();
+
+        if (error) {
+          setErrorMessage(`Error: ${error}`);
+        } else {
+          setShoppingList((prevProductList) =>
+            prevProductList.map((productObj) =>
+              productObj.product === itemData.product ? data[0] : productObj
+            )
+          );
+        }
+      };
+      updateItem();
+    }
+  }, [checked]);
+
   return (
-    <Pressable style={styles.selectElement} onPress={() => {setSelectedItem(itemData)}}>
+    <Pressable
+      style={styles.selectElement}
+      onPress={() => {
+        setSelectedItem(itemData);
+      }}
+    >
       <View style={styles[checkedStyle]}>
         <Image source={imagePaths[itemData.image]} />
         <View style={styles.productTextSection}>
