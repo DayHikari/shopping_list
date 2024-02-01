@@ -9,37 +9,70 @@ export default function DeleteForm({
   setSelectedItem,
 }) {
   const [confirmed, setConfirmed] = useState(false);
+  const [checkedConfirmed, setCheckedConfirmed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const productPlaceholder = selectedItem ? selectedItem.product : "Please select an item.";
-  const quantityPlaceholder = selectedItem ? selectedItem.quantity : "Please select an item.";
+  const productPlaceholder = selectedItem
+    ? selectedItem.product
+    : "Please select an item.";
+  const quantityPlaceholder = selectedItem
+    ? selectedItem.quantity
+    : "Please select an item.";
 
-  const handleSubmit = async () => {
-    if (!selectedItem){
+  const handleDeleteItem = async () => {
+    setCheckedConfirmed(false);
+
+    if (!selectedItem) {
       setErrorMessage("Please select an item.");
     } else if (!confirmed) {
       setErrorMessage("Are you sure you want to delete?");
-      setConfirmed(prev => !prev);
+      setConfirmed((prev) => !prev);
     } else {
-      setErrorMessage(false);
-      setConfirmed(prev => !prev);
+      setConfirmed((prev) => !prev);
+
       const { error } = await supabase
         .from("initial_shopping_list")
         .delete()
-        .eq("product", selectedItem.product)
-        
+        .eq("product", selectedItem.product);
+
       if (error) {
         setErrorMessage(`Error: ${error}`);
       } else {
         setShoppingList((prev) =>
           prev.filter((obj) => obj.product !== selectedItem.product)
         );
-      
+
         setErrorMessage(false);
         setSelectedItem(false);
         setOptionSelected(false);
       }
-    };
+    }
+  };
+
+  const handleDeleteChecked = async () => {
+    setConfirmed(false);
+
+    if (!checkedConfirmed) {
+      setErrorMessage("Delete all checked items?");
+      setCheckedConfirmed((prev) => !prev);
+    } else {
+      setCheckedConfirmed((prev) => !prev);
+
+      const { error } = await supabase
+        .from("initial_shopping_list")
+        .delete()
+        .eq("checked", true);
+
+      if (error) {
+        setErrorMessage(`Error: ${error}`);
+      } else {
+        setShoppingList((prev) => prev.filter((obj) => obj.checked === false));
+
+        setErrorMessage(false);
+        setSelectedItem(false);
+        setOptionSelected(false);
+      }
+    }
   };
 
   return (
@@ -58,9 +91,14 @@ export default function DeleteForm({
       <Text style={styles.subHeaders}>Quantity:</Text>
       <Text style={styles.item}>{quantityPlaceholder}</Text>
       {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-      <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Delete</Text>
-      </Pressable>
+      <View style={styles.submitSection}>
+        <Pressable style={styles.submit} onPress={handleDeleteChecked}>
+          <Text style={styles.submitText}>Delete checked</Text>
+        </Pressable>
+        <Pressable style={styles.submit} onPress={handleDeleteItem}>
+          <Text style={styles.submitText}>Delete Item</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -115,7 +153,13 @@ const styles = StyleSheet.create({
     color: "#FF8833",
     fontWeight: "700",
     alignSelf: "center",
-    marginBottom: 10
+    marginBottom: 10,
+  },
+  submitSection: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   submit: {
     borderRadius: 10,
