@@ -15,7 +15,7 @@ export default function ListSection() {
   useEffect(() => {
     const fetchList = async () => {
       const { data, error } = await supabase
-        .from("initial_shopping_list")
+        .from("shopping_list")
         .select("*");
 
       if (error) {

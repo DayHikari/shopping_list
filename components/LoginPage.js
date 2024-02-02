@@ -37,7 +37,7 @@ export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
       } else {
         setUser(data);
         setLoggedIn(true);
-        setDisplayedPage("listSection")
+        setDisplayedPage("createdLists")
         setEmail("");
         setPassword("");
         setPasswordCheck("");

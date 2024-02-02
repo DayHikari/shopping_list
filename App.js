@@ -6,16 +6,20 @@ import Navigation from "./components/Navigation";
 import ListSection from "./components/ListSection";
 import { useState } from "react";
 import LoginPage from "./components/LoginPage";
+import CreatedListsPage from "./components/CreatedListsPage";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-  const [displayedPage, setDisplayedPage] = useState(null)
+  const [displayedPage, setDisplayedPage] = useState(null);
+  const [selectedList, setSelectedList] = useState(null);
   
   const display = () => {
     switch (displayedPage) {
       case "listSection":
-        return <ListSection />;
+        return <ListSection id={user.user.id}/>;
+      case "createdLists":
+        return <CreatedListsPage />
       default:
         return;
     }
