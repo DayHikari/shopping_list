@@ -7,19 +7,19 @@ export default function CreatedListsOptions() {
         style={styles.button}
         onPress={() => {}}
       >
-        <Text style={styles.buttonOptions}>Add</Text>
+        <Text style={styles.buttonText}>Add</Text>
       </Pressable>
       <Pressable
         style={styles.button}
         onPress={() => {}}
       >
-        <Text style={styles.buttonOptions}>Edit</Text>
+        <Text style={styles.buttonText}>Edit</Text>
       </Pressable>
       <Pressable
         style={styles.button}
         onPress={() => {}}
       >
-        <Text style={styles.buttonOptions}>Delete</Text>
+        <Text style={styles.buttonText}>Delete</Text>
       </Pressable>
     </View>
   );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  buttonOptions: {
+  buttonText: {
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
@@ -43,5 +43,9 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 5,
+    width: "27%",
+    display:"flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
