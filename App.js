@@ -12,7 +12,14 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [displayedPage, setDisplayedPage] = useState(null)
   
-
+  const display = () => {
+    switch (displayedPage) {
+      case "listSection":
+        return <ListSection />;
+      default:
+        return;
+    }
+  };
 
   return (
     <SafeAreaProvider>
@@ -23,7 +30,7 @@ export default function App() {
           {!loggedIn && (
             <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} setDisplayedPage={setDisplayedPage} />
           )}
-          {loggedIn && <ListSection />}
+          {display()}
           {loggedIn && <Navigation />}
         </View>
       </View>
