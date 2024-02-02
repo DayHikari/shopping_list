@@ -19,7 +19,7 @@ export default function App() {
       case "listSection":
         return <ListSection id={user.user.id}/>;
       case "createdLists":
-        return <CreatedListsPage />
+        return <CreatedListsPage id={user.user.id} setSelectedList={setSelectedList}/>
       default:
         return;
     }
