@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import { supabase } from "../../supabase";
+
 
 export default function DeleteForm({
   setOptionSelected,

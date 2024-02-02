@@ -6,10 +6,11 @@ import {
   Text,
   TextInput,
   View,
+  Platform
 } from "react-native";
 import { supabase } from "../supabase";
 
-export default function LoginPage({setUser, setLoggedIn}) {
+export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -36,6 +37,7 @@ export default function LoginPage({setUser, setLoggedIn}) {
       } else {
         setUser(data);
         setLoggedIn(true);
+        setDisplayedPage("list")
         setEmail("");
         setPassword("");
         setPasswordCheck("");

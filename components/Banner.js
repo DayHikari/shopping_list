@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
   banner: {
     backgroundColor: "#046835",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     height: "17%",
   },
   bannerContent: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "spave-evenly",
+    justifyContent: "center",
   },
   bannerHeader: {
     fontSize: 30,
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif"
     }),
+    marginBottom: 3,
   },
   bannerSubHeader: {
     fontSize: 35,

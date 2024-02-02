@@ -4,7 +4,7 @@ export default function () {
   return (
     <View style={styles.navigation}>
       <Button title="Favourite" onPress={() => Alert.alert("Future feature")} disabled/>
-      <Button title="   List   " color={"#049825"} />
+      <Button title="   Lists   " color={"#049825"} />
       <Button title="Previous" onPress={() => Alert.alert("Future feature")} disabled/>
     </View>
   );
