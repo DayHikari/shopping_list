@@ -46,9 +46,13 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 25,
+    fontSize: 20,
   },
   button: {
     padding: 5,
+    width: "27%",
+    display:"flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -1,8 +1,9 @@
-import { View, StyleSheet } from "react-native-web";
-import CreatedLists from "./created_lists_page_components/CreatedLists";
+// import { View, StyleSheet } from "react-native-web";
+import CreatedListsSection from "./created_lists_page_components/CreatedListsSection";
 import CreatedListsOptions from "./created_lists_page_components/CreatedListsOptions";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
+import { Text, View, StyleSheet } from "react-native";
 
 export default function CreatedListsPage({ id, setSelectedList }) {
   const [listNames, setListNames] = useState(null);
@@ -12,6 +13,7 @@ export default function CreatedListsPage({ id, setSelectedList }) {
       const { data, error } = await supabase
         .from("list_names")
         .select("list_names");
+        console.log("Data from list_names:", data)
 
       if(error) {
         console.error("Error occured: ", error.message);
@@ -28,10 +30,11 @@ export default function CreatedListsPage({ id, setSelectedList }) {
 
   return (
     <View style={styles.listContainer}>
-      <CreatedLists />
+      <CreatedListsSection listNames={listNames}/>
       <View style={styles.separator} />
       <CreatedListsOptions />
     </View>
+
   );
 }
 

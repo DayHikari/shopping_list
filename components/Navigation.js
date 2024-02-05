@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     padding: 5,
-    width: "27%",
+    width: "30%",
     display:"flex",
     alignItems: "center",
     justifyContent: "center",
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 25,
+    fontSize: 20,
   },
 });
