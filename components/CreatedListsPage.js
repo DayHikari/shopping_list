@@ -13,7 +13,6 @@ export default function CreatedListsPage({ id, setSelectedList }) {
       const { data, error } = await supabase
         .from("list_names")
         .select("list_names");
-        console.log("Data from list_names:", data)
 
       if(error) {
         console.error("Error occured: ", error.message);

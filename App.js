@@ -17,7 +17,7 @@ export default function App() {
   const display = () => {
     switch (displayedPage) {
       case "listSection":
-        return <ListSection id={user.user.id}/>;
+        return <ListSection id={user.user.id} selectedList={selectedList}/>;
       case "createdLists":
         return <CreatedListsPage id={user.user.id} setSelectedList={setSelectedList}/>
       default:
