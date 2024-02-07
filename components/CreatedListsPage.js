@@ -39,7 +39,7 @@ export default function CreatedListsPage({ id, setSelectedList }) {
 
 const styles = StyleSheet.create({
   listContainer: {
-    height: "72%",
+    height: "74%",
     display: "flex",
     alignItems: "center",
   },

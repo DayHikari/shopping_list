@@ -78,7 +78,7 @@ export default function ListSection() {
 
 const styles = StyleSheet.create({
   listSection: {
-    height: "72%",
+    height: "74%",
     display: "flex",
     alignItems: "center",
   },

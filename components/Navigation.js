@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#046835",
     alignItems: "center",
-    height: "11%",
+    height: "9%",
     justifyContent: "space-evenly",
   },
   buttons: {
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     display:"flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#06964d",
+    borderRadius: 10,
   },
   buttonText: {
     fontFamily: Platform.select({
