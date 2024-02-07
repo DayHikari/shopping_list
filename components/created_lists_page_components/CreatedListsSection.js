@@ -4,7 +4,7 @@ import ListName from "./ListName";
 export default function CreatedListsSection ({listNames}) {
     return (
         <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
-            {listNames && listNames.map(listName => <ListName listName={listName} key={listName["list_names"]}/>)}
+            {listNames && listNames.map(listName => <ListName listName={listName} key={listName}/>)}
             <Text>TEST</Text>
             <Text>TEST</Text>
             <Text>TEST</Text>

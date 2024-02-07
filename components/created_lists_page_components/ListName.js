@@ -3,11 +3,10 @@ import { Pressable, StyleSheet, View, Text } from "react-native";
 export default function ListName({listName}) {
   
   const capitaliser = () => {
-    const nameArray = listName["list_names"].split("_").map(elem => elem.split("").map((e, i) => i === 0 ? e.toUpperCase() : e).join("")).join(" ");
+    const nameArray = listName.split("_").map(elem => elem.split("").map((e, i) => i === 0 ? e.toUpperCase() : e).join("")).join(" ");
     return nameArray;
   };
 
-  console.log("listNames: ", listName)
   return (
     <Pressable style={styles.itemLayout}> 
       <View>
