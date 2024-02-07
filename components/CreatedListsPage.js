@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { Text, View, StyleSheet } from "react-native";
 
-export default function CreatedListsPage({ id, setSelectedList }) {
+export default function CreatedListsPage({ email, setSelectedList }) {
   const [listNames, setListNames] = useState(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function CreatedListsPage({ id, setSelectedList }) {
       const { data, error } = await supabase
         .from("shopping_list")
         .select("list_name")
-        .contains("email", ["david_mason_@hotmail.co.uk"]);
+        .contains("email", [email]);
 
       if(error) {
         console.error("Error occured: ", error.message);
