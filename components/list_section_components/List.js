@@ -69,7 +69,4 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
-  text: {
-    fontSize: 50,
-  },
 });

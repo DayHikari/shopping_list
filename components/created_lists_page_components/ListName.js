@@ -8,8 +8,8 @@ export default function ListName({listName, handleListSelect}) {
   };
 
   return (
-    <Pressable style={styles.itemLayout} onPress={() => handleListSelect(listName)} > 
-      <View>
+    <Pressable style={styles.selectElement} onPress={() => handleListSelect(listName)} > 
+      <View style={styles.itemLayout}>
         <Text style={styles.text}>
           {listName ? capitaliser() : "No lists available."}
         </Text>
@@ -19,6 +19,11 @@ export default function ListName({listName, handleListSelect}) {
 };
 
 const styles = StyleSheet.create({
+  selectElement: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+  },
   itemLayout: {
     borderWidth: 4,
     borderColor: "#046835",

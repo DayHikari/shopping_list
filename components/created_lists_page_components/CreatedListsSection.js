@@ -5,58 +5,6 @@ export default function CreatedListsSection ({listNames, handleListSelect}) {
     return (
         <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
             {listNames && listNames.map((listName, index) => <ListName listName={listName} handleListSelect={handleListSelect} key={index}/>)}
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
-            <Text>TEST</Text>
         </ScrollView>
     );
 };

@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 18,
+    fontSize: 16,
   },
 });
