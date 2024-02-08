@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { Text, View, StyleSheet } from "react-native";
 
-export default function CreatedListsPage({ email, setSelectedList }) {
+export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function CreatedListsPage({ email, setSelectedList }) {
 
   return (
     <View style={styles.listContainer}>
-      <CreatedListsSection listNames={listNames}/>
+      <CreatedListsSection listNames={listNames} handleListSelect={handleListSelect}/>
       <View style={styles.separator} />
       <CreatedListsOptions />
     </View>

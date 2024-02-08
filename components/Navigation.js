@@ -1,12 +1,12 @@
 import { Alert, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
-export default function () {
+export default function ({setDisplayedPage}) {
   return (
     <View style={styles.navigation}>
       <Pressable style={styles.buttons} onPress={() => Alert.alert("Future feature")}>
         <Text style={styles.buttonText}>Favourite</Text>
       </Pressable>
-      <Pressable style={styles.buttons} onPress={() => {}}>
+      <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("createdLists")}}>
         <Text style={styles.buttonText}>Lists</Text>
       </Pressable>
       <Pressable style={styles.buttons} onPress={() => Alert.alert("Future feature")}>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     padding: 5,
-    width: "30%",
+    width: "25%",
     display:"flex",
     alignItems: "center",
     justifyContent: "center",
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 20,
+    fontSize: 18,
   },
 });

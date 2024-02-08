@@ -34,7 +34,7 @@ export default function AddForm({ setOptionSelected, setShoppingList }) {
     }
 
     const { data, error } = await supabase
-      .from("initial_shopping_list")
+      .from("shopping_list")
       .insert([productObject])
       .select();
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   close: {
     position: "absolute",
     top: "2%",
-    right: "3%",
+    right: "5%",
   },
   closeText: {
     fontSize: 17,

@@ -1,10 +1,10 @@
 import { ScrollView, StyleSheet, Text } from "react-native";
 import ListName from "./ListName";
 
-export default function CreatedListsSection ({listNames}) {
+export default function CreatedListsSection ({listNames, handleListSelect}) {
     return (
         <ScrollView style={styles.list} contentContainerStyle={styles.contentContainer}>
-            {listNames && listNames.map(listName => <ListName listName={listName} key={listName}/>)}
+            {listNames && listNames.map((listName, index) => <ListName listName={listName} handleListSelect={handleListSelect} key={index}/>)}
             <Text>TEST</Text>
             <Text>TEST</Text>
             <Text>TEST</Text>

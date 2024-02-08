@@ -60,10 +60,10 @@ export default function DeleteForm({
       setCheckedConfirmed((prev) => !prev);
 
       const { error } = await supabase
-        .from("initial_shopping_list")
+        .from("shopping_list")
         .delete()
         .eq("checked", true);
-
+        
       if (error) {
         setErrorMessage(`Error: ${error}`);
       } else {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   close: {
     position: "absolute",
     top: "2%",
-    right: "3%",
+    right: "5%",
   },
   closeText: {
     fontSize: 17,

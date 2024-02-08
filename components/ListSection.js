@@ -7,7 +7,7 @@ import { supabase } from "../supabase";
 import EditForm from "./list_section_components/EditForm";
 import DeleteForm from "./list_section_components/DeleteForm";
 
-export default function ListSection() {
+export default function ListSection({email, selectedList}) {
   const [optionSelected, setOptionSelected] = useState(false);
   const [shoppingList, setShoppingList] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -16,7 +16,9 @@ export default function ListSection() {
     const fetchList = async () => {
       const { data, error } = await supabase
         .from("shopping_list")
-        .select("*");
+        .select("*")
+        .eq("list_name", selectedList)
+        .contains("email", [email]);
 
       if (error) {
         console.error("Error occured: ", error.message);

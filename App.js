@@ -14,12 +14,17 @@ export default function App() {
   const [displayedPage, setDisplayedPage] = useState(null);
   const [selectedList, setSelectedList] = useState(null);
   
+  const handleListSelect = (listName) => {
+    setSelectedList(listName)
+    setDisplayedPage("listSection")
+  }
+
   const display = () => {
     switch (displayedPage) {
       case "listSection":
-        return <ListSection id={user.user.id} selectedList={selectedList}/>;
+        return <ListSection email={user.user.email} selectedList={selectedList}/>;
       case "createdLists":
-        return <CreatedListsPage email={user.user.email} setSelectedList={setSelectedList}/>
+        return <CreatedListsPage email={user.user.email} handleListSelect={handleListSelect}/>
       default:
         return;
     }
@@ -35,7 +40,7 @@ export default function App() {
             <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} setDisplayedPage={setDisplayedPage} />
           )}
           {display()}
-          {loggedIn && <Navigation />}
+          {loggedIn && <Navigation setDisplayedPage={setDisplayedPage} />}
         </View>
       </View>
     </SafeAreaProvider>
