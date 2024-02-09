@@ -11,9 +11,8 @@ export default function CreatedListsPage({ email, handleListSelect }) {
   useEffect(() => {
     const fetchNames = async () => {
       const { data, error } = await supabase
-        .from("shopping_list")
-        .select("list_name")
-        .contains("email", [email]);
+        .from("list_names")
+        .select("lists");
 
       if(error) {
         console.error("Error occured: ", error.message);
@@ -21,13 +20,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
       };
       
       if (data) {
-        const uniqueArray = [];
-        data.map(obj => {
-          if (!uniqueArray.includes(obj.list_name)){
-            uniqueArray.push(obj.list_name);
-          };
-        });
-        setListNames(uniqueArray);
+        setListNames(data[0].lists);
       };
     };
 
