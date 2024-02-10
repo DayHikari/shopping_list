@@ -11,16 +11,19 @@ export default function CreatedListsPage({ email, handleListSelect }) {
   useEffect(() => {
     const fetchNames = async () => {
       const { data, error } = await supabase
-        .from("list_names")
-        .select("lists");
-
+        .from("user_table")
+        .select(`
+          lists( list_id, list_name )
+        `);
+      data && console.log("data received: ", data)
       if(error) {
         console.error("Error occured: ", error.message);
         return;
       };
       
       if (data) {
-        setListNames(data[0].lists);
+        // setListNames(data[0].lists);
+        setListNames(data.map(elem => elem.lists));
       };
     };
 

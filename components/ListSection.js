@@ -15,10 +15,9 @@ export default function ListSection({email, selectedList}) {
   useEffect(() => {
     const fetchList = async () => {
       const { data, error } = await supabase
-        .from("shopping_list")
+        .from("items")
         .select("*")
-        .eq("list_name", selectedList)
-        .contains("email", [email]);
+        .eq("list_id", selectedList.list_id);
 
       if (error) {
         console.error("Error occured: ", error.message);

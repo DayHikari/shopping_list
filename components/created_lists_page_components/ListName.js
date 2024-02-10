@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, View, Text } from "react-native";
 export default function ListName({listName, handleListSelect}) {
   
   const capitaliser = () => {
-    const nameArray = listName.split("_").map(elem => elem.split("").map((e, i) => i === 0 ? e.toUpperCase() : e).join("")).join(" ");
+    const nameArray = listName.list_name.split("_").map(elem => elem.split("").map((e, i) => i === 0 ? e.toUpperCase() : e).join("")).join(" ");
     return nameArray;
   };
 

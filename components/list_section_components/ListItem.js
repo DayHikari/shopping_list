@@ -23,7 +23,7 @@ export default function ListItem({
     if (checked !== itemData.checked) {
       const updateItem = async () => {
         const { data, error } = await supabase
-          .from("initial_shopping_list")
+          .from("items")
           .update({ checked: checked })
           .eq("product", itemData.product)
           .select();
