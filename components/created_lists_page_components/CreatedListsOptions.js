@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 
-export default function CreatedListsOptions() {
+export default function CreatedListsOptions({setOptionSelected}) {
   return (
     <View style={styles.listOptions}>
       <Pressable
         style={styles.button}
-        onPress={() => {}}
+        onPress={() => {setOptionSelected("add")}}
       >
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>

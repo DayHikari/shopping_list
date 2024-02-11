@@ -4,39 +4,56 @@ import CreatedListsOptions from "./created_lists_page_components/CreatedListsOpt
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { Text, View, StyleSheet } from "react-native";
+import AddList from "./created_lists_page_components/AddList";
 
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
+  const [optionSelected, setOptionSelected] = useState(false);
 
   useEffect(() => {
     const fetchNames = async () => {
-      const { data, error } = await supabase
-        .from("user_table")
-        .select(`
-          lists( list_id, list_name )
+      const { data, error } = await supabase.from("user_table").select(`
+          lists( * )
         `);
-      data && console.log("data received: ", data)
-      if(error) {
+
+      if (error) {
         console.error("Error occured: ", error.message);
         return;
-      };
-      
+      }
+
       if (data) {
-        // setListNames(data[0].lists);
-        setListNames(data.map(elem => elem.lists));
-      };
+        setListNames(data.map((elem) => elem.lists));
+      }
     };
 
     fetchNames();
   }, []);
 
+  const chooseOption = () => {
+    switch (optionSelected) {
+      case false:
+        return;
+      case "add":
+        return (
+          <AddList
+            setListNames={setListNames}
+            setOptionSelected={setOptionSelected}
+            email={email}
+          />
+        );
+    }
+  };
+
   return (
     <View style={styles.listContainer}>
-      <CreatedListsSection listNames={listNames} handleListSelect={handleListSelect}/>
+      <CreatedListsSection
+        listNames={listNames}
+        handleListSelect={handleListSelect}
+      />
+      {chooseOption()}
       <View style={styles.separator} />
-      <CreatedListsOptions />
+      <CreatedListsOptions setOptionSelected={setOptionSelected} />
     </View>
-
   );
 }
 

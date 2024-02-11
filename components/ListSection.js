@@ -63,6 +63,7 @@ export default function ListSection({email, selectedList}) {
         );
     }
   };
+  
   return (
     <View style={styles.listSection}>
       <List

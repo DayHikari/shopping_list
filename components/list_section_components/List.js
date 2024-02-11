@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Text, Platform } from "react-native";
 import ListItem from "./ListItem";
 
 import { useState, useEffect } from "react";
@@ -35,7 +35,7 @@ export default function List({
       style={styles.list}
       contentContainerStyle={styles.contentContainer}
     >
-      {uncheckedList &&
+      {uncheckedList.length !== 0 ?
         uncheckedList.map((shoppingItem) => {
           return (
             <ListItem
@@ -45,8 +45,8 @@ export default function List({
               setShoppingList={setShoppingList}
             />
           );
-        })}
-      {checkedList &&
+        }) : <Text style={styles.message} >No items in list</Text>}
+      {checkedList ?
         checkedList.map((shoppingItem) => {
           return (
             <ListItem
@@ -56,7 +56,7 @@ export default function List({
               setShoppingList={setShoppingList}
             />
           );
-        })}
+        }) : null}
     </ScrollView>
   );
 }
@@ -68,5 +68,18 @@ const styles = StyleSheet.create({
   contentContainer: {
     display: "flex",
     alignItems: "center",
+  },
+  message: {
+    borderWidth: 4,
+    borderColor: "#046835",
+    margin: 10,
+    width: "90%",
+    padding: 5,
+    textAlign: "center",
+    fontSize: 25,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
   },
 });
