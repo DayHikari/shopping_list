@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 23,
+    fontSize: 20,
   },
   button: {
     padding: 5,

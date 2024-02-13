@@ -35,7 +35,7 @@ export default function List({
       style={styles.list}
       contentContainerStyle={styles.contentContainer}
     >
-      {uncheckedList.length !== 0 ?
+      {uncheckedList && uncheckedList.length !== 0 ? (
         uncheckedList.map((shoppingItem) => {
           return (
             <ListItem
@@ -45,18 +45,22 @@ export default function List({
               setShoppingList={setShoppingList}
             />
           );
-        }) : <Text style={styles.message} >No items in list</Text>}
-      {checkedList ?
-        checkedList.map((shoppingItem) => {
-          return (
-            <ListItem
-              key={shoppingItem.product}
-              itemData={shoppingItem}
-              setSelectedItem={setSelectedItem}
-              setShoppingList={setShoppingList}
-            />
-          );
-        }) : null}
+        })
+      ) : (
+        <Text style={styles.message}>No items in list</Text>
+      )}
+      {checkedList
+        ? checkedList.map((shoppingItem) => {
+            return (
+              <ListItem
+                key={shoppingItem.product}
+                itemData={shoppingItem}
+                setSelectedItem={setSelectedItem}
+                setShoppingList={setShoppingList}
+              />
+            );
+          })
+        : null}
     </ScrollView>
   );
 }

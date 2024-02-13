@@ -33,7 +33,7 @@ export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
       });
 
       if (error) {
-        setErrorMessage(prev => `Error: ${error}`)
+        setErrorMessage(`Error: ${error}`)
       } else {
         setUser(data);
         setLoggedIn(true);

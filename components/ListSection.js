@@ -41,6 +41,7 @@ export default function ListSection({email, selectedList}) {
           <AddForm
             setOptionSelected={setOptionSelected}
             setShoppingList={setShoppingList}
+            selectedList={selectedList}
           />
         );
       case "edit":
@@ -59,6 +60,7 @@ export default function ListSection({email, selectedList}) {
             setShoppingList={setShoppingList}
             selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
+            selectedList={selectedList}
           />
         );
     }

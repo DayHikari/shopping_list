@@ -33,12 +33,13 @@ export default function EditForm({
         image: imageData,
         quantity: quantityData,
         checked: false,
+        list_id: selectedItem.list_id
       };
       
     const { data, error } = await supabase
-      .from("shopping_list")
+      .from("items")
       .update(productObject)
-      .eq("product", selectedItem.product)
+      .eq("id", selectedItem.id)
       .select();
       
     if (error) {

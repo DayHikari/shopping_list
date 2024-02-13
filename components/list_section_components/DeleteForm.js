@@ -8,6 +8,7 @@ export default function DeleteForm({
   setShoppingList,
   selectedItem,
   setSelectedItem,
+  selectedList
 }) {
   const [confirmed, setConfirmed] = useState(false);
   const [checkedConfirmed, setCheckedConfirmed] = useState(false);
@@ -32,9 +33,10 @@ export default function DeleteForm({
       setConfirmed((prev) => !prev);
 
       const { error } = await supabase
-        .from("initial_shopping_list")
+        .from("items")
         .delete()
-        .eq("product", selectedItem.product);
+        .eq("product", selectedItem.product)
+        .eq("list_id", selectedList.list_id);
 
       if (error) {
         setErrorMessage(`Error: ${error}`);
@@ -60,9 +62,10 @@ export default function DeleteForm({
       setCheckedConfirmed((prev) => !prev);
 
       const { error } = await supabase
-        .from("shopping_list")
+        .from("items")
         .delete()
-        .eq("checked", true);
+        .eq("checked", true)
+        .eq("list_id", selectedList.list_id);
         
       if (error) {
         setErrorMessage(`Error: ${error}`);

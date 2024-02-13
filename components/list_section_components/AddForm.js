@@ -1,40 +1,67 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View, Platform } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Platform,
+} from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
-
-export default function AddForm({ setOptionSelected, setShoppingList }) {
+export default function AddForm({
+  setOptionSelected,
+  setShoppingList,
+  selectedList,
+}) {
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSubmit = async () => {
     if (product === "" || quantity === "") {
-      return setErrorMessage("Please add both a prduct and quantity")
+      return setErrorMessage("Please add both a prduct and quantity");
     };
 
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
 
-    let productObject;
-    if (imagePaths[imageCheck]) {
-      productObject = {
-        product: product,
-        image: imageCheck,
-        quantity: quantity,
-        checked: false,
-      };
-    } else {
-      productObject = {
-        product: product,
-        image: "default",
-        quantity: quantity,
-        checked: false,
-      };
-    }
+    const productObject = imagePaths[imageCheck]
+      ? {
+          product: product,
+          image: imageCheck,
+          quantity: quantity,
+          checked: false,
+          list_id: selectedList.list_id,
+        }
+      : {
+          product: product,
+          image: "default",
+          quantity: quantity,
+          checked: false,
+          list_id: selectedList.list_id,
+        };
+
+    // if (imagePaths[imageCheck]) {
+    //   productObject = {
+    //     product: product,
+    //     image: imageCheck,
+    //     quantity: quantity,
+    //     checked: false,
+    //     list_id: selectedList.list_id,
+    //   };
+    // } else {
+    //   productObject = {
+    //     product: product,
+    //     image: "default",
+    //     quantity: quantity,
+    //     checked: false,
+    //     list_id: selectedList.list_id,
+    //   };
+    // }
 
     const { data, error } = await supabase
-      .from("shopping_list")
+      .from("items")
       .insert([productObject])
       .select();
 
