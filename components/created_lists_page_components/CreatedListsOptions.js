@@ -1,38 +1,58 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 
-export default function CreatedListsOptions({setOptionSelected}) {
+export default function CreatedListsOptions({ setOptionSelected }) {
   return (
     <View style={styles.listOptions}>
-      <Pressable
-        style={styles.button}
-        onPress={() => {setOptionSelected("add")}}
-      >
-        <Text style={styles.buttonText}>Add</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        onPress={() => {}}
-      >
-        <Text style={styles.buttonText}>Edit</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        onPress={() => {}}
-      >
-        <Text style={styles.buttonText}>Delete</Text>
-      </Pressable>
+      <Text style={styles.header}>Choose an option:</Text>
+      <View style={styles.container}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setOptionSelected("add");
+          }}
+        >
+          <Text style={styles.buttonText}>Add</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => {}}>
+          <Text style={styles.buttonText}>Edit</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => {}}>
+          <Text style={styles.buttonText}>Delete</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => {}}>
+          <Text style={styles.buttonText}>Share</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   listOptions: {
-    height: "12%",
-    width: "100%",
+    width: "95%",
+    height: 210,
+    backgroundColor: "#034222",
+    display: "flex",
+    alignItems: "center",
+    padding: 5,
+    borderRadius: 10,
+  },
+  header: {
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    color: "#FF8833",
+    fontSize: 25,
+  },
+  container: {
+    height: "90%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexWrap: "wrap",
     alignItems: "center",
+    justifyContent: "center",
+    
   },
   buttonText: {
     fontFamily: Platform.select({
@@ -40,12 +60,19 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     fontSize: 20,
+    color: "#FF8833",
+    paddingHorizontal: 10,
   },
   button: {
     padding: 5,
-    width: "27%",
-    display:"flex",
+    width: "40%",
+    height: "40%",
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#046835",
+    margin: 5,
+    borderRadius: 10,
+    // #ff9c33
   },
 });

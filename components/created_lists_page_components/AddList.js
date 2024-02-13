@@ -10,11 +10,11 @@ import {
 import { supabase } from "../../supabase";
 
 export default function AddList({ setListNames, setOptionSelected, email }) {
-  const [listName, setListName] = useState("");
+  const [newListName, setNewListName] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSubmit = async () => {
-    if (listName === "") {
+    if (newListName === "") {
       return setErrorMessage("Please enter a list name.");
     }
 
@@ -22,7 +22,7 @@ export default function AddList({ setListNames, setOptionSelected, email }) {
       .from("lists")
       .insert([
         {
-          list_name: listName.toLocaleLowerCase().replace(" ", "_"),
+          list_name: newListName.toLocaleLowerCase().replace(" ", "_"),
           created_by: email,
         },
       ])
@@ -43,15 +43,15 @@ export default function AddList({ setListNames, setOptionSelected, email }) {
 
       setListNames((prev) => [...prev, data[0]]);
 
-      setListName("");
+      setNewListName("");
 
       if (userError) {
         setErrorMessage(`Error: ${userError}`);
       } else {
         setErrorMessage(false);
         setOptionSelected(false);
-      }
-    }
+      };
+    };
   };
 
   return (
@@ -70,9 +70,9 @@ export default function AddList({ setListNames, setOptionSelected, email }) {
         style={styles.textInputs}
         placeholder="Enter list name"
         onChangeText={(text) => {
-          setListName(text);
+          setNewListName(text);
         }}
-        value={listName}
+        value={newListName}
       />
       {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
       <Pressable

@@ -3,36 +3,43 @@ import CreatedListsSection from "./created_lists_page_components/CreatedListsSec
 import CreatedListsOptions from "./created_lists_page_components/CreatedListsOptions";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import AddList from "./created_lists_page_components/AddList";
+import MenuButton from "./shared/MenuButton";
 
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
   const [optionSelected, setOptionSelected] = useState(false);
 
   useEffect(() => {
-    const fetchNames = async () => {
-      const { data, error } = await supabase.from("user_table").select(`
-          lists( * )
-        `);
+    if (!listNames) {
+      const fetchNames = async () => {
+        const { data, error } = await supabase
+          .from("user_table")
+          .select("lists( * )");
 
-      if (error) {
-        console.error("Error occured: ", error.message);
-        return;
-      }
+        if (error) {
+          console.error("Error occured: ", error.message);
+          return;
+        }
 
-      if (data) {
-        setListNames(data.map((elem) => elem.lists));
-      }
-    };
+        if (data) {
+          setListNames(data.map((elem) => elem.lists));
+        }
+      };
 
-    fetchNames();
+      fetchNames();
+    }
   }, []);
 
   const chooseOption = () => {
     switch (optionSelected) {
       case false:
         return;
+      case true:
+        return (
+          <CreatedListsOptions setOptionSelected={setOptionSelected} />
+        );
       case "add":
         return (
           <AddList
@@ -52,7 +59,8 @@ export default function CreatedListsPage({ email, handleListSelect }) {
       />
       {chooseOption()}
       <View style={styles.separator} />
-      <CreatedListsOptions setOptionSelected={setOptionSelected} />
+      {/* <CreatedListsOptions setOptionSelected={setOptionSelected} /> */}
+      <MenuButton setOptionSelected={setOptionSelected} />
     </View>
   );
 }
