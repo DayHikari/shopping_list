@@ -13,7 +13,12 @@ export default function CreatedListsOptions({ setOptionSelected }) {
         >
           <Text style={styles.buttonText}>Add</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => {}}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setOptionSelected("edit");
+          }}
+        >
           <Text style={styles.buttonText}>Edit</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => {}}>
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
-    
   },
   buttonText: {
     fontFamily: Platform.select({

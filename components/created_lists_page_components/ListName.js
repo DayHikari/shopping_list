@@ -1,17 +1,12 @@
 import { Pressable, StyleSheet, View, Text } from "react-native";
+import capitaliser from "../functions/capitaliser";
 
 export default function ListName({listName, handleListSelect}) {
-  
-  const capitaliser = () => {
-    const nameArray = listName.list_name.split("_").map(elem => elem.split("").map((e, i) => i === 0 ? e.toUpperCase() : e).join("")).join(" ");
-    return nameArray;
-  };
-
   return (
     <Pressable style={styles.selectElement} onPress={() => handleListSelect(listName)} > 
       <View style={styles.itemLayout}>
         <Text style={styles.text}>
-          {listName ? capitaliser() : "No lists available."}
+          {listName ? capitaliser(listName) : "No lists available."}
         </Text>
       </View>
     </Pressable>

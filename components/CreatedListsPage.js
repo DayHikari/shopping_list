@@ -6,6 +6,7 @@ import { supabase } from "../supabase";
 import { View, StyleSheet } from "react-native";
 import AddList from "./created_lists_page_components/AddList";
 import MenuButton from "./shared/MenuButton";
+import EditList from "./created_lists_page_components/EditList";
 
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
@@ -48,6 +49,14 @@ export default function CreatedListsPage({ email, handleListSelect }) {
             email={email}
           />
         );
+      case "edit":
+        return (
+          <EditList
+            listNames={listNames}
+            setOptionSelected={setOptionSelected}
+            email={email}
+          />
+        )
     }
   };
 
@@ -59,7 +68,6 @@ export default function CreatedListsPage({ email, handleListSelect }) {
       />
       {chooseOption()}
       <View style={styles.separator} />
-      {/* <CreatedListsOptions setOptionSelected={setOptionSelected} /> */}
       <MenuButton setOptionSelected={setOptionSelected} />
     </View>
   );
