@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import ListOptions from "./ListOptions";
 import EditListForm from "./EditListForm";
 
-export default function EditList({listNames, setOptionSelected, email}) {
+export default function EditList({listNames, setOptionSelected, email, setListNames}) {
   const [selectedList, setSelectedList] = useState(null);
 
   return (
@@ -19,7 +19,7 @@ export default function EditList({listNames, setOptionSelected, email}) {
       <Text style={styles.header}>{!selectedList ? "Choose a list to edit:" : "Edit the list."}</Text>
       {!selectedList 
       ? <ListOptions listNames={listNames} setSelectedList={setSelectedList}/>
-      : <EditListForm selectedList={selectedList} email={email} setSelectedList={setSelectedList} />}
+      : <EditListForm selectedList={selectedList} email={email} setSelectedList={setSelectedList} setListNames={setListNames} />}
     </View>
   );
 }
@@ -27,7 +27,7 @@ export default function EditList({listNames, setOptionSelected, email}) {
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: 210,
+    height: "fit",
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",

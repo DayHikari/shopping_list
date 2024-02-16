@@ -17,7 +17,8 @@ export default function CreatedListsPage({ email, handleListSelect }) {
       const fetchNames = async () => {
         const { data, error } = await supabase
           .from("user_table")
-          .select("lists( * )");
+          .select("lists( * )")
+          .eq("email", email);
 
         if (error) {
           console.error("Error occured: ", error.message);
@@ -55,6 +56,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
             listNames={listNames}
             setOptionSelected={setOptionSelected}
             email={email}
+            setListNames={setListNames}
           />
         )
     }
