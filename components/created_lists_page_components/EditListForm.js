@@ -97,14 +97,12 @@ export default function EditListForm({ selectedList, email, setSelectedList, set
         .update({ "list_name": newName.toLocaleLowerCase().replace(" ", "_") })
         .eq("list_id", selectedList.list_id)
         .select("*");
-      
+        
         if (error) {
           setErrorMessage(`Error: ${error}`);
         } else {
-          setSelectedList(prev => ({...prev, list_name: data.list_name}));
-          setListNames(prev => {
-            prev.map(obj => obj.list_id === selectedList.list_id ? {...obj, list_name: data.list_name} : obj)
-          })
+          setListNames(prev => prev.map(obj => obj.list_id === selectedList.list_id ? {...obj, list_name: data[0].list_name} : obj));
+          setSelectedList(null);
         }
     }
   };
