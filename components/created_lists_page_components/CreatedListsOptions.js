@@ -21,7 +21,12 @@ export default function CreatedListsOptions({ setOptionSelected }) {
         >
           <Text style={styles.buttonText}>Edit</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => {}}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setOptionSelected("delete");
+          }}
+        >
           <Text style={styles.buttonText}>Delete</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => {}}>
