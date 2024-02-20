@@ -74,7 +74,6 @@ export default function CreatedListsPage({ email, handleListSelect }) {
             listNames={listNames}
             setOptionSelected={setOptionSelected}
             email={email}
-            setListNames={setListNames}
           />
         );
     }

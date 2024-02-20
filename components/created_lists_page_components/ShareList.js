@@ -15,7 +15,6 @@ export default function ShareList({
   listNames,
   setOptionSelected,
   email,
-  setListNames,
 }) {
   const [selectedList, setSelectedList] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -23,19 +22,48 @@ export default function ShareList({
   const [confirmation, setConfirmation] = useState(null);
 
   const handleSubmit = async () => {
-    if (!confirmation) {
+    if (shareEmail === "") {
+      return setErrorMessage("Please enter a email address.");
+    } else if (!confirmation) {
+      setErrorMessage(null);
       return setConfirmation("Are you sure you wish to share this list?");
-    } else if (shareEmail === "") {
-
     }
 
     const { data, error } = await supabase
       .from("users")
       .select("email")
-      .eq("email", shareEmail);
+      .eq("email", shareEmail.toLocaleLowerCase());
 
-    console.log("returned data: ", data);
-    console.log("returned error: ", error)
+    if (error) {
+      setConfirmation(null);
+      return setErrorMessage(`Error: ${error}`);
+    } else if (data.length === 0) {
+      setConfirmation(null);
+      return setErrorMessage(
+        "No user with email address exists. Confirm and try again."
+      );
+    }
+
+    const { sharedData, sharedDataError } = await supabase
+      .from("pending_requests")
+      .insert([
+        {
+          list_id: selectedList.list_id,
+          sent_by: email,
+          sent_to: data[0].email,
+        },
+      ])
+      .select();
+    
+    if (sharedDataError) {
+      return setErrorMessage(`Error: ${sharedDataError}`)
+    };
+
+    setConfirmation(null);
+    setErrorMessage(null);
+    setSelectedList(null);
+    setShareEmail("");
+    setOptionSelected(false);
   };
 
   return (
