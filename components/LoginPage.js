@@ -6,38 +6,37 @@ import {
   Text,
   TextInput,
   View,
-  Platform
+  Platform,
 } from "react-native";
 import { supabase } from "../supabase";
 
-export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
+export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [signUp, setSignUp] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleLogin = async () => {
     if (!email.trim()) {
-      console.log("no email")
-      setErrorMessage("Email cannot be empty")
+      console.log("no email");
+      setErrorMessage("Email cannot be empty");
     } else if (!password.trim()) {
-      setErrorMessage("Password cannot be empty")
+      setErrorMessage("Password cannot be empty");
     } else if (password.length < 8) {
-      setErrorMessage("Password must be 8 characters long")
-    } else{
+      setErrorMessage("Password must be 8 characters long");
+    } else {
       let { data, error } = await supabase.auth.signInWithPassword({
         email: email,
-        password: password
+        password: password,
       });
 
       if (error) {
-        setErrorMessage(`Error: ${error}`)
+        setErrorMessage(`Error: ${error}`);
       } else {
         setUser(data);
         setLoggedIn(true);
-        setDisplayedPage("createdLists")
+        setDisplayedPage("createdLists");
         setEmail("");
         setPassword("");
         setPasswordCheck("");
@@ -50,7 +49,7 @@ export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
     if (!signUp) {
       setSignUp(true);
     } else {
-      setSignUp(false)
+      setSignUp(false);
     }
   };
 
@@ -93,7 +92,7 @@ export default function LoginPage({setUser, setLoggedIn, setDisplayedPage}) {
           value={passwordCheck}
         />
       )}
-      {typeof(errorMessage) === "string" && <Text>{errorMessage}</Text>}
+      {typeof errorMessage === "string" && <Text>{errorMessage}</Text>}
       <View style={styles.buttonSection}>
         <Pressable style={styles.buttons} onPress={handleSignUp}>
           <Text style={styles.buttonText}>Sign Up</Text>

@@ -29,7 +29,12 @@ export default function CreatedListsOptions({ setOptionSelected }) {
         >
           <Text style={styles.buttonText}>Delete</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => {}}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setOptionSelected("share");
+          }}
+        >
           <Text style={styles.buttonText}>Share</Text>
         </Pressable>
       </View>

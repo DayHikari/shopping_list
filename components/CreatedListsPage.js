@@ -8,6 +8,7 @@ import AddList from "./created_lists_page_components/AddList";
 import MenuButton from "./shared/MenuButton";
 import EditList from "./created_lists_page_components/EditList";
 import DeleteList from "./created_lists_page_components/DeleteList";
+import ShareList from "./created_lists_page_components/ShareList";
 
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
@@ -17,7 +18,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
     if (!listNames) {
       const fetchNames = async () => {
         const { data, error } = await supabase
-          .from("user_table")
+          .from("user_lists")
           .select("lists( * )")
           .eq("email", email);
 
@@ -40,9 +41,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
       case false:
         return;
       case true:
-        return (
-          <CreatedListsOptions setOptionSelected={setOptionSelected} />
-        );
+        return <CreatedListsOptions setOptionSelected={setOptionSelected} />;
       case "add":
         return (
           <AddList
@@ -59,7 +58,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
             email={email}
             setListNames={setListNames}
           />
-        )
+        );
       case "delete":
         return (
           <DeleteList
@@ -68,7 +67,16 @@ export default function CreatedListsPage({ email, handleListSelect }) {
             email={email}
             setListNames={setListNames}
           />
-        )
+        );
+      case "share":
+        return (
+          <ShareList
+            listNames={listNames}
+            setOptionSelected={setOptionSelected}
+            email={email}
+            setListNames={setListNames}
+          />
+        );
     }
   };
 
