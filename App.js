@@ -7,6 +7,7 @@ import ListSection from "./components/ListSection";
 import { useState } from "react";
 import LoginPage from "./components/LoginPage";
 import CreatedListsPage from "./components/CreatedListsPage";
+import ShareRequestPage from "./components/ShareRequest";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,6 +26,8 @@ export default function App() {
         return <ListSection email={user.user.email} selectedList={selectedList}/>;
       case "createdLists":
         return <CreatedListsPage email={user.user.email} handleListSelect={handleListSelect}/>
+      case "shareRequest":
+        return <ShareRequestPage email={user.user.email} setDisplayedPage={setDisplayedPage}/>
       default:
         return;
     }
@@ -53,9 +56,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#CDEEFD",
   },
   container: {
-    width: "100vw",
+    width: "100%",
     maxWidth: 500,
-    height: "100vh",
+    height: "100%",
     alignSelf: "center",
   },
   text: {
