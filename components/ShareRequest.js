@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { supabase } from "../supabase";
 import { useEffect, useState } from "react";
+import RequestDetails from "./pending_request_components/RequestDetails";
 
 export default function ShareRequestPage({ email, setDisplayedPage }) {
   const [requestData, setRequestData] = useState(null);
@@ -9,11 +10,8 @@ export default function ShareRequestPage({ email, setDisplayedPage }) {
     const checkRequests = async () => {
       const { data, error } = await supabase
         .from("pending_requests")
-        .select("*")
+        .select("*, lists(list_name)")
         .eq("sent_to", email);
-
-        console.log("Data: ", data);
-        console.log("Error: ", error);
 
       if (error) {
         console.error(`Error: ${error}`);
@@ -22,9 +20,9 @@ export default function ShareRequestPage({ email, setDisplayedPage }) {
       } else if (data.length === 0) {
         setDisplayedPage("createdLists");
         return null;
-      } else {
-        setRequestData(data)
-      };
+      }
+
+      setRequestData(data);
     };
 
     checkRequests();
@@ -35,6 +33,11 @@ export default function ShareRequestPage({ email, setDisplayedPage }) {
       {requestData && (
         <Text style={styles.header}>{"You have pending request(s)!"}</Text>
       )}
+      {requestData && requestData.map(data => {
+        return (
+          <RequestDetails key={data.id} data={data} setRequestData={setRequestData}/>
+        )
+      })}
     </View>
   );
 }
@@ -54,6 +57,6 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     marginVertical: 10,
-    textAlign: "center"
+    textAlign: "center",
   },
 });
