@@ -32,7 +32,7 @@ export default function AddList({ setListNames, setOptionSelected, email }) {
       setErrorMessage(`Error: ${error}`);
     } else {
       const { userData, userError } = await supabase
-        .from("user_table")
+        .from("user_lists")
         .insert([
           {
             email: email,

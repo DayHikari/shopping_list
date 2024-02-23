@@ -42,24 +42,6 @@ export default function AddForm({
           list_id: selectedList.list_id,
         };
 
-    // if (imagePaths[imageCheck]) {
-    //   productObject = {
-    //     product: product,
-    //     image: imageCheck,
-    //     quantity: quantity,
-    //     checked: false,
-    //     list_id: selectedList.list_id,
-    //   };
-    // } else {
-    //   productObject = {
-    //     product: product,
-    //     image: "default",
-    //     quantity: quantity,
-    //     checked: false,
-    //     list_id: selectedList.list_id,
-    //   };
-    // }
-
     const { data, error } = await supabase
       .from("items")
       .insert([productObject])
