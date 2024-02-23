@@ -15,7 +15,7 @@ export default function DeleteList({
 
   const handleSubmit = async () => {
     const tableName =
-      selectedList.created_by === email ? "lists" : "user_table";
+      selectedList.created_by === email ? "lists" : "user_lists";
     const columnName =
       selectedList.created_by === email ? "created_by" : "email";
 
