@@ -9,8 +9,8 @@ export default function ({setDisplayedPage}) {
       <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("createdLists")}}>
         <Text style={styles.buttonText}>Lists</Text>
       </Pressable>
-      <Pressable style={styles.buttons} onPress={() => Alert.alert("Future feature")}>
-        <Text style={styles.buttonText}>Previous</Text>
+      <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("shareRequest")}}>
+        <Text style={styles.buttonText}>Requests</Text>
       </Pressable>
     </View>
   );

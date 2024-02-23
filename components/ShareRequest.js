@@ -3,7 +3,7 @@ import { supabase } from "../supabase";
 import { useEffect, useState } from "react";
 import RequestDetails from "./pending_request_components/RequestDetails";
 
-export default function ShareRequestPage({ email, setDisplayedPage }) {
+export default function ShareRequestPage({ email, setDisplayedPage, initialLoad, setInitialLoad }) {
   const [requestData, setRequestData] = useState(null);
 
   useEffect(() => {
@@ -17,27 +17,41 @@ export default function ShareRequestPage({ email, setDisplayedPage }) {
         console.error(`Error: ${error}`);
         setDisplayedPage("createdLists");
         return null;
-      } else if (data.length === 0) {
+      } else if (data.length === 0 && initialLoad === true) {
+        setInitialLoad(false);
         setDisplayedPage("createdLists");
         return null;
       }
 
-      setRequestData(data);
+      data.length !== 0 && setRequestData(data);
     };
 
     checkRequests();
   }, []);
 
+  useEffect(() => {
+    if (requestData) {
+      requestData.length === 0 && setRequestData(null);
+    }
+  }, [requestData]);
+
   return (
     <View style={styles.container}>
-      {requestData && (
-        <Text style={styles.header}>{"You have pending request(s)!"}</Text>
-      )}
-      {requestData && requestData.map(data => {
-        return (
-          <RequestDetails key={data.id} data={data} setRequestData={setRequestData}/>
-        )
-      })}
+      <Text style={styles.header}>
+        {requestData
+          ? "You have pending request(s)!"
+          : "No new requests at the moment!"}
+      </Text>
+      {requestData &&
+        requestData.map((data) => {
+          return (
+            <RequestDetails
+              key={data.id}
+              data={data}
+              setRequestData={setRequestData}
+            />
+          );
+        })}
     </View>
   );
 }

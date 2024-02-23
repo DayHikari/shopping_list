@@ -14,6 +14,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [displayedPage, setDisplayedPage] = useState(null);
   const [selectedList, setSelectedList] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
   
   const handleListSelect = (listName) => {
     setSelectedList(listName)
@@ -27,7 +28,7 @@ export default function App() {
       case "createdLists":
         return <CreatedListsPage email={user.user.email} handleListSelect={handleListSelect}/>
       case "shareRequest":
-        return <ShareRequestPage email={user.user.email} setDisplayedPage={setDisplayedPage}/>
+        return <ShareRequestPage email={user.user.email} setDisplayedPage={setDisplayedPage} initialLoad={initialLoad} setInitialLoad={setInitialLoad}/>
       default:
         return;
     }
