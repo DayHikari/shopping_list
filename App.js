@@ -8,6 +8,7 @@ import { useState } from "react";
 import LoginPage from "./components/LoginPage";
 import CreatedListsPage from "./components/CreatedListsPage";
 import ShareRequestPage from "./components/ShareRequest";
+import Settings from "./components/Settings";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,8 @@ export default function App() {
         return <CreatedListsPage email={user.user.email} handleListSelect={handleListSelect}/>
       case "shareRequest":
         return <ShareRequestPage email={user.user.email} setDisplayedPage={setDisplayedPage} initialLoad={initialLoad} setInitialLoad={setInitialLoad}/>
+      case "settings":
+        return <Settings />
       default:
         return;
     }

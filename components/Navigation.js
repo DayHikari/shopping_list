@@ -3,14 +3,14 @@ import { Alert, Platform, Pressable, StyleSheet, Text, View } from "react-native
 export default function ({setDisplayedPage}) {
   return (
     <View style={styles.navigation}>
-      <Pressable style={styles.buttons} onPress={() => Alert.alert("Future feature")}>
-        <Text style={styles.buttonText}>Favourite</Text>
+      <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("shareRequest")}}>
+        <Text style={styles.buttonText}>Requests</Text>
       </Pressable>
       <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("createdLists")}}>
         <Text style={styles.buttonText}>Lists</Text>
       </Pressable>
-      <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("shareRequest")}}>
-        <Text style={styles.buttonText}>Requests</Text>
+      <Pressable style={styles.buttons} onPress={() => {setDisplayedPage("settings")}}>
+        <Text style={styles.buttonText}>Settings</Text>
       </Pressable>
     </View>
   );
