@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../supabase";
 import EditForm from "./list_section_components/EditForm";
 import DeleteForm from "./list_section_components/DeleteForm";
+import MenuButton from "./shared/MenuButton";
 
 export default function ListSection({email, selectedList}) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -36,6 +37,10 @@ export default function ListSection({email, selectedList}) {
     switch (optionSelected) {
       case false:
         return;
+      case true:
+        return (
+          <ListOptions setOptionSelected={setOptionSelected}/>
+        )
       case "add":
         return (
           <AddForm
@@ -75,7 +80,8 @@ export default function ListSection({email, selectedList}) {
       />
       {chooseOption()}
       <View style={styles.separator} />
-      <ListOptions setOptionSelected={setOptionSelected} />
+      {/* <ListOptions setOptionSelected={setOptionSelected} /> */}
+      <MenuButton setOptionSelected={setOptionSelected} />
     </View>
   );
 }
