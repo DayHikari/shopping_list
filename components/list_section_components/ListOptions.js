@@ -31,7 +31,9 @@ export default function ListOptions({ setOptionSelected }) {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => {}}
+          onPress={() => {
+            setOptionSelected("favourites")
+          }}
         >
           <Text style={styles.buttonText}>Favourites</Text>
         </Pressable>

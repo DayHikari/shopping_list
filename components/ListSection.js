@@ -7,6 +7,7 @@ import { supabase } from "../supabase";
 import EditForm from "./list_section_components/EditForm";
 import DeleteForm from "./list_section_components/DeleteForm";
 import MenuButton from "./shared/MenuButton";
+import Favourites from "./list_section_components/Favourites";
 
 export default function ListSection({email, selectedList}) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -68,6 +69,10 @@ export default function ListSection({email, selectedList}) {
             selectedList={selectedList}
           />
         );
+      case "favourites":
+        return (
+          <Favourites />
+        )
     }
   };
   
@@ -80,7 +85,6 @@ export default function ListSection({email, selectedList}) {
       />
       {chooseOption()}
       <View style={styles.separator} />
-      {/* <ListOptions setOptionSelected={setOptionSelected} /> */}
       <MenuButton setOptionSelected={setOptionSelected} />
     </View>
   );
