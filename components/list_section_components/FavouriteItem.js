@@ -1,9 +1,75 @@
-import { View } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
+import imagePaths from "../../image_paths_data/imagePathData";
 
-export default function FavouriteItem ({item}) {
+export default function FavouriteItem({ item }) {
   return (
-    <View>
-      <Text>{item.product}</Text>
+    <View style={styles.container}>
+      <Image source={imagePaths[item.image]} style={styles.image} />
+      <ScrollView style={styles.scrollView}>
+        <Text style={styles.text}>{item.product}</Text>
+      </ScrollView>
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>Add</Text>
+      </Pressable>
     </View>
   );
-};
+}
+
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 3,
+    borderColor: "#FF8833",
+    borderRadius: 10,
+    margin: 5,
+    height: 65,
+    width: "90%",
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginLeft: 2,
+  },
+  scrollView: {
+    width: "90%",
+  },
+  text: {
+    color: "#FF8833",
+    fontSize: 23,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
+    margin: 1,
+  },
+  button: {
+    borderLeftWidth: 3,
+    borderColor: "#FF8833",
+    height: "100%",
+    justifyContent: "center",
+    padding: 10,
+    marginLeft: 2,
+  },
+  buttonText: {
+    color: "#FF8833",
+    fontSize: 23,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
+  },
+});
