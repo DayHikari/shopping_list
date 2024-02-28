@@ -1,4 +1,4 @@
-import { StyleSheet, View,  } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import List from "./list_section_components/List";
 import ListOptions from "./list_section_components/ListOptions";
 import AddForm from "./list_section_components/AddForm";
@@ -9,10 +9,11 @@ import DeleteForm from "./list_section_components/DeleteForm";
 import MenuButton from "./shared/MenuButton";
 import Favourites from "./list_section_components/Favourites";
 
-export default function ListSection({email, selectedList}) {
+export default function ListSection({ email, selectedList }) {
   const [optionSelected, setOptionSelected] = useState(false);
   const [shoppingList, setShoppingList] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const fetchList = async () => {
@@ -23,11 +24,13 @@ export default function ListSection({email, selectedList}) {
 
       if (error) {
         console.error("Error occured: ", error.message);
+        setErrorMessage(error);
         return;
       }
 
       if (data) {
         setShoppingList(data);
+        setErrorMessage(null);
       }
     };
 
@@ -39,9 +42,7 @@ export default function ListSection({email, selectedList}) {
       case false:
         return;
       case true:
-        return (
-          <ListOptions setOptionSelected={setOptionSelected}/>
-        )
+        return <ListOptions setOptionSelected={setOptionSelected} />;
       case "add":
         return (
           <AddForm
@@ -70,14 +71,13 @@ export default function ListSection({email, selectedList}) {
           />
         );
       case "favourites":
-        return (
-          <Favourites />
-        )
+        return <Favourites email={email} setShoppingList={setShoppingList} />;
     }
   };
-  
+
   return (
     <View style={styles.listSection}>
+      {errorMessage && <Text style={styles.error}>{`Error occurred: ${errorMessage}. Please try again later.`}</Text>}
       <List
         shoppingList={shoppingList}
         setSelectedItem={setSelectedItem}
@@ -101,5 +101,16 @@ const styles = StyleSheet.create({
     borderBottomColor: "#046835",
     borderBottomWidth: StyleSheet.hairlineWidth,
     width: "85%",
+  },
+  error: {
+    color: "red",
+    fontSize: 25,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
+    marginTop: 15,
   },
 });

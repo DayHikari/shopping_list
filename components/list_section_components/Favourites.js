@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { supabase } from "../../supabase";
 
-export default function Favourites () {
+export default function Favourites({ email, setShoppingList }) {
+  const [favouritesList, setFavouritesList] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    const fetchFavourites = async () => {
+      const {data, error} = await supabase
+      .from("favourites")
+      .select("*");
+      
+      if (error) {
+        console.log(error)
+        setErrorMessage(error);
+      } else {
+        console.log(data)
+        setFavouritesList(data);
+      };
+    };
+
+    fetchFavourites();
+  }, []);
+
   return (
     <View style={styles.form}>
       <Text style={styles.header}>Favourites List</Text>
@@ -9,7 +32,7 @@ export default function Favourites () {
       </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   form: {
