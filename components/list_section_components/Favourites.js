@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
 import { supabase } from "../../supabase";
 import FavouriteItem from "./FavouriteItem";
 

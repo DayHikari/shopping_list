@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View, Text } from "react-native";
+import { Pressable, StyleSheet, View, Text, Platform } from "react-native";
 import capitaliser from "../functions/capitaliser";
 
 export default function ListName({listName, handleListSelect}) {

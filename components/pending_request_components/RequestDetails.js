@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";
 import { useState } from "react";

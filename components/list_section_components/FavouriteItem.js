@@ -5,16 +5,23 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Platform,
 } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
+import { useState } from "react";
 
 export default function FavouriteItem({ item }) {
+  const [tooLong, setTooLong] = useState(item.product.length > 10);
   return (
     <View style={styles.container}>
       <Image source={imagePaths[item.image]} style={styles.image} />
-      <ScrollView style={styles.scrollView}>
+      {tooLong ? (
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.text}>{item.product}</Text>
+        </ScrollView>
+      ) : (
         <Text style={styles.text}>{item.product}</Text>
-      </ScrollView>
+      )}
       <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
@@ -41,7 +48,8 @@ const styles = StyleSheet.create({
     marginLeft: 2,
   },
   scrollView: {
-    width: "90%",
+    width: "50%",
+    height: 60,
   },
   text: {
     color: "#FF8833",

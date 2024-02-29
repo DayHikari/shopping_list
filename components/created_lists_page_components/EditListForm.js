@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   View,
+  Platform
 } from "react-native";
 import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";

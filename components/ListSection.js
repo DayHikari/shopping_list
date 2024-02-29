@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 import List from "./list_section_components/List";
 import ListOptions from "./list_section_components/ListOptions";
 import AddForm from "./list_section_components/AddForm";

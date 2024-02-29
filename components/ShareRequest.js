@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Platform } from "react-native";
 import { supabase } from "../supabase";
 import { useEffect, useState } from "react";
 import RequestDetails from "./pending_request_components/RequestDetails";

@@ -18,7 +18,7 @@ export default function ListItem({
   const handleCheckPress = async () => {
     setChecked((prevState) => !prevState);
   };
-
+  
   useEffect(() => {
     if (checked !== itemData.checked) {
       const updateItem = async () => {
@@ -50,7 +50,7 @@ export default function ListItem({
       }}
     >
       <View style={styles[checkedStyle]}>
-        <Image source={imagePaths[itemData.image]} />
+        <Image source={imagePaths[itemData.image]} style={styles.image}/>
         <View style={styles.productTextSection}>
           <Text style={styles.productText}>{itemData.product}</Text>
           <Text style={styles.productQuantity}>
@@ -58,7 +58,7 @@ export default function ListItem({
           </Text>
         </View>
         <Pressable onPress={handleCheckPress}>
-          <Image source={checkedImageURL} />
+          <Image source={checkedImageURL} style={styles.image}/>
         </Pressable>
       </View>
     </Pressable>
@@ -70,6 +70,10 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     alignItems: "center",
+  },
+  image: {
+    width: 64,
+    height: 64,
   },
   productLayout: {
     borderWidth: 4,
