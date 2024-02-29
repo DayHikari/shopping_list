@@ -6,9 +6,25 @@ import {
   Pressable,
   Platform,
 } from "react-native";
-import FavouriteItem from "./FavouriteItem";
+import DeleteFavouriteItem from "./DeleteFavouriteItem";
+import { supabase } from "../../../supabase";
 
-export default function FavouiteList({ favouritesList, setDisplayedPage }) {
+export default function DeleteList({
+  favouritesList,
+  setFavouritesList,
+  setDisplayedPage,
+  setErrorMessage
+}) {
+  const handleDelete = async (id) => {
+    const { error } = await supabase.from("favourites").delete().eq("id", id);
+
+    if (error) {
+      return setErrorMessage(`Error: ${error}. Please try again later.`)
+    };
+
+    setFavouritesList(prev => prev.filter(favourite => favourite.id !== id));
+    setErrorMessage(null);
+  };
   return (
     <>
       <ScrollView
@@ -18,7 +34,13 @@ export default function FavouiteList({ favouritesList, setDisplayedPage }) {
       >
         {favouritesList.length !== 0 ? (
           favouritesList.map((item) => {
-            return <FavouriteItem item={item} key={item.id} />;
+            return (
+              <DeleteFavouriteItem
+                item={item}
+                key={item.id}
+                handleDelete={handleDelete}
+              />
+            );
           })
         ) : (
           <Text style={styles.error}>
@@ -26,22 +48,9 @@ export default function FavouiteList({ favouritesList, setDisplayedPage }) {
           </Text>
         )}
       </ScrollView>
-      <View style={styles.buttonContainer}>
-        <Pressable
-          style={styles.button}
-          onPress={() => setDisplayedPage("create")}
-        >
-          <Text style={styles.buttonText}>Create</Text>
-        </Pressable>
-        {favouritesList && (
-          <Pressable
-            style={styles.button}
-            onPress={() => setDisplayedPage("delete")}
-          >
-            <Text style={styles.buttonText}>Delete</Text>
-          </Pressable>
-        )}
-      </View>
+      <Pressable style={styles.button} onPress={() => setDisplayedPage("list")}>
+        <Text style={styles.buttonText}>Cancel</Text>
+      </Pressable>
     </>
   );
 }
@@ -54,13 +63,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     display: "flex",
     alignItems: "center",
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
-    width: "80%",
   },
   button: {
     borderRadius: 15,

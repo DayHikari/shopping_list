@@ -8,6 +8,7 @@ import {
 import { supabase } from "../../supabase";
 import FavouiteList from "./favourite_components/FavouriteList";
 import CreateFavourite from "./favourite_components/CreateFavourite";
+import DeleteFavourite from "./favourite_components/DeleteFavourite";
 
 export default function Favourites({ email, setShoppingList }) {
   const [favouritesList, setFavouritesList] = useState(null);
@@ -52,6 +53,10 @@ export default function Favourites({ email, setShoppingList }) {
             setErrorMessage={setErrorMessage}
           />
         );
+      case "delete":
+        return (
+          <DeleteFavourite favouritesList={favouritesList} setFavouritesList={setFavouritesList} setDisplayedPage={setDisplayedPage} setErrorMessage={setErrorMessage}/>
+        )
     }
   };
 
