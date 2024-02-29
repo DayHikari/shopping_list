@@ -26,7 +26,7 @@ export default function Favourites({ email, setShoppingList }) {
   return (
     <View style={styles.form}>
       <Text style={styles.header}>Favourites List</Text>
-      <ScrollView style={styles.scrollArea} contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={styles.scrollArea} contentContainerStyle={styles.contentContainer} nestedScrollEnabled={true}>
         {favouritesList && favouritesList.map(item => {
           return <FavouriteItem item={item} key={item.id}/>
         })}

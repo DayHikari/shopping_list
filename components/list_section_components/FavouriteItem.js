@@ -11,12 +11,12 @@ import imagePaths from "../../image_paths_data/imagePathData";
 import { useState } from "react";
 
 export default function FavouriteItem({ item }) {
-  const [tooLong, setTooLong] = useState(item.product.length > 10);
+  const [tooLong, setTooLong] = useState(item.product.length >= 10);
   return (
     <View style={styles.container}>
       <Image source={imagePaths[item.image]} style={styles.image} />
       {tooLong ? (
-        <ScrollView style={styles.scrollView}>
+        <ScrollView nestedScrollEnabled={true}>
           <Text style={styles.text}>{item.product}</Text>
         </ScrollView>
       ) : (
@@ -47,10 +47,6 @@ const styles = StyleSheet.create({
     height: 50,
     marginLeft: 2,
   },
-  scrollView: {
-    width: "50%",
-    height: 60,
-  },
   text: {
     color: "#FF8833",
     fontSize: 23,
@@ -60,6 +56,7 @@ const styles = StyleSheet.create({
     }),
     fontWeight: "700",
     textAlign: "center",
+    alignSelf: "center",
     margin: 1,
   },
   button: {
