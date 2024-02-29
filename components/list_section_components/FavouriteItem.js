@@ -8,7 +8,6 @@ import {
   Platform,
 } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
-import { useState } from "react";
 
 export default function FavouriteItem({ item }) {
   return (
