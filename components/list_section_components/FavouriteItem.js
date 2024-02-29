@@ -11,11 +11,10 @@ import imagePaths from "../../image_paths_data/imagePathData";
 import { useState } from "react";
 
 export default function FavouriteItem({ item }) {
-  const [tooLong, setTooLong] = useState(item.product.length >= 10);
   return (
     <View style={styles.container}>
       <Image source={imagePaths[item.image]} style={styles.image} />
-      {tooLong ? (
+      {item.product.length >= 10 ? (
         <ScrollView nestedScrollEnabled={true}>
           <Text style={styles.text}>{item.product}</Text>
         </ScrollView>
