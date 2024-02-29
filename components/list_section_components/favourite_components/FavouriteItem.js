@@ -7,7 +7,7 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import imagePaths from "../../image_paths_data/imagePathData";
+import imagePaths from "../../../image_paths_data/imagePathData";
 
 export default function FavouriteItem({ item }) {
   return (
