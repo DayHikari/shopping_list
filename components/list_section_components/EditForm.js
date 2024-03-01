@@ -96,11 +96,11 @@ export default function EditForm({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: 280,
+    // height: 280,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   close: {

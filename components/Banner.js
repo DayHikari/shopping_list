@@ -18,6 +18,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: "17%",
+    width: Platform.select({
+      ios: "100%",
+      android: "100%",
+      default: "100vw"
+    }),
+    alignSelf: "center",
   },
   bannerContent: {
     flex: 1,

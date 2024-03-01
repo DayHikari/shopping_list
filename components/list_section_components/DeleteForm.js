@@ -110,11 +110,10 @@ export default function DeleteForm({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: 270,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   close: {

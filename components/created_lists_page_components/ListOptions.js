@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 200,
     marginBottom: 10,
-    padding: 5,
+    padding: 10,
     display: "flex",
   },
   listText: {

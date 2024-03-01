@@ -21,7 +21,7 @@ export default function AddForm({
 
   const handleSubmit = async () => {
     if (product === "" || quantity === "") {
-      return setErrorMessage("Please add both a prduct and quantity");
+      return setErrorMessage("Please add both a product and quantity");
     };
 
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
@@ -98,11 +98,11 @@ export default function AddForm({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: 280,
+    // height: 280,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   close: {

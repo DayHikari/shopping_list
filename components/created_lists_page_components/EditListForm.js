@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   subheaders: {

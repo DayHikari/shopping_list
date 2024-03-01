@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   header: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 5,
-    width: "40%",
+    width: "45%",
     height: "40%",
     display: "flex",
     alignItems: "center",

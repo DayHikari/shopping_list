@@ -68,11 +68,12 @@ export default function DeleteList({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    height: "fit",
+    // height: "40%",
+    maxHeight: 300,
     backgroundColor: "#046835",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   close: {

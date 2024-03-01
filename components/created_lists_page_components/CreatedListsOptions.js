@@ -45,11 +45,12 @@ export default function CreatedListsOptions({ setOptionSelected }) {
 const styles = StyleSheet.create({
   listOptions: {
     width: "95%",
-    height: 210,
+    height: "40%",
+    maxHeight: 300,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   header: {
