@@ -51,6 +51,7 @@ export default function Favourites({ email, setShoppingList }) {
             setFavouritesList={setFavouritesList}
             setDisplayedPage={setDisplayedPage}
             setErrorMessage={setErrorMessage}
+            email={email}
           />
         );
       case "delete":

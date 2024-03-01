@@ -9,12 +9,19 @@ import {
 import { supabase } from "../../../supabase";
 import imagePaths from "../../../image_paths_data/imagePathData";
 
-export default function CreateFavourite({product, setProduct, favouritesList, setFavouritesList, setDisplayedPage, setErrorMessage}) {
-
+export default function CreateFavourite({
+  product,
+  setProduct,
+  favouritesList,
+  setFavouritesList,
+  setDisplayedPage,
+  setErrorMessage,
+  email,
+}) {
   const handleCreate = async () => {
     if (product === "") {
-      return setErrorMessage("Please enter an product.")
-    };
+      return setErrorMessage("Please enter an product.");
+    }
 
     const duplicateFavourite = favouritesList.filter(
       (favourite) =>
@@ -50,7 +57,7 @@ export default function CreateFavourite({product, setProduct, favouritesList, se
         return setErrorMessage(`Error: ${error}. Please try again later.`);
       }
 
-      setFavouritesList((prev) => [...prev, data]);
+      setFavouritesList((prev) => [...prev, data[0]]);
       setProduct("");
       setErrorMessage(null);
     }
@@ -71,8 +78,8 @@ export default function CreateFavourite({product, setProduct, favouritesList, se
         <Pressable
           style={styles.button}
           onPress={() => {
-            setErrorMessage(null)
-            setDisplayedPage("list")
+            setErrorMessage(null);
+            setDisplayedPage("list");
           }}
         >
           <Text style={styles.buttonText}>Cancel</Text>
@@ -83,7 +90,7 @@ export default function CreateFavourite({product, setProduct, favouritesList, se
       </View>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   subHeader: {
