@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Platform,
-} from "react-native";
+import { Text, View, StyleSheet, Platform } from "react-native";
 import { supabase } from "../../supabase";
 import FavouiteList from "./favourite_components/FavouriteList";
 import CreateFavourite from "./favourite_components/CreateFavourite";
 import DeleteFavourite from "./favourite_components/DeleteFavourite";
+import imagePaths from "../../image_paths_data/imagePathData";
 
-export default function Favourites({ email, setShoppingList }) {
+export default function Favourites({
+  email,
+  shoppingList,
+  setShoppingList,
+  selectedList,
+}) {
   const [favouritesList, setFavouritesList] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [displayedPage, setDisplayedPage] = useState(null);
@@ -31,6 +32,58 @@ export default function Favourites({ email, setShoppingList }) {
     setDisplayedPage("list");
   }, []);
 
+  const handleAddItem = (itemProduct) => {
+    const listCheck = shoppingList.filter(
+      (itemDetails) => itemDetails.product === itemProduct.product
+    );
+
+    if (listCheck.length !== 0) {
+      return setErrorMessage("This product is already in this list.");
+    }
+
+    setProduct(itemProduct);
+    setErrorMessage(null);
+    setDisplayedPage("add");
+  };
+
+  const handleAddSubmit = async (quantity) => {
+    if (quantity === "") {
+      return setErrorMessage("Please add a quantity.");
+    }
+
+    const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
+
+    const productObject = imagePaths[imageCheck]
+      ? {
+          product: product,
+          image: imageCheck,
+          quantity: quantity,
+          checked: false,
+          list_id: selectedList.list_id,
+        }
+      : {
+          product: product,
+          image: "default",
+          quantity: quantity,
+          checked: false,
+          list_id: selectedList.list_id,
+        };
+
+    const { data, error } = await supabase
+      .from("items")
+      .insert([productObject])
+      .select();
+
+    if (error) {
+      setErrorMessage(`Error: ${error}`);
+    } else {
+      setShoppingList((prev) => [...prev, data[0]]);
+      setProduct("");
+      setErrorMessage(false);
+      setDisplayedPage("list");
+    }
+  };
+
   const chooseDisplay = () => {
     switch (displayedPage) {
       case "list":
@@ -39,6 +92,7 @@ export default function Favourites({ email, setShoppingList }) {
             <FavouiteList
               favouritesList={favouritesList}
               setDisplayedPage={setDisplayedPage}
+              handleAddItem={handleAddItem}
             />
           )
         );
@@ -56,8 +110,13 @@ export default function Favourites({ email, setShoppingList }) {
         );
       case "delete":
         return (
-          <DeleteFavourite favouritesList={favouritesList} setFavouritesList={setFavouritesList} setDisplayedPage={setDisplayedPage} setErrorMessage={setErrorMessage}/>
-        )
+          <DeleteFavourite
+            favouritesList={favouritesList}
+            setFavouritesList={setFavouritesList}
+            setDisplayedPage={setDisplayedPage}
+            setErrorMessage={setErrorMessage}
+          />
+        );
     }
   };
 

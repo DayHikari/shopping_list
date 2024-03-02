@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import imagePaths from "../../../image_paths_data/imagePathData";
 
-export default function FavouriteItem({ item }) {
+export default function FavouriteItem({ item, handleAddItem }) {
+  console.log("item: ", item)
+
   return (
     <View style={styles.container}>
       <Image source={imagePaths[item.image]} style={styles.image} />
@@ -20,7 +22,7 @@ export default function FavouriteItem({ item }) {
       ) : (
         <Text style={styles.text}>{item.product}</Text>
       )}
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={() => handleAddItem(item)}>
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
     </View>

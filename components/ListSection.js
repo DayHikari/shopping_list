@@ -71,7 +71,7 @@ export default function ListSection({ email, selectedList }) {
           />
         );
       case "favourites":
-        return <Favourites email={email} setShoppingList={setShoppingList} />;
+        return <Favourites email={email} shoppingList={shoppingList} setShoppingList={setShoppingList} selectedList={selectedList}/>;
     }
   };
 

@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     backgroundColor: "#CDEEFD",
+    maxHeight: "100vh",
   },
   container: {
     width: "100%",

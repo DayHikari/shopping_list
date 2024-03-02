@@ -8,7 +8,11 @@ import {
 } from "react-native";
 import FavouriteItem from "./FavouriteItem";
 
-export default function FavouiteList({ favouritesList, setDisplayedPage }) {
+export default function FavouiteList({
+  favouritesList,
+  setDisplayedPage,
+  handleAddItem
+}) {
   return (
     <>
       <ScrollView
@@ -18,7 +22,13 @@ export default function FavouiteList({ favouritesList, setDisplayedPage }) {
       >
         {favouritesList.length !== 0 ? (
           favouritesList.map((item) => {
-            return <FavouriteItem item={item} key={item.id} />;
+            return (
+              <FavouriteItem
+                item={item}
+                key={item.id}
+                handleAddItem={handleAddItem}
+              />
+            );
           })
         ) : (
           <Text style={styles.error}>
