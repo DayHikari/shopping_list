@@ -5,6 +5,7 @@ import FavouiteList from "./favourite_components/FavouriteList";
 import CreateFavourite from "./favourite_components/CreateFavourite";
 import DeleteFavourite from "./favourite_components/DeleteFavourite";
 import imagePaths from "../../image_paths_data/imagePathData";
+import AddFavourite from "./favourite_components/AddFavourite";
 
 export default function Favourites({
   email,
@@ -51,18 +52,18 @@ export default function Favourites({
       return setErrorMessage("Please add a quantity.");
     }
 
-    const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
+    const imageCheck = product.product.toLocaleLowerCase().trim().replaceAll(" ", "_");
 
     const productObject = imagePaths[imageCheck]
       ? {
-          product: product,
+          product: product.product,
           image: imageCheck,
           quantity: quantity,
           checked: false,
           list_id: selectedList.list_id,
         }
       : {
-          product: product,
+          product: product.product,
           image: "default",
           quantity: quantity,
           checked: false,
@@ -82,6 +83,12 @@ export default function Favourites({
       setErrorMessage(false);
       setDisplayedPage("list");
     }
+  };
+
+  const handleAddCancel = () => {
+    setProduct("");
+    setErrorMessage(null);
+    setDisplayedPage("list");
   };
 
   const chooseDisplay = () => {
@@ -115,6 +122,14 @@ export default function Favourites({
             setFavouritesList={setFavouritesList}
             setDisplayedPage={setDisplayedPage}
             setErrorMessage={setErrorMessage}
+          />
+        );
+      case "add":
+        return (
+          <AddFavourite
+            handleAddSubmit={handleAddSubmit}
+            handleAddCancel={handleAddCancel}
+            productName = {product.product}
           />
         );
     }

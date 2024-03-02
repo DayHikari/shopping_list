@@ -10,8 +10,6 @@ import {
 import imagePaths from "../../../image_paths_data/imagePathData";
 
 export default function FavouriteItem({ item, handleAddItem }) {
-  console.log("item: ", item)
-
   return (
     <View style={styles.container}>
       <Image source={imagePaths[item.image]} style={styles.image} />
