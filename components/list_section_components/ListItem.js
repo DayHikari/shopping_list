@@ -70,15 +70,16 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     width: 64,
     height: 64,
   },
   productLayout: {
-    borderWidth: 4,
+    // borderWidth: 4,
     borderColor: "#046835",
-    margin: 10,
+    margin: 0,
     width: "90%",
     display: "flex",
     flexDirection: "row",
@@ -99,15 +100,14 @@ const styles = StyleSheet.create({
   },
   productTextSection: {
     maxWidth: "60%",
-    justifyContent: "center",
-    alignItems: "center",
   },
   productText: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center",
+    lineHeight: 25
   },
   productQuantity: {
-    fontSize: 20,
+    fontSize: 17,
     textAlign: "center",
   },
 });

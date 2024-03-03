@@ -62,30 +62,32 @@ export default function RequestDetails({ data, setRequestData }) {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 3,
-    borderColor: "#046835",
+    // borderWidth: 3,
+    // borderColor: "#B3BFB870",
+    backgroundColor: "#B3BFB830",
     borderRadius: 10,
     width: "90%",
+    padding: 10,
   },
   header: {
-    color: "#FF8833",
-    fontFamily: Platform.select({
-      ios: "Cochin",
-      default: "serif",
-    }),
-    fontSize: 23,
-    fontWeight: "700",
-    marginTop: 5,
-    textAlign: "center",
-  },
-  subHeader: {
-    color: "#FF8833",
+    color: "#034222",
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
     }),
     fontSize: 20,
-    fontWeight: "500",
+    fontWeight: "400",
+    marginTop: 5,
+    textAlign: "center",
+  },
+  subHeader: {
+    color: "#034222",
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    fontSize: 20,
+    fontWeight: "700",
     marginBottom: 5,
     textAlign: "center",
   },
@@ -100,9 +102,6 @@ const styles = StyleSheet.create({
   buttons: {
     backgroundColor: "#046835",
     width: "40%",
-    // display: "flex",
-    // alignItems: "center",
-    // margin: 5,
     padding: 10,
     borderRadius: 15,
   },
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     fontSize: 15,
     fontWeight: "700",
     textAlign: "center",

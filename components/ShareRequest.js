@@ -38,9 +38,11 @@ export default function ShareRequestPage({ email, setDisplayedPage, initialLoad,
   return (
     <View style={styles.container}>
       <Text style={styles.header}>
-        {requestData
-          ? "You have pending request(s)!"
-          : "No new requests at the moment!"}
+        {!requestData
+          ? "No new requests at the moment!"
+          : requestData.length > 1
+          ? `You have ${requestData.length} requests!`
+          : "You have 1 new request!"}
       </Text>
       {requestData &&
         requestData.map((data) => {
@@ -58,19 +60,20 @@ export default function ShareRequestPage({ email, setDisplayedPage, initialLoad,
 
 const styles = StyleSheet.create({
   container: {
-    height: "74%",
+    height: "70%",
+    padding: 5,
     display: "flex",
     alignItems: "center",
   },
   header: {
-    color: "#FF8833",
+    color: "#034222",
     fontSize: 25,
     fontWeight: "700",
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
     }),
-    marginVertical: 10,
+    marginVertical: 15,
     textAlign: "center",
   },
 });

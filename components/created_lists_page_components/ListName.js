@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemLayout: {
-    borderWidth: 4,
+    // borderWidth: 4,
     borderColor: "#046835",
     margin: 10,
     padding: 5,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 23,
     fontWeight: "700",
-    color: "#FF8833",
+    color: "#034222",
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif"

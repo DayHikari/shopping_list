@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
-import ListOptions from "./ListOptions";
+import ListOptions from "./ShareListOptions";
 import EditListForm from "./EditListForm";
 
 export default function EditList({listNames, setOptionSelected, email, setListNames}) {

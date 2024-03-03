@@ -3,7 +3,7 @@ import CreatedListsSection from "./created_lists_page_components/CreatedListsSec
 import CreatedListsOptions from "./created_lists_page_components/CreatedListsOptions";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Platform } from "react-native";
 import AddList from "./created_lists_page_components/AddList";
 import MenuButton from "./shared/MenuButton";
 import EditList from "./created_lists_page_components/EditList";
@@ -81,6 +81,7 @@ export default function CreatedListsPage({ email, handleListSelect }) {
 
   return (
     <View style={styles.listContainer}>
+      <Text style={styles.header}>Your lists</Text>
       <CreatedListsSection
         listNames={listNames}
         handleListSelect={handleListSelect}
@@ -94,9 +95,21 @@ export default function CreatedListsPage({ email, handleListSelect }) {
 
 const styles = StyleSheet.create({
   listContainer: {
-    height: "74%",
+    height: "70%",
     display: "flex",
     alignItems: "center",
+    paddingTop: 10,
+    paddingHorizontal: 15,
+  },
+  header: {
+    fontSize: 23,
+    color: "#034222",
+    fontWeight: "700",
+    margin: 5,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      android: "notoserif",
+    }),
   },
   separator: {
     marginVertical: 5,

@@ -92,7 +92,7 @@ export default function ListSection({ email, selectedList }) {
 
 const styles = StyleSheet.create({
   listSection: {
-    height: "74%",
+    height: "70%",
     display: "flex",
     alignItems: "center",
   },

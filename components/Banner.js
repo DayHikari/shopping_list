@@ -14,10 +14,15 @@ export default function () {
 
 const styles = StyleSheet.create({
   banner: {
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     alignItems: "center",
     justifyContent: "center",
-    height: "17%",
+    // height: "17%",
+    height: Platform.select({
+      android: "21%",
+      ios: "21%",
+      default: "17%"
+    }),
     width: Platform.select({
       ios: "100%",
       android: "100%",
@@ -38,7 +43,6 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif"
     }),
-    marginBottom: 3,
   },
   bannerSubHeader: {
     fontSize: 35,

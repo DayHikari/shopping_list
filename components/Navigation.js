@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#06964d",
+    // backgroundColor: "#06964d",
     borderRadius: 10,
   },
   buttonText: {
@@ -81,6 +81,11 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    fontSize: 16,
+    fontSize: Platform.select({
+      android: 16,
+      ios: 16,
+      default: "2vh"
+    }),
+    color: "#F0F7F4",
   },
 });

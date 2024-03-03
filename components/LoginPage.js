@@ -55,51 +55,53 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
 
   return (
     <View style={styles.loginPage}>
-      <Image source={require("../assets/sun_120.png")} />
-      <Text style={styles.header}>Login Page</Text>
-      <Text style={styles.labels}>Email:</Text>
-      <TextInput
-        style={styles.textInputs}
-        placeholder="Enter email address"
-        autoComplete="email"
-        inputMode="email"
-        onChangeText={(text) => {
-          setEmail(text);
-        }}
-        value={email}
-      />
-      <Text style={styles.labels}>Password:</Text>
-      <TextInput
-        style={styles.textInputs}
-        placeholder="Enter password"
-        autoComplete="current-password"
-        secureTextEntry={true}
-        onChangeText={(text) => {
-          setPassword(text);
-        }}
-        value={password}
-      />
-      {signUp && <Text style={styles.labels}>Confirm Password:</Text>}
-      {signUp && (
+      <Image source={require("../assets/sun_120.png")} style={styles.image} />
+      <View style={styles.loginContainer}>
+        {/* <Text style={styles.header}>Login Page</Text> */}
+        <Text style={styles.labels}>Email</Text>
         <TextInput
           style={styles.textInputs}
-          placeholder="Confirm password"
-          autoComplete="new-password"
+          placeholder="Enter email address"
+          autoComplete="email"
+          inputMode="email"
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+          value={email}
+        />
+        <Text style={styles.labels}>Password</Text>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="Enter password"
+          autoComplete="current-password"
           secureTextEntry={true}
           onChangeText={(text) => {
-            setPasswordCheck(text);
+            setPassword(text);
           }}
-          value={passwordCheck}
+          value={password}
         />
-      )}
-      {typeof errorMessage === "string" && <Text>{errorMessage}</Text>}
-      <View style={styles.buttonSection}>
-        <Pressable style={styles.buttons} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </Pressable>
-        <Pressable style={styles.buttons} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
+        {signUp && <Text style={styles.labels}>Confirm Password:</Text>}
+        {signUp && (
+          <TextInput
+            style={styles.textInputs}
+            placeholder="Confirm password"
+            autoComplete="new-password"
+            secureTextEntry={true}
+            onChangeText={(text) => {
+              setPasswordCheck(text);
+            }}
+            value={passwordCheck}
+          />
+        )}
+        {typeof errorMessage === "string" && <Text>{errorMessage}</Text>}
+        <View style={styles.buttonSection}>
+          <Pressable style={styles.buttons} onPress={handleSignUp}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </Pressable>
+          <Pressable style={styles.buttons} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -110,6 +112,16 @@ const styles = StyleSheet.create({
     height: "83%",
     display: "flex",
     alignItems: "center",
+  },
+  image: {
+    width: 120,
+    height: 120,
+    marginVertical: "10%",
+  },
+  loginContainer: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
   },
   header: {
     fontSize: 30,
@@ -122,13 +134,13 @@ const styles = StyleSheet.create({
     }),
   },
   labels: {
-    fontSize: 25,
-    color: "#FF8833",
+    fontSize: 21,
+    color: "#034222",
     fontWeight: "700",
     margin: 5,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      android: "notoserif",
     }),
   },
   textInputs: {
@@ -136,24 +148,25 @@ const styles = StyleSheet.create({
     width: "70%",
     backgroundColor: "white",
     borderWidth: 2,
-    borderColor: "#046835",
+    borderColor: "#B3BFB8",
     borderRadius: 5,
-    padding: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
     marginBottom: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
   },
   buttonSection: {
-    width: "100%",
+    width: "85%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     margin: 10,
   },
   buttons: {
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     width: "40%",
     display: "flex",
     alignItems: "center",
@@ -166,7 +179,7 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     fontSize: 15,
     fontWeight: "700",
   },

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
-import ListOptions from "./ListOptions";
+import ListOptions from "./ShareListOptions";
 import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";
 

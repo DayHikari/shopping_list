@@ -7,7 +7,7 @@ import {
   Platform,
   TextInput,
 } from "react-native";
-import ListOptions from "./ListOptions";
+import ShareListOptions from "./ShareListOptions";
 import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";
 
@@ -80,7 +80,7 @@ export default function ShareList({
         {!selectedList ? "Choose a list to share:" : "Share the list."}
       </Text>
       {!selectedList ? (
-        <ListOptions listNames={listNames} setSelectedList={setSelectedList} />
+        <ShareListOptions listNames={listNames} setSelectedList={setSelectedList} />
       ) : (
         <>
           <Text style={styles.selected}>
@@ -114,10 +114,11 @@ const styles = StyleSheet.create({
   form: {
     width: "95%",
     // height: "40%",
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     padding: 10,
+    paddingTop: 20,
     borderRadius: 10,
   },
   close: {
@@ -131,12 +132,12 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   header: {
-    fontSize: 25,
+    fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     marginBottom: 10,
   },
   selected: {

@@ -57,7 +57,8 @@ export default function App() {
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    backgroundColor: "#CDEEFD",
+    // backgroundColor: "#CDEEFD",
+    backgroundColor: "#F0F7F4",
     maxHeight: "100vh",
   },
   container: {
