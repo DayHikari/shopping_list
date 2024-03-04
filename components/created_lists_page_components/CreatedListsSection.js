@@ -10,14 +10,11 @@ export default function CreatedListsSection({ listNames, handleListSelect }) {
       {listNames &&
         listNames.map((listName, index) => {
           return (
-            <>
               <ListName
                 listName={listName}
                 handleListSelect={handleListSelect}
-                key={index}
+                key={listName.list_id}
               />
-              <View style={styles.separator} key={`${index}S`}/>
-            </>
           );
         })}
     </ScrollView>
@@ -35,11 +32,5 @@ const styles = StyleSheet.create({
   contentContainer: {
     display: "flex",
     alignItems: "center",
-  },
-  separator: {
-    marginVertical: 5,
-    borderBottomColor: "#046835",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "85%",
   },
 });

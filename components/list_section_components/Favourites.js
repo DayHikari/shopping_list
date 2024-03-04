@@ -158,9 +158,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     fontWeight: "700",
     marginBottom: 10,
   },
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },

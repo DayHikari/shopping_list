@@ -68,12 +68,12 @@ export default function DeleteList({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    // height: "40%",
     maxHeight: 300,
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     padding: 10,
+    paddingTop: 20,
     borderRadius: 10,
   },
   close: {
@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     marginBottom: 10,
   },
   confirmation: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     textAlign: "center",
   },
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     color: "#046835",
     fontWeight: "700",
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },

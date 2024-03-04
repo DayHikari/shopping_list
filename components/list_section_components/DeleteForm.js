@@ -110,7 +110,7 @@ export default function DeleteForm({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     padding: 10,
@@ -130,19 +130,19 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     fontWeight: "700",
-    marginBottom: 15,
+    marginBottom: 10,
   },
   subHeaders: {
-    fontSize: 19,
+    fontSize: 17,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#B3BFB8",
     fontWeight: "700",
     alignSelf: "flex-start",
     paddingLeft: 20,
@@ -151,9 +151,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#B3BFB8",
     fontWeight: "700",
     alignSelf: "center",
     marginBottom: 10,
@@ -177,9 +177,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#046835",
+    color: "#034222",
     fontWeight: "700",
   },
   error: {
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },

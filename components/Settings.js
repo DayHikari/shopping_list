@@ -10,17 +10,17 @@ export default function Settings () {
 
 const styles = StyleSheet.create({
   container: {
-    height: "74%",
+    height: "70%",
     display: "flex",
     alignItems: "center",
   },
   header: {
-    color: "#FF8833",
+    color: "#034222",
     fontSize: 25,
     fontWeight: "700",
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     marginVertical: 10,
     textAlign: "center",

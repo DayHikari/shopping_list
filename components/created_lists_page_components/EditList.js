@@ -27,8 +27,7 @@ export default function EditList({listNames, setOptionSelected, email, setListNa
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    // height: "40%",
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     padding: 10,
@@ -48,9 +47,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#FF8833",
+    color: "#F0F7F4",
     marginBottom: 10,
   }
 });

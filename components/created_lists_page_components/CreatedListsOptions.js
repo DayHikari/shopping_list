@@ -57,13 +57,12 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     color: "#F0F7F4",
     fontSize: 22,
   },
   container: {
-    // height: "90%",
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
@@ -72,7 +71,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "40%",
-    // height: "30%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontSize: 17,
     fontWeight: "700",

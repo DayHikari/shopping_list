@@ -42,7 +42,7 @@ export default function ({ setDisplayedPage }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#046835",
+    backgroundColor: "#034222",
     width: Platform.select({
       ios: "100%",
       android: "100%",

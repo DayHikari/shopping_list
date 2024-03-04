@@ -26,8 +26,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "#B3BFB8",
-    // margin: 5,
     borderRadius: 10,
     paddingHorizontal: 5,
     paddingVertical: 10,
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontSize: 17,
     fontWeight: "700",

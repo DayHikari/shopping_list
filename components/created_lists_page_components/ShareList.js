@@ -113,7 +113,6 @@ export default function ShareList({
 const styles = StyleSheet.create({
   form: {
     width: "95%",
-    // height: "40%",
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
@@ -128,53 +127,53 @@ const styles = StyleSheet.create({
   },
   closeText: {
     fontSize: 17,
-    color: "#FF8833",
+    color: "#B3BFB8",
     fontWeight: "700",
   },
   header: {
     fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     color: "#F0F7F4",
     marginBottom: 10,
   },
   selected: {
-    color: "#FF8833",
-    fontSize: 22,
+    color: "#B3BFB8",
+    fontSize: 18,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     textAlign: "center",
   },
   subheader: {
-    color: "#FF8833",
+    color: "#B3BFB8",
     fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     textAlign: "center",
     marginTop: 10,
     marginBottom: 3,
   },
   textInputs: {
-    backgroundColor: "#CDEEFD",
+    backgroundColor: "#F0F7F4",
     width: "90%",
     height: 40,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: "#FF8833",
+    borderColor: "#B3BFB8",
     padding: 10,
     marginBottom: 10,
     marginTop: 2,
     fontSize: 15,
-    color: "#046835",
+    color: "#034222",
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },
@@ -191,9 +190,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
-    color: "#046835",
+    color: "#034222",
     fontWeight: "700",
   },
   error: {
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
-      default: "serif",
+      default: "notoserif",
     }),
     fontWeight: "700",
   },
