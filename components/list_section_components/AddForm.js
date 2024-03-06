@@ -157,10 +157,8 @@ const styles = StyleSheet.create({
   submit: {
     borderRadius: 10,
     backgroundColor: "#FF8833",
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     margin: 10,
   },
   submitText: {

@@ -22,6 +22,14 @@ export default function App() {
     setDisplayedPage("listSection");
   };
 
+  const handleLogOut = () => {
+    setDisplayedPage(null);
+    setInitialLoad(true);
+    setSelectedList(null);
+    setUser(null);
+    setLoggedIn(false);
+  }
+
   const display = () => {
     switch (displayedPage) {
       case "listSection":
@@ -45,7 +53,7 @@ export default function App() {
           />
         );
       case "settings":
-        return <Settings />;
+        return <Settings email={user.user.email} setUser={setUser} handleLogOut={handleLogOut}/>;
       default:
         return null;
     }

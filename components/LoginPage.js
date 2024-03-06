@@ -57,7 +57,6 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
     <View style={styles.loginPage}>
       <Image source={require("../assets/sun_120.png")} style={styles.image} />
       <View style={styles.loginContainer}>
-        {/* <Text style={styles.header}>Login Page</Text> */}
         <Text style={styles.labels}>Email</Text>
         <TextInput
           style={styles.textInputs}
