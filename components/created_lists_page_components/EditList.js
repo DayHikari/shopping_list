@@ -26,7 +26,7 @@ export default function EditList({listNames, setOptionSelected, email, setListNa
 
 const styles = StyleSheet.create({
   form: {
-    width: "95%",
+    width: "100%",
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",

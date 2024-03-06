@@ -68,8 +68,9 @@ export default function List({
 const styles = StyleSheet.create({
   list: {
     width: "100%",
-    // marginTop: 13,
-    // backgroundColor: "red"
+    backgroundColor: "#B3BFB830",
+    borderRadius: 5,
+    paddingVertical: 5,
   },
   contentContainer: {
     display: "flex",

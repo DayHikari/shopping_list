@@ -26,11 +26,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemLayout: {
-    // borderWidth: 4,
-    borderColor: "#046835",
     margin: 10,
     padding: 5,
-    width: "90%",
+    width: "95%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

@@ -131,7 +131,7 @@ export default function EditListForm({ selectedList, email, setSelectedList, set
 
 const styles = StyleSheet.create({
   form: {
-    width: "95%",
+    width: "100%",
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",

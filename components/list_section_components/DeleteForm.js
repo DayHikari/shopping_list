@@ -109,12 +109,12 @@ export default function DeleteForm({
 
 const styles = StyleSheet.create({
   form: {
-    width: "95%",
+    width: "100%",
+    maxHeight: 300,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
-    paddingHorizontal: 10,
-    paddingVertical: 15,
+    padding: 10,
     borderRadius: 10,
   },
   close: {

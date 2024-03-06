@@ -97,7 +97,8 @@ export default function AddForm({
 
 const styles = StyleSheet.create({
   form: {
-    width: "95%",
+    width: "100%",
+    maxHeight: 300,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",

@@ -146,8 +146,8 @@ export default function Favourites({
 
 const styles = StyleSheet.create({
   form: {
-    width: "95%",
-    maxHeighteight: 375,
+    width: "100%",
+    maxHeight: 375,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",

@@ -44,14 +44,14 @@ export default function ListOptions({ setOptionSelected }) {
 
 const styles = StyleSheet.create({
   listOptions: {
-    width: "95%",
-    height: "40%",
+    width: "100%",
     maxHeight: 300,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-evenly",
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 15,
     borderRadius: 10,
   },
   header: {
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     }),
     color: "#F0F7F4",
     fontSize: 22,
+    marginBottom: 10,
   },
   container: {
     display: "flex",
