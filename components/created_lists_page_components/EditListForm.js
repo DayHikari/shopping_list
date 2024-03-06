@@ -6,12 +6,19 @@ import {
   Text,
   TextInput,
   View,
-  Platform
+  Platform,
 } from "react-native";
 import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";
+import ListAccessButton from "./edit_list_components/ListAccessButton";
+import SharedUserList from "./edit_list_components/SharedUserList";
 
-export default function EditListForm({ selectedList, email, setSelectedList, setListNames }) {
+export default function EditListForm({
+  selectedList,
+  email,
+  setSelectedList,
+  setListNames,
+}) {
   const [newName, setNewName] = useState("");
   const [sharedState, setSharedState] = useState(
     selectedList.created_by === email
@@ -26,51 +33,15 @@ export default function EditListForm({ selectedList, email, setSelectedList, set
       case false:
         return;
       case true:
-        return (
-          <Pressable
-            style={styles.shareButton}
-            onPress={() => {
-              fetchUsers();
-            }}
-          >
-            <Text style={styles.shareButtonText}>
-              Click to change list access.
-            </Text>
-          </Pressable>
-        );
+        return <ListAccessButton fetchUsers={fetchUsers} />;
       case "data":
-        return (
-          <View style={styles.scrollContainer}>
-            <Text style={styles.scrollContainerSubheader}>
-              Select a user to unshare:
-            </Text>
-            <ScrollView>
-              {sharedData.map((obj) => {
-                return (
-                  <Pressable
-                    key={obj.email}
-                    onPress={() => {
-                      addToBeDeleted(obj.email);
-                    }}
-                    style={
-                      toBeDeleted.includes(obj.email)
-                        ? styles.emailButtonSelected
-                        : styles.emailButtonUnselected
-                    }
-                  >
-                    <Text style={styles.emailButtonText}>{obj.email}</Text>
-                  </Pressable>
-                );
-              })}
-            </ScrollView>
-          </View>
-        );
+        return <SharedUserList sharedData={sharedData} addToBeDeleted={addToBeDeleted} toBeDeleted={toBeDeleted}/>;
     }
   };
 
   const fetchUsers = async () => {
     const { data, error } = await supabase
-      .from("user_table")
+      .from("user_lists")
       .select("email")
       .eq("list_id", selectedList.list_id)
       .neq("email", email);
@@ -95,16 +66,22 @@ export default function EditListForm({ selectedList, email, setSelectedList, set
     } else {
       const { data, error } = await supabase
         .from("lists")
-        .update({ "list_name": newName.toLocaleLowerCase().replace(" ", "_") })
+        .update({ list_name: newName.toLocaleLowerCase().replace(" ", "_") })
         .eq("list_id", selectedList.list_id)
         .select("*");
-        
-        if (error) {
-          setErrorMessage(`Error: ${error}`);
-        } else {
-          setListNames(prev => prev.map(obj => obj.list_id === selectedList.list_id ? {...obj, list_name: data[0].list_name} : obj));
-          setSelectedList(null);
-        }
+
+      if (error) {
+        setErrorMessage(`Error: ${error}`);
+      } else {
+        setListNames((prev) =>
+          prev.map((obj) =>
+            obj.list_id === selectedList.list_id
+              ? { ...obj, list_name: data[0].list_name }
+              : obj
+          )
+        );
+        setSelectedList(null);
+      }
     }
   };
 
@@ -122,7 +99,12 @@ export default function EditListForm({ selectedList, email, setSelectedList, set
       {changeSharingOptions()}
       {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
       {confirmation && <Text style={styles.error}>{confirmation}</Text>}
-      <Pressable style={styles.submit} onPress={() => {handleSubmit()}}>
+      <Pressable
+        style={styles.submit}
+        onPress={() => {
+          handleSubmit();
+        }}
+      >
         <Text style={styles.submitText}>Submit</Text>
       </Pressable>
     </View>
@@ -166,21 +148,15 @@ const styles = StyleSheet.create({
     }),
     fontWeight: "700",
   },
-  shareButton: {
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginBottom: 5,
-  },
-  shareButtonText: {
-    color: "#B3BFB8",
+  error: {
+    color: "red",
+    fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "notoserif",
     }),
-    fontSize: 18,
+    fontWeight: "700",
+    textAlign: "center",
   },
   submit: {
     borderRadius: 10,
@@ -199,51 +175,5 @@ const styles = StyleSheet.create({
     }),
     color: "#034222",
     fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Cochin",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-  scrollContainer: {
-    maxHeight: 180,
-    width: "90%",
-  },
-  scrollContainerSubheader: {
-    color: "#B3BFB8",
-    fontFamily: Platform.select({
-      ios: "Cochin",
-      default: "notoserif",
-    }),
-    fontSize: 18,
-  },
-  emailButtonUnselected: {
-    borderWidth: 3,
-    borderColor: "#B3BFB8",
-    borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginVertical: 5,
-  },
-  emailButtonSelected: {
-    borderWidth: 3,
-    borderColor: "#B3BFB8",
-    borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginVertical: 5,
-  },
-  emailButtonText: {
-    color: "#B3BFB8",
-    fontFamily: Platform.select({
-      ios: "Cochin",
-      default: "notoserif",
-    }),
-    fontSize: 18,
-    alignSelf: "center",
   },
 });
