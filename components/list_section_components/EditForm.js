@@ -154,14 +154,12 @@ const styles = StyleSheet.create({
   submit: {
     borderRadius: 10,
     backgroundColor: "#FF8833",
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    margin: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginTop: 10,
   },
   submitText: {
-    fontSize: 17,
+    fontSize: 20,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "notoserif",

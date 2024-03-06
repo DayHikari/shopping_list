@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
     borderRadius: 10,
   },
   close: {
@@ -167,14 +168,12 @@ const styles = StyleSheet.create({
   submit: {
     borderRadius: 10,
     backgroundColor: "#FF8833",
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     marginTop: 10,
   },
   submitText: {
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "notoserif",

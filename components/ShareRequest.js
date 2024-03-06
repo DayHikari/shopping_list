@@ -36,7 +36,7 @@ export default function ShareRequestPage({ email, setDisplayedPage, initialLoad,
   }, [requestData]);
 
   return (
-    <View style={styles.container}>
+    <>
       <Text style={styles.header}>
         {!requestData
           ? "No new requests at the moment!"
@@ -54,17 +54,11 @@ export default function ShareRequestPage({ email, setDisplayedPage, initialLoad,
             />
           );
         })}
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: "70%",
-    padding: 5,
-    display: "flex",
-    alignItems: "center",
-  },
   header: {
     color: "#034222",
     fontSize: 25,
@@ -73,7 +67,6 @@ const styles = StyleSheet.create({
       ios: "Cochin",
       default: "serif",
     }),
-    marginVertical: 15,
     textAlign: "center",
   },
 });

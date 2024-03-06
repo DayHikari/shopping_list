@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Platform } from "react-native";
 
 export default function MenuButton({setOptionSelected}) {
   return (
@@ -14,7 +14,12 @@ export default function MenuButton({setOptionSelected}) {
 
 const styles = StyleSheet.create({
   menu: {
-    height: "12%",
+    // height: "12%",
+    height: Platform.select({
+      android: "12%",
+      ios: "12%",
+      default: "8%"
+    }),
     width: "100%",
     display: "flex",
     flexDirection: "row",

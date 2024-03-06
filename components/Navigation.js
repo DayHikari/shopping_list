@@ -49,7 +49,12 @@ const styles = StyleSheet.create({
       default: "100vw",
     }),
     alignSelf: "center",
-    height: "9%",
+    // height: "7%",
+    height: Platform.select({
+      android: "9%",
+      ios: "9%",
+      default: "7%"
+    }),
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

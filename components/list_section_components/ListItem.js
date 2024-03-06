@@ -72,42 +72,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  image: {
-    width: 64,
-    height: 64,
-  },
   productLayout: {
-    // borderWidth: 4,
-    borderColor: "#046835",
-    margin: 0,
-    width: "90%",
+    width: "100%",
     display: "flex",
     flexDirection: "row",
-    padding: 5,
+    paddingVertical: 5,
     alignItems: "center",
     justifyContent: "space-between",
   },
   checkedProductLayout: {
-    borderWidth: 4,
-    borderColor: "#9A9A9A",
-    margin: 10,
-    width: "90%",
+    width: "100%",
     display: "flex",
     flexDirection: "row",
-    padding: 5,
+    paddingVertical: 5,
     alignItems: "center",
     justifyContent: "space-between",
+    backgroundColor: "#B3BFB8"
+  },
+  image: {
+    width: 64,
+    height: 64,
   },
   productTextSection: {
     maxWidth: "60%",
   },
   productText: {
-    fontSize: 25,
+    fontSize: 23,
     textAlign: "center",
-    lineHeight: 25
+    lineHeight: 23
   },
   productQuantity: {
-    fontSize: 17,
+    fontSize: 16,
     textAlign: "center",
   },
 });

@@ -8,6 +8,7 @@ import EditForm from "./list_section_components/EditForm";
 import DeleteForm from "./list_section_components/DeleteForm";
 import MenuButton from "./shared/MenuButton";
 import Favourites from "./list_section_components/Favourites";
+import capitaliser from "./functions/capitaliser";
 
 export default function ListSection({ email, selectedList }) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -71,37 +72,39 @@ export default function ListSection({ email, selectedList }) {
           />
         );
       case "favourites":
-        return <Favourites email={email} shoppingList={shoppingList} setShoppingList={setShoppingList} selectedList={selectedList}/>;
+        return (
+          <Favourites
+            email={email}
+            shoppingList={shoppingList}
+            setShoppingList={setShoppingList}
+            selectedList={selectedList}
+          />
+        );
     }
   };
 
   return (
-    <View style={styles.listSection}>
-      {errorMessage && <Text style={styles.error}>{`Error occurred: ${errorMessage}. Please try again later.`}</Text>}
-      <List
-        shoppingList={shoppingList}
-        setSelectedItem={setSelectedItem}
-        setShoppingList={setShoppingList}
-      />
-      {chooseOption()}
-      <View style={styles.separator} />
-      <MenuButton setOptionSelected={setOptionSelected} />
-    </View>
+    <>
+      {errorMessage ? (
+        <Text style={styles.error}>{`Error occurred: ${errorMessage}. Please try again later.`}</Text>
+      ) : (
+        <>
+          <Text style={styles.header}>{capitaliser(selectedList)}</Text>
+          <List
+            shoppingList={shoppingList}
+            setSelectedItem={setSelectedItem}
+            setShoppingList={setShoppingList}
+          />
+          {chooseOption()}
+          <View style={styles.separator} />
+          <MenuButton setOptionSelected={setOptionSelected} />
+        </>
+      )}
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  listSection: {
-    height: "70%",
-    display: "flex",
-    alignItems: "center",
-  },
-  separator: {
-    marginVertical: 5,
-    borderBottomColor: "#046835",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "85%",
-  },
   error: {
     color: "red",
     fontSize: 25,
@@ -112,5 +115,23 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
     marginTop: 15,
+  },
+  header: {
+    fontSize: 25,
+    color: "#034222",
+    fontWeight: "700",
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      android: "notoserif",
+    }),
+    paddingBottom: 5,
+    textDecorationLine: "underline",
+    textDecorationColor: "#034222",
+  },
+  separator: {
+    marginVertical: 5,
+    borderBottomColor: "#046835",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    width: "85%",
   },
 });

@@ -17,11 +17,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#034222",
     alignItems: "center",
     justifyContent: "center",
-    // height: "17%",
     height: Platform.select({
       android: "21%",
       ios: "21%",
-      default: "17%"
+      default: "15%"
     }),
     width: Platform.select({
       ios: "100%",

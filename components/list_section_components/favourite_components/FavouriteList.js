@@ -58,12 +58,21 @@ export default function FavouiteList({
 
 const styles = StyleSheet.create({
   scrollArea: {
-    width: "90%",
+    width: "95%",
     maxHeight: 350,
   },
   contentContainer: {
     display: "flex",
     alignItems: "center",
+  },
+  error: {
+    color: "red",
+    fontSize: 16,
+    fontFamily: Platform.select({
+      ios: "Cochin",
+      default: "serif",
+    }),
+    fontWeight: "700",
   },
   buttonContainer: {
     display: "flex",
@@ -83,15 +92,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#034222",
     fontSize: 18,
-    fontFamily: Platform.select({
-      ios: "Cochin",
-      default: "serif",
-    }),
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
     fontFamily: Platform.select({
       ios: "Cochin",
       default: "serif",
