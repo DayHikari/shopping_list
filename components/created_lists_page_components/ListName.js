@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#034222",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "serif",
     }),
   },

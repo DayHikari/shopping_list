@@ -28,7 +28,7 @@ export default function App() {
     setSelectedList(null);
     setUser(null);
     setLoggedIn(false);
-  }
+  };
 
   const display = () => {
     switch (displayedPage) {
@@ -53,7 +53,13 @@ export default function App() {
           />
         );
       case "settings":
-        return <Settings email={user.user.email} setUser={setUser} handleLogOut={handleLogOut}/>;
+        return (
+          <Settings
+            email={user.user.email}
+            setUser={setUser}
+            handleLogOut={handleLogOut}
+          />
+        );
       default:
         return null;
     }
@@ -61,44 +67,49 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
+      <StatusBar style="auto" />
       <View style={styles.viewContainer}>
         <View style={styles.appContainer}>
           <Banner />
-          <StatusBar style="auto" />
-          {!loggedIn && (
+          {!loggedIn ? (
             <LoginPage
               setUser={setUser}
               setLoggedIn={setLoggedIn}
               setDisplayedPage={setDisplayedPage}
             />
+          ) : (
+            <>
+              <View style={styles.bodyContainer}>{display()}</View>
+              <Navigation setDisplayedPage={setDisplayedPage} />
+            </>
           )}
-          <View style={styles.bodyContainer}>
-            {display()}
-          </View>
-          {loggedIn && <Navigation setDisplayedPage={setDisplayedPage} />}
         </View>
       </View>
     </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     backgroundColor: "#F0F7F4",
-    maxHeight: "100vh",
+    height: "100%",
   },
   appContainer: {
     width: "100%",
     maxWidth: 500,
-    height: "100%",
+    height: Platform.select({
+      ios: "100%",
+      android: "100%",
+      default: "100vh",
+    }),
     alignSelf: "center",
   },
   bodyContainer: {
     height: Platform.select({
       android: "70%",
       ios: "70%",
-      default: "78%"
+      default: "81%",
     }),
     display: "flex",
     alignItems: "center",

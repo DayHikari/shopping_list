@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View, Platform } from "react-native";
 
 export default function SharedUserList({
   sharedData,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   scrollContainerSubheader: {
     color: "#B3BFB8",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontSize: 18,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   emailButtonText: {
     color: "#B3BFB8",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontSize: 18,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 16,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontWeight: "700",

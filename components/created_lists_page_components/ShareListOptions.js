@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontSize: 17,

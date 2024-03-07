@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     subHeader: {
         fontSize: 17,
         fontFamily: Platform.select({
-          ios: "Cochin",
+          ios: "Avenir-Heavy",
           default: "serif",
         }),
         color: "#FF8833",
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       label: {
         fontSize: 17,
         fontFamily: Platform.select({
-          ios: "Cochin",
+          ios: "Avenir-Heavy",
           default: "serif",
         }),
         color: "#FF8833",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "#046835",
         fontFamily: Platform.select({
-          ios: "Cochin",
+          ios: "Avenir-Heavy",
           default: "serif",
         }),
         fontWeight: "700",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         color: "#034222",
         fontSize: 18,
         fontFamily: Platform.select({
-          ios: "Cochin",
+          ios: "Avenir-Heavy",
           default: "serif",
         }),
         fontWeight: "700",

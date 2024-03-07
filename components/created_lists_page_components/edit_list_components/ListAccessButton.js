@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, Platform } from "react-native";
 
 export default function ListAccessButton({ fetchUsers }) {
   return (
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#B3BFB8",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontSize: 18,

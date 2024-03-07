@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#F0F7F4",
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   subHeaders: {
     fontSize: 17,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#B3BFB8",
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   item: {
     fontSize: 20,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#B3BFB8",
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 18,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#034222",
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 20,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontWeight: "700",

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     height: Platform.select({
       android: "21%",
       ios: "21%",
-      default: "15%"
+      default: "12%"
     }),
     width: Platform.select({
       ios: "100%",
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: "#FF8833",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "serif"
     }),
   },
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     color: "#FF8833",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "serif"
     }),
   }

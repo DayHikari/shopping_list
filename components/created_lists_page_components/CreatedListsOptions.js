@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#F0F7F4",
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontSize: 17,

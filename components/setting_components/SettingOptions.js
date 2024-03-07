@@ -1,4 +1,4 @@
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet, Platform } from "react-native";
 
 export default function SettingOptions ({ setSettingChoice }) {
   return (
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "700",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     paddingVertical: 5,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     marginVertical: 10,

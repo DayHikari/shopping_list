@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform } from "react-native";
 import { supabase } from "../../supabase";
 
 export default function Logout ({ setSettingChoice, handleLogOut }) {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "700",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     paddingVertical: 5,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     paddingVertical: 5,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 17,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#034222",
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 16,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontWeight: "700",

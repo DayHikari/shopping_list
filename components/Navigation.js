@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
       android: "100%",
       default: "30vw",
     }),
+    minWidth: 350,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "serif",
     }),
     fontSize: Platform.select({

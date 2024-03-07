@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     color: "#B3BFB8",
     fontSize: 23,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontWeight: "700",
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     color: "#034222",
     fontSize: 18,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     fontWeight: "700",

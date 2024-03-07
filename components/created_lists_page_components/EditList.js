@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     fontFamily: Platform.select({
-      ios: "Cochin",
+      ios: "Avenir-Heavy",
       default: "notoserif",
     }),
     color: "#F0F7F4",
