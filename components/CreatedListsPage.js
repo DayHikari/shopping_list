@@ -95,13 +95,14 @@ export default function CreatedListsPage({ email, handleListSelect }) {
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 23,
+    fontSize: 27,
     color: "#034222",
     fontWeight: "700",
     fontFamily: Platform.select({
       ios: "Avenir-Heavy",
       android: "notoserif",
     }),
+    textDecorationLine: "underline"
   },
   separator: {
     marginVertical: 5,

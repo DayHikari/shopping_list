@@ -24,9 +24,9 @@ export default function CreatedListsSection({ listNames, handleListSelect }) {
 const styles = StyleSheet.create({
   list: {
     width: "100%",
-    backgroundColor: "#B3BFB830",
+    // backgroundColor: "#B3BFB830",
     borderRadius: 10,
-    marginTop: 10,
+    // marginTop: 10,
     padding: 10,
   },
   contentContainer: {

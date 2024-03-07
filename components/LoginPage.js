@@ -48,6 +48,7 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
   };
 
   const handleSignUpPage = () => {
+    setErrorMessage(null)
     setSignUp((prev) => !prev);
   };
 

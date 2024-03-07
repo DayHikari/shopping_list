@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 23,
+    fontSize: 21,
     fontWeight: "700",
     color: "#034222",
     fontFamily: Platform.select({

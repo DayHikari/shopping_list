@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View,  } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
 
@@ -11,9 +11,11 @@ export default function ListItem({
 }) {
   const [checked, setChecked] = useState(itemData.checked);
   const checkedImageURL = checked
-    ? require("../../assets/checked.png")
+    ? require("../../assets/gray_checked.png")
     : require("../../assets/unchecked.png");
-  const checkedStyle = !checked ? "productLayout" : "checkedProductLayout";
+  const checkedLayout = !checked ? "productLayout" : "checkedProductLayout";
+  const checkedText = !checked ? "productText" : "checkedProductText";
+  const checkedQuantity = !checked ? "productQuantity" : "checkedProductQuantity";
 
   const handleCheckPress = async () => {
     setChecked((prevState) => !prevState);
@@ -49,11 +51,12 @@ export default function ListItem({
         setSelectedItem(itemData);
       }}
     >
-      <View style={styles[checkedStyle]}>
+      <View style={styles[checkedLayout]}>
         <Image source={imagePaths[itemData.image]} style={styles.image}/>
+        {checked && <Image source={imagePaths[itemData.image]} style={styles.imageOverlay}/>}
         <View style={styles.productTextSection}>
-          <Text style={styles.productText}>{itemData.product}</Text>
-          <Text style={styles.productQuantity}>
+          <Text style={styles[checkedText]}>{itemData.product}</Text>
+          <Text style={styles[checkedQuantity]}>
             Quantity: {itemData.quantity}
           </Text>
         </View>
@@ -93,16 +96,52 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
   },
+  imageOverlay: {
+    width: 64,
+    height: 64,
+    position: "absolute",
+    tintColor: "gray",
+    opacity: 0.8,
+  },
   productTextSection: {
     maxWidth: "60%",
   },
   productText: {
     fontSize: 23,
     textAlign: "center",
-    lineHeight: 23
+    lineHeight: 25,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#034222"
+  },
+  checkedProductText: {
+    fontSize: 23,
+    textAlign: "center",
+    lineHeight: 25,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#F0F7F4"
   },
   productQuantity: {
     fontSize: 16,
     textAlign: "center",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#034222"
+  },
+  checkedProductQuantity: {
+    fontSize: 16,
+    textAlign: "center",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#F0F7F4"
   },
 });
