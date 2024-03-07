@@ -30,34 +30,105 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
       return setErrorMessage("Password must be 8 characters long");
     }
 
-    let { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
     if (error) {
       return setErrorMessage(`${error}`);
-    }
+    };
+
     setUser(data);
     setLoggedIn(true);
     setEmail("");
     setPassword("");
+    setName("");
     setPasswordCheck("");
+    setEarlyAccessCode("");
     setErrorMessage(null);
     setDisplayedPage("shareRequest");
   };
 
   const handleSignUpPage = () => {
-    setErrorMessage(null)
+    setErrorMessage(null);
     setSignUp((prev) => !prev);
   };
 
   const handleSignUp = async () => {
-    if (!signUp) {
-      setSignUp(true);
-    } else {
-      setSignUp(false);
-    }
+    // setErrorMessage(null);
+
+    // if (!email.trim()) {
+    //   return setErrorMessage("Email cannot be empty");
+    // } else if (name === "") {
+    //   return setErrorMessage("Please enter your name");
+    // } else if (!password.trim()) {
+    //   return setErrorMessage("Password cannot be empty");
+    // } else if (password.length < 8) {
+    //   return setErrorMessage("Password must be 8 characters long");
+    // } else if (password !== passwordCheck) {
+    //   return setErrorMessage("Passwords do not match");
+    // } else if (earlyAccessCode === "") {
+    //   return setErrorMessage("Please enter the early access code");
+    // }
+
+    // const { data, error } = await supabase
+    //   .from("early_access")
+    //   .select("pass")
+    //   .eq("code", earlyAccessCode);
+
+    // console.log("error", error);
+    // console.log("data", data);
+
+    // if (error) {
+    //   return setErrorMessage(`${error}`);
+    // } else if (data.length === 0) {
+    //   return setErrorMessage("Incorrect access code");
+    // }
+
+    // const { signUpData, signUpError } = await supabase.auth.signUp({
+    //   email: email,
+    //   password: password,
+    // });
+    // console.log("sign up data: ", signUpData);
+    // console.log("sign up error: ", signUpError);
+
+    // if (signUpError) {
+    //   return setErrorMessage(`${signUpError}`);
+    // };
+
+    // const { signInData, signInerror } = await supabase.auth.signInWithPassword({
+    //   email: email,
+    //   password: password,
+    // });
+    // console.log("sign in data: ", signInData)
+    // console.log("sign in error: ", signInerror)
+
+    // if (signInerror) {
+    //   return setErrorMessage("Error signing in. Contact an admin.");
+    // };
+
+
+    // const { userData, userDataError } = await supabase
+    //   .from("users")
+    //   .insert([{ email: email, name: name }])
+    //   .select();
+    // console.log("user data:", userData)
+    // console.log("userDataError: ", userDataError)
+
+    // if (userDataError) {
+    //   return setErrorMessage("Account created but details not stored. Contact an admin.")
+    // };
+
+    // setUser(signInData);
+    // setLoggedIn(true);
+    // setEmail("");
+    // setPassword("");
+    // setName("");
+    // setPasswordCheck("");
+    // setEarlyAccessCode("");
+    // setErrorMessage(null);
+    // setDisplayedPage("shareRequest");
   };
 
   return (
@@ -105,7 +176,7 @@ const styles = StyleSheet.create({
     marginVertical: Platform.select({
       ios: "3%",
       android: "2%",
-      default: "7%"
+      default: "7%",
     }),
   },
   error: {
@@ -113,7 +184,7 @@ const styles = StyleSheet.create({
     fontSize: Platform.select({
       ios: 27,
       android: 20,
-      default: 25
+      default: 25,
     }),
     fontFamily: Platform.select({
       ios: "Avenir-Heavy",
