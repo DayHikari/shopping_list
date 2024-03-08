@@ -9,6 +9,7 @@ import LoginPage from "./components/LoginPage";
 import CreatedListsPage from "./components/CreatedListsPage";
 import ShareRequestPage from "./components/ShareRequest";
 import Settings from "./components/Settings";
+import UserInfoForm from "./components/UserInfoForm";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -33,17 +34,6 @@ export default function App() {
 
   const display = () => {
     switch (displayedPage) {
-      case "listSection":
-        return (
-          <ListSection email={user.user.email} selectedList={selectedList} />
-        );
-      case "createdLists":
-        return (
-          <CreatedListsPage
-            email={user.user.email}
-            handleListSelect={handleListSelect}
-          />
-        );
       case "shareRequest":
         return (
           <ShareRequestPage
@@ -52,6 +42,21 @@ export default function App() {
             initialLoad={initialLoad}
             setInitialLoad={setInitialLoad}
           />
+        );
+        case "userInfo":
+          return (
+            <UserInfoForm />
+          )
+      case "createdLists":
+        return (
+          <CreatedListsPage
+            email={user.user.email}
+            handleListSelect={handleListSelect}
+          />
+        );
+      case "listSection":
+        return (
+          <ListSection email={user.user.email} selectedList={selectedList} />
         );
       case "settings":
         return (

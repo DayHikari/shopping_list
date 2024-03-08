@@ -15,7 +15,6 @@ import SignUpForm from "./login_components/SignUpForm";
 export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [earlyAccessCode, setEarlyAccessCode] = useState("");
   const [signUp, setSignUp] = useState(false);
@@ -56,79 +55,47 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
   };
 
   const handleSignUp = async () => {
-    // setErrorMessage(null);
+    setErrorMessage(null);
 
-    // if (!email.trim()) {
-    //   return setErrorMessage("Email cannot be empty");
-    // } else if (name === "") {
-    //   return setErrorMessage("Please enter your name");
-    // } else if (!password.trim()) {
-    //   return setErrorMessage("Password cannot be empty");
-    // } else if (password.length < 8) {
-    //   return setErrorMessage("Password must be 8 characters long");
-    // } else if (password !== passwordCheck) {
-    //   return setErrorMessage("Passwords do not match");
-    // } else if (earlyAccessCode === "") {
-    //   return setErrorMessage("Please enter the early access code");
-    // }
+    if (!email.trim()) {
+      return setErrorMessage("Email cannot be empty");
+    } else if (!password.trim()) {
+      return setErrorMessage("Password cannot be empty");
+    } else if (password.length < 8) {
+      return setErrorMessage("Password must be 8 characters long");
+    } else if (password !== passwordCheck) {
+      return setErrorMessage("Passwords do not match");
+    } else if (earlyAccessCode === "") {
+      return setErrorMessage("Please enter the early access code");
+    }
 
-    // const { data, error } = await supabase
-    //   .from("early_access")
-    //   .select("pass")
-    //   .eq("code", earlyAccessCode);
+    const { data, error } = await supabase
+      .from("early_access")
+      .select("pass")
+      .eq("code", earlyAccessCode);
 
-    // console.log("error", error);
-    // console.log("data", data);
+    if (error) {
+      return setErrorMessage(`${error}`);
+    } else if (data.length === 0) {
+      return setErrorMessage("Incorrect access code");
+    }
 
-    // if (error) {
-    //   return setErrorMessage(`${error}`);
-    // } else if (data.length === 0) {
-    //   return setErrorMessage("Incorrect access code");
-    // }
+    const { signUpData, signUpError } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
 
-    // const { signUpData, signUpError } = await supabase.auth.signUp({
-    //   email: email,
-    //   password: password,
-    // });
-    // console.log("sign up data: ", signUpData);
-    // console.log("sign up error: ", signUpError);
+    if (signUpError) {
+      return setErrorMessage(`${signUpError}`);
+    };
 
-    // if (signUpError) {
-    //   return setErrorMessage(`${signUpError}`);
-    // };
-
-    // const { signInData, signInerror } = await supabase.auth.signInWithPassword({
-    //   email: email,
-    //   password: password,
-    // });
-    // console.log("sign in data: ", signInData)
-    // console.log("sign in error: ", signInerror)
-
-    // if (signInerror) {
-    //   return setErrorMessage("Error signing in. Contact an admin.");
-    // };
-
-
-    // const { userData, userDataError } = await supabase
-    //   .from("users")
-    //   .insert([{ email: email, name: name }])
-    //   .select();
-    // console.log("user data:", userData)
-    // console.log("userDataError: ", userDataError)
-
-    // if (userDataError) {
-    //   return setErrorMessage("Account created but details not stored. Contact an admin.")
-    // };
-
-    // setUser(signInData);
-    // setLoggedIn(true);
-    // setEmail("");
-    // setPassword("");
-    // setName("");
-    // setPasswordCheck("");
-    // setEarlyAccessCode("");
-    // setErrorMessage(null);
-    // setDisplayedPage("shareRequest");
+    setEmail("");
+    setPassword("");
+    setName("");
+    setPasswordCheck("");
+    setEarlyAccessCode("");
+    setErrorMessage("Sign up complete. Please check your emails and verify your email address.");    
+    setSignUp((prev) => !prev);
   };
 
   return (
@@ -147,8 +114,6 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
         <SignUpForm
           email={email}
           setEmail={setEmail}
-          name={name}
-          setName={setName}
           password={password}
           setPassword={setPassword}
           passwordCheck={passwordCheck}

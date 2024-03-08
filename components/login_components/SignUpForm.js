@@ -11,8 +11,6 @@ import {
 export default function SignUpForm({
   email,
   setEmail,
-  name,
-  setName,
   password,
   setPassword,
   passwordCheck,
@@ -37,16 +35,6 @@ export default function SignUpForm({
           setEmail(text);
         }}
         value={email}
-      />
-      <Text style={styles.labels}>Name</Text>
-      <TextInput
-        style={styles.textInputs}
-        placeholder="Enter your full name"
-        autoComplete="name"
-        onChangeText={(text) => {
-          setName(text);
-        }}
-        value={name}
       />
       <Text style={styles.labels}>Password</Text>
       <TextInput

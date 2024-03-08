@@ -9,14 +9,22 @@ export default function ShareRequestPage({ email, setDisplayedPage, initialLoad,
   useEffect(() => {
     const checkRequests = async () => {
       const { data, error } = await supabase
-        .from("pending_requests")
-        .select("*, lists(list_name)")
-        .eq("sent_to", email);
+        .from("users")
+        .select("*, pending_requests(*)")
+        .eq("email", email);
+        // .from("pending_requests")
+        // .select("*, lists(list_name), users(name)")
+        // .eq("sent_to", email);
+      console.log("data: ", data.pending_requests)
+      console.log("users name: ", data[0].name)
 
       if (error) {
         console.error(`Error: ${error}`);
         setDisplayedPage("createdLists");
         return null;
+      } else if (data[0].name === null) {
+        setInitialLoad(false);
+        setDisplayedPage("userInfo");
       } else if (data.length === 0 && initialLoad === true) {
         setInitialLoad(false);
         setDisplayedPage("createdLists");
