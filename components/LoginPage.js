@@ -42,7 +42,6 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
     setLoggedIn(true);
     setEmail("");
     setPassword("");
-    setName("");
     setPasswordCheck("");
     setEarlyAccessCode("");
     setErrorMessage(null);
@@ -91,7 +90,6 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
 
     setEmail("");
     setPassword("");
-    setName("");
     setPasswordCheck("");
     setEarlyAccessCode("");
     setErrorMessage("Sign up complete. Please check your emails and verify your email address.");    
