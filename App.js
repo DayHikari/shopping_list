@@ -45,7 +45,7 @@ export default function App() {
         );
         case "userInfo":
           return (
-            <UserInfoForm />
+            <UserInfoForm email={user.user.email} setDisplayedPage={setDisplayedPage}/>
           )
       case "createdLists":
         return (

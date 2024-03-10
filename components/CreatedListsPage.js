@@ -13,13 +13,14 @@ import ShareList from "./created_lists_page_components/ShareList";
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
   const [optionSelected, setOptionSelected] = useState(false);
+  console.log(listNames)
 
   useEffect(() => {
     if (!listNames) {
       const fetchNames = async () => {
         const { data, error } = await supabase
           .from("user_lists")
-          .select("lists( * )")
+          .select("users( * ), lists( * )")
           .eq("email", email);
 
         if (error) {
@@ -82,10 +83,10 @@ export default function CreatedListsPage({ email, handleListSelect }) {
   return (
     <>
       <Text style={styles.header}>Your lists</Text>
-      <CreatedListsSection
+      {listNames && <CreatedListsSection
         listNames={listNames}
         handleListSelect={handleListSelect}
-      />
+      />}
       {chooseOption()}
       <View style={styles.separator} />
       <MenuButton setOptionSelected={setOptionSelected} />

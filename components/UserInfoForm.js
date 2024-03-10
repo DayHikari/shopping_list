@@ -1,15 +1,47 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, Platform, Pressable } from "react-native";
+import { supabase } from "../supabase";
 
-export default function UserInfoForm() {
+export default function UserInfoForm({ email, setDisplayedPage }) {
   const [usersName, setUsersName] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handleSubmit = async () => {
+    if (usersName === "") {
+      return setErrorMessage("Please enter your full name.");
+    }
+
+    const capitalisedName = usersName
+      .split(" ")
+      .map((elem) =>
+        elem
+          .split("")
+          .map((e, i) => (i === 0 ? e.toUpperCase() : e))
+          .join("")
+      )
+      .join(" ");
+
+    const { data, error } = await supabase
+      .from("users")
+      .insert([{ email: email, name: capitalisedName }])
+      .select();
+    
+      console.log("error: ", error)
+      console.log("data: ", data)
+
+    if (error) {
+      return setErrorMessage(`${error}. Please try again later.`);
+    };
+
+    setUsersName("");
+    setErrorMessage(null);
+    setDisplayedPage("shareRequest");
+  };
 
   return (
     <>
       <Text style={styles.header}>Welcome!</Text>
-      <Text style={styles.subHeader}>
-        Please enter your personal details below.
-      </Text>
+      <Text style={styles.subHeader}>Please enter your details below.</Text>
       <Text style={styles.labels}>Full name</Text>
       <TextInput
         style={styles.textInputs}
@@ -20,9 +52,10 @@ export default function UserInfoForm() {
         }}
         value={usersName}
       />
-      <Pressable style={styles.buttons} onPress={() => {}}>
+      <Pressable style={styles.buttons} onPress={() => handleSubmit()}>
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable>
+      {errorMessage && (<Text style={styles.error}>{errorMessage}</Text>)}
     </>
   );
 }
@@ -41,13 +74,14 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     textAlign: "center",
+    marginVertical: 15,
   },
   subHeader: {
     color: "#034222",
     fontSize: Platform.select({
-      ios: 32,
-      android: 23,
-      default: 35,
+      ios: 30,
+      android: 21,
+      default: 33,
     }),
     fontWeight: "700",
     fontFamily: Platform.select({
@@ -55,6 +89,7 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     textAlign: "center",
+    marginVertical: 10,
   },
   labels: {
     fontSize: Platform.select({
@@ -112,7 +147,21 @@ const styles = StyleSheet.create({
       default: "serif",
     }),
     color: "#F0F7F4",
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: "700",
+  },
+  error: {
+    color: "red",
+    fontSize: Platform.select({
+      ios: 27,
+      android: 20,
+      default: 25,
+    }),
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
   },
 });

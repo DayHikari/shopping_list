@@ -7,16 +7,21 @@ export default function CreatedListsSection({ listNames, handleListSelect }) {
       style={styles.list}
       contentContainerStyle={styles.contentContainer}
     >
-      {listNames &&
+      {listNames.length === 0 ? (
+        <Text style={styles.text}>
+          You do not have any lists. Please add one from the menu below!
+        </Text>
+      ) : (
         listNames.map((listName, index) => {
           return (
-              <ListName
-                listName={listName}
-                handleListSelect={handleListSelect}
-                key={listName.list_id}
-              />
+            <ListName
+              listName={listName}
+              handleListSelect={handleListSelect}
+              key={listName.list_id}
+            />
           );
-        })}
+        })
+      )}
     </ScrollView>
   );
 }
@@ -24,13 +29,26 @@ export default function CreatedListsSection({ listNames, handleListSelect }) {
 const styles = StyleSheet.create({
   list: {
     width: "100%",
-    // backgroundColor: "#B3BFB830",
     borderRadius: 10,
-    // marginTop: 10,
     padding: 10,
   },
   contentContainer: {
     display: "flex",
     alignItems: "center",
+  },
+  text: {
+    fontSize: Platform.select({
+      ios: 28,
+      android: 21,
+      default: 30,
+    }),
+    color: "#034222",
+    fontWeight: "700",
+    margin: 5,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    textAlign: "center",
   },
 });

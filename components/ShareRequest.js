@@ -20,7 +20,7 @@ export default function ShareRequestPage({
 
       if (error) {
         console.error(`${error}`);
-      } else if (users[0].name === null) {
+      } else if (users.length === 0) {
         return setDisplayedPage("userInfo");
       };
       
