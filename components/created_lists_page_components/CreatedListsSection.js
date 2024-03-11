@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, Platform } from "react-native";
 import ListName from "./ListName";
 
 export default function CreatedListsSection({ listNames, handleListSelect }) {

@@ -1,8 +1,8 @@
 const imagePaths = {
   apple: require("../assets/product_images/apple.png"),
   apples: require("../assets/product_images/apple.png"),
-  avodado: require("../assets/product_images/avocado.png"),
-  avodados: require("../assets/product_images/avocado.png"),
+  avocado: require("../assets/product_images/avocado.png"),
+  avocados: require("../assets/product_images/avocado.png"),
   bean_sprout: require("../assets/product_images/bean_sprout.png"),
   bean_sprouts: require("../assets/product_images/bean_sprout.png"),
   beef: require("../assets/product_images/beef.png"),
