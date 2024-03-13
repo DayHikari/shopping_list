@@ -14,7 +14,6 @@ export default function Settings({ email, setUser, handleLogOut }) {
         return (
           <ChangePassword
             setSettingChoice={setSettingChoice}
-            setUser={setUser}
           />
         );
       case "logout":

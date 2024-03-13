@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { supabase } from "../../supabase";
 
-export default function ChangePassword({ setSettingChoice, setUser }) {
+export default function ChangePassword({ setSettingChoice }) {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -18,9 +18,11 @@ export default function ChangePassword({ setSettingChoice, setUser }) {
   const handleSubmit = async () => {
     setErrorMessage(null);
 
-    if (newPassword === "") {
+    if (!newPassword.trim()) {
       return setErrorMessage("Passwords enter a new password.")
-    } else if (confirmPassword === "") {
+    } else if (newPassword.length < 8) {
+      return setErrorMessage("Password must be 8 characters long");
+    } else if (!confirmPassword.trim()) {
       return setErrorMessage("Please confirm your new password.")
     } else if (newPassword !== confirmPassword) {
       return setErrorMessage("Passwords do not match.")
@@ -34,18 +36,6 @@ export default function ChangePassword({ setSettingChoice, setUser }) {
       return setErrorMessage(`${error}`)
     };
 
-    // const { data: userData, loginError } = await supabase.auth.signInWithPassword({
-    //   email: email,
-    //   password: password,
-    // });
-
-    // if (loginError) {
-    //   return setErrorMessage(`${error}`);
-    // };
-
-    console.log("Updated code")
-    
-    // setUser(userData);
     setNewPassword("");
     setConfirmPassword("");
     setConfirmation("Password successfully updated.");
