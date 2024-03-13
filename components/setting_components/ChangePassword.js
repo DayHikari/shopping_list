@@ -33,13 +33,19 @@ export default function ChangePassword({ setSettingChoice, setUser }) {
     if (error) {
       return setErrorMessage(`${error}`)
     };
-    
-    setUser(prev => {
-      const newUserData = {...prev};
-      newUserData.user = data;
-      return newUserData;
-    });
 
+    // const { data: userData, loginError } = await supabase.auth.signInWithPassword({
+    //   email: email,
+    //   password: password,
+    // });
+
+    // if (loginError) {
+    //   return setErrorMessage(`${error}`);
+    // };
+
+    console.log("Updated code")
+    
+    // setUser(userData);
     setNewPassword("");
     setConfirmPassword("");
     setConfirmation("Password successfully updated.");
