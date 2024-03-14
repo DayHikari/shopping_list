@@ -17,7 +17,6 @@ export default function App() {
   const [displayedPage, setDisplayedPage] = useState(null);
   const [selectedList, setSelectedList] = useState(null);
   const [initialLoad, setInitialLoad] = useState(true);
-  // console.log("user info", user)
 
   const handleListSelect = (listName) => {
     setSelectedList(listName);

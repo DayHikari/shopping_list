@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Platform } from "react-native";
+import { Text } from "react-native";
 import { supabase } from "../supabase";
 import { useEffect, useState } from "react";
 import RequestDetails from "./pending_request_components/RequestDetails";
+import baseStyles from "../global_styles/baseStyle";
 
 export default function ShareRequestPage({
   email,
@@ -54,7 +55,7 @@ export default function ShareRequestPage({
 
   return (
     <>
-      <Text style={styles.header}>
+      <Text style={baseStyles.pageHeader}>
         {!requestData
           ? "No new requests at the moment!"
           : requestData.length > 1
@@ -73,17 +74,4 @@ export default function ShareRequestPage({
         })}
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  header: {
-    color: "#034222",
-    fontSize: 25,
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    textAlign: "center",
-  },
-});
+};

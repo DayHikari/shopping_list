@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Platform } from "react-native";
+import { View, Text } from "react-native";
 import List from "./list_section_components/List";
 import ListOptions from "./list_section_components/ListOptions";
 import AddForm from "./list_section_components/AddForm";
@@ -9,6 +9,7 @@ import DeleteForm from "./list_section_components/DeleteForm";
 import MenuButton from "./shared/MenuButton";
 import Favourites from "./list_section_components/Favourites";
 import capitaliser from "./functions/capitaliser";
+import baseStyles from "../global_styles/baseStyle";
 
 export default function ListSection({ email, selectedList }) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -86,52 +87,20 @@ export default function ListSection({ email, selectedList }) {
   return (
     <>
       {errorMessage ? (
-        <Text style={styles.error}>{`Error occurred: ${errorMessage}. Please try again later.`}</Text>
+        <Text style={baseStyles.error}>{`Error occurred: ${errorMessage}. Please try again later.`}</Text>
       ) : (
         <>
-          <Text style={styles.header}>{capitaliser(selectedList)}</Text>
+          <Text style={baseStyles.pageHeader}>{capitaliser(selectedList)}</Text>
           <List
             shoppingList={shoppingList}
             setSelectedItem={setSelectedItem}
             setShoppingList={setShoppingList}
           />
           {chooseOption()}
-          <View style={styles.separator} />
+          <View style={baseStyles.separator} />
           <MenuButton setOptionSelected={setOptionSelected} />
         </>
       )}
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  error: {
-    color: "red",
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontWeight: "700",
-    textAlign: "center",
-    marginTop: 15,
-  },
-  header: {
-    fontSize: 25,
-    color: "#034222",
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      android: "notoserif",
-    }),
-    paddingBottom: 5,
-    textDecorationLine: "underline",
-    textDecorationColor: "#034222",
-  },
-  separator: {
-    marginVertical: 5,
-    borderBottomColor: "#046835",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "85%",
-  },
-});
+};

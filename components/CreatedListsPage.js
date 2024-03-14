@@ -1,19 +1,18 @@
-// import { View, StyleSheet } from "react-native-web";
 import CreatedListsSection from "./created_lists_page_components/CreatedListsSection";
 import CreatedListsOptions from "./created_lists_page_components/CreatedListsOptions";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
-import { View, StyleSheet, Text, Platform } from "react-native";
+import { View, Text } from "react-native";
 import AddList from "./created_lists_page_components/AddList";
 import MenuButton from "./shared/MenuButton";
 import EditList from "./created_lists_page_components/EditList";
 import DeleteList from "./created_lists_page_components/DeleteList";
 import ShareList from "./created_lists_page_components/ShareList";
+import baseStyles from "../global_styles/baseStyle";
 
 export default function CreatedListsPage({ email, handleListSelect }) {
   const [listNames, setListNames] = useState(null);
   const [optionSelected, setOptionSelected] = useState(false);
-  console.log(listNames)
 
   useEffect(() => {
     if (!listNames) {
@@ -82,33 +81,14 @@ export default function CreatedListsPage({ email, handleListSelect }) {
 
   return (
     <>
-      <Text style={styles.header}>Your lists</Text>
+      <Text style={baseStyles.pageHeader}>Your lists</Text>
       {listNames && <CreatedListsSection
         listNames={listNames}
         handleListSelect={handleListSelect}
       />}
       {chooseOption()}
-      <View style={styles.separator} />
+      <View style={baseStyles.separator} />
       <MenuButton setOptionSelected={setOptionSelected} />
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 27,
-    color: "#034222",
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      android: "notoserif",
-    }),
-    textDecorationLine: "underline"
-  },
-  separator: {
-    marginVertical: 5,
-    borderBottomColor: "#046835",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "85%",
-  },
-});
+};

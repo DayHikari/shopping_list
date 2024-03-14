@@ -68,7 +68,6 @@ export default function List({
 const styles = StyleSheet.create({
   list: {
     width: "100%",
-    // backgroundColor: "#B3BFB830",
     borderRadius: 5,
     paddingVertical: 5,
   },

@@ -6,6 +6,7 @@ import Logout from "./setting_components/Logout";
 
 export default function Settings({ email, setUser, handleLogOut }) {
   const [settingChoice, setSettingChoice] = useState("options");
+
   const displaySettings = () => {
     switch (settingChoice) {
       case "options":
@@ -25,6 +26,7 @@ export default function Settings({ email, setUser, handleLogOut }) {
         );
     }
   };
+  
   return (
     <>
       {displaySettings()}

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import {
   Image,
-  Pressable,
   StyleSheet,
   Text,
-  TextInput,
   View,
   Platform,
 } from "react-native";
 import { supabase } from "../supabase";
 import LoginForm from "./login_components/LoginForm";
 import SignUpForm from "./login_components/SignUpForm";
+import baseStyles from "../global_styles/baseStyle";
 
 export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
   const [email, setEmail] = useState("");
@@ -122,7 +121,7 @@ export default function LoginPage({ setUser, setLoggedIn, setDisplayedPage }) {
           handleSignUpPage={handleSignUpPage}
         />
       )}
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
     </View>
   );
 }
@@ -141,19 +140,5 @@ const styles = StyleSheet.create({
       android: "2%",
       default: "7%",
     }),
-  },
-  error: {
-    color: "red",
-    fontSize: Platform.select({
-      ios: 27,
-      android: 20,
-      default: 25,
-    }),
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-    textAlign: "center",
   },
 });

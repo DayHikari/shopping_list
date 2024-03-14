@@ -1,39 +1,39 @@
 import {
-  Alert,
   Platform,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from "react-native";
+import baseStyles from "../global_styles/baseStyle";
 
 export default function ({ setDisplayedPage }) {
   return (
     <View style={styles.container}>
       <View style={styles.navigation}>
         <Pressable
-          style={styles.buttons}
+          style={baseStyles.buttons}
           onPress={() => {
             setDisplayedPage("shareRequest");
           }}
         >
-          <Text style={styles.buttonText}>Requests</Text>
+          <Text style={baseStyles.buttonText}>Requests</Text>
         </Pressable>
         <Pressable
-          style={styles.buttons}
+          style={baseStyles.buttons}
           onPress={() => {
             setDisplayedPage("createdLists");
           }}
         >
-          <Text style={styles.buttonText}>Lists</Text>
+          <Text style={baseStyles.buttonText}>Lists</Text>
         </Pressable>
         <Pressable
-          style={styles.buttons}
+          style={baseStyles.buttons}
           onPress={() => {
             setDisplayedPage("settings");
           }}
         >
-          <Text style={styles.buttonText}>Settings</Text>
+          <Text style={baseStyles.buttonText}>Settings</Text>
         </Pressable>
       </View>
     </View>
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
       default: "100vw",
     }),
     alignSelf: "center",
-    // height: "7%",
     height: Platform.select({
       android: "9%",
       ios: "9%",
@@ -67,31 +66,11 @@ const styles = StyleSheet.create({
       android: "100%",
       default: "30vw",
     }),
-    minWidth: 350,
+    minWidth: 340,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-  },
-  buttons: {
-    padding: 5,
-    width: "25%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    // backgroundColor: "#06964d",
-    borderRadius: 10,
-  },
-  buttonText: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontSize: Platform.select({
-      android: 16,
-      ios: 16,
-      default: "2vh"
-    }),
-    color: "#F0F7F4",
+    paddingHorizontal: 10
   },
 });
