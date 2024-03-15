@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View, Platform } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
+import baseStyles from "../../global_styles/baseStyle";
 
 
 export default function EditForm({
@@ -57,7 +58,7 @@ export default function EditForm({
   };
 
   return (
-    <View style={styles.form}>
+    <View style={baseStyles.form}>
       <Pressable
         style={styles.close}
         onPress={() => {
@@ -66,28 +67,28 @@ export default function EditForm({
       >
         <Text style={styles.closeText}>X</Text>
       </Pressable>
-      <Text style={styles.header}>Edit an item</Text>
-      <Text style={styles.subHeaders}>Product:</Text>
+      <Text style={baseStyles.formHeader}>Edit an item</Text>
+      <Text style={baseStyles.formlLabels}>Product:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder={productPlaceholder}
         onChangeText={(text) => {
           setProduct(text);
         }}
         value={product}
       />
-      <Text style={styles.subHeaders}>Quantity:</Text>
+      <Text style={baseStyles.formlLabels}>Quantity:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder={quantityPlaceholder}
         onChangeText={(text) => {
           setQuantity(text);
         }}
         value={quantity}
       />
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-      <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Edit</Text>
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
+      <Pressable style={baseStyles.formButtons} onPress={handleSubmit}>
+        <Text style={baseStyles.formButtonText}>Edit</Text>
       </Pressable>
     </View>
   );

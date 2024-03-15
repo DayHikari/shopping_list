@@ -52,12 +52,55 @@ const baseStyles = StyleSheet.create({
   },
   form: {
     width: "100%",
-    maxHeight: 300,
+    maxHeight: 375,
     backgroundColor: "#034222",
     display: "flex",
     alignItems: "center",
     padding: 10,
     borderRadius: 10,
+  },
+  formButtons: {
+    borderRadius: 10,
+    backgroundColor: "#FF8833",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    margin: 10,
+  },
+  formButtonsSection: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  formButtonText: {
+    fontSize: 17,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#034222",
+    fontWeight: "700",
+  },
+  formHeader: {
+    fontSize: 25,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#F0F7F4",
+    fontWeight: "700",
+    marginBottom: 10,
+  },
+  formlLabels: {
+    fontSize: 17,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    color: "#B3BFB8",
+    fontWeight: "700",
+    alignSelf: "flex-start",
+    paddingLeft: 20,
   },
   pageLabels: {
     fontSize: 17,

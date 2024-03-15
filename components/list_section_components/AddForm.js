@@ -5,10 +5,10 @@ import {
   Text,
   TextInput,
   View,
-  Platform,
 } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function AddForm({
   setOptionSelected,
@@ -59,7 +59,7 @@ export default function AddForm({
   };
 
   return (
-    <View style={styles.form}>
+    <View style={baseStyles.form}>
       <Pressable
         style={styles.close}
         onPress={() => {
@@ -68,43 +68,34 @@ export default function AddForm({
       >
         <Text style={styles.closeText}>X</Text>
       </Pressable>
-      <Text style={styles.header}>Add an item</Text>
-      <Text style={styles.subHeaders}>Product:</Text>
+      <Text style={baseStyles.formHeader}>Add an item</Text>
+      <Text style={baseStyles.formlLabels}>Product:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Item name"
         onChangeText={(text) => {
           setProduct(text);
         }}
         value={product}
       />
-      <Text style={styles.subHeaders}>Quantity:</Text>
+      <Text style={baseStyles.formlLabels}>Quantity:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="e.g.: 2 or 1 bag or 3 boxes"
         onChangeText={(text) => {
           setQuantity(text);
         }}
         value={quantity}
       />
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-      <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Submit</Text>
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
+      <Pressable style={baseStyles.formButtons} onPress={handleSubmit}>
+        <Text style={baseStyles.formButtonText}>Submit</Text>
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  form: {
-    width: "100%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-  },
   close: {
     position: "absolute",
     top: "2%",
@@ -113,70 +104,6 @@ const styles = StyleSheet.create({
   closeText: {
     fontSize: 17,
     color: "#FF8833",
-    fontWeight: "700",
-  },
-  header: {
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  subHeaders: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#B3BFB8",
-    fontWeight: "700",
-    alignSelf: "flex-start",
-    paddingLeft: 20,
-  },
-  textInputs: {
-    backgroundColor: "#F0F7F4",
-    width: "90%",
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 2,
-    fontSize: 15,
-    color: "#034222",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-  submit: {
-    borderRadius: 10,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    margin: 10,
-  },
-  submitText: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#034222",
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
     fontWeight: "700",
   },
 });

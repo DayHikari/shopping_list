@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import { supabase } from "../../supabase";
+import baseStyles from "../../global_styles/baseStyle";
 
 
 export default function DeleteForm({
@@ -80,7 +81,7 @@ export default function DeleteForm({
   };
 
   return (
-    <View style={styles.form}>
+    <View style={baseStyles.form}>
       <Pressable
         style={styles.close}
         onPress={() => {
@@ -89,18 +90,18 @@ export default function DeleteForm({
       >
         <Text style={styles.closeText}>X</Text>
       </Pressable>
-      <Text style={styles.header}>Delete an item</Text>
-      <Text style={styles.subHeaders}>Product:</Text>
+      <Text style={baseStyles.formHeader}>Delete an item</Text>
+      <Text style={baseStyles.formlLabels}>Product:</Text>
       <Text style={styles.item}>{productPlaceholder}</Text>
-      <Text style={styles.subHeaders}>Quantity:</Text>
+      <Text style={baseStyles.formlLabels}>Quantity:</Text>
       <Text style={styles.item}>{quantityPlaceholder}</Text>
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-      <View style={styles.submitSection}>
-        <Pressable style={styles.submit} onPress={handleDeleteChecked}>
-          <Text style={styles.submitText}>Delete checked</Text>
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
+      <View style={baseStyles.formButtonsSection}>
+        <Pressable style={baseStyles.formButtons} onPress={handleDeleteChecked}>
+          <Text style={baseStyles.formButtonText}>Delete checked</Text>
         </Pressable>
-        <Pressable style={styles.submit} onPress={handleDeleteItem}>
-          <Text style={styles.submitText}>Delete Item</Text>
+        <Pressable style={baseStyles.formButtons} onPress={handleDeleteItem}>
+          <Text style={baseStyles.formButtonText}>Delete Item</Text>
         </Pressable>
       </View>
     </View>
@@ -108,15 +109,6 @@ export default function DeleteForm({
 }
 
 const styles = StyleSheet.create({
-  form: {
-    width: "100%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-  },
   close: {
     position: "absolute",
     top: "2%",
@@ -126,27 +118,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "#FF8833",
     fontWeight: "700",
-  },
-  header: {
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  subHeaders: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#B3BFB8",
-    fontWeight: "700",
-    alignSelf: "flex-start",
-    paddingLeft: 20,
   },
   item: {
     fontSize: 20,
@@ -158,36 +129,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     alignSelf: "center",
     marginBottom: 10,
-  },
-  submitSection: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  submit: {
-    borderRadius: 10,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginTop: 10,
-  },
-  submitText: {
-    fontSize: 18,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#034222",
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 20,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
   },
 });

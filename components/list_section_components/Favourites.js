@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Platform } from "react-native";
+import { Text, View } from "react-native";
 import { supabase } from "../../supabase";
 import FavouiteList from "./favourite_components/FavouriteList";
 import CreateFavourite from "./favourite_components/CreateFavourite";
 import DeleteFavourite from "./favourite_components/DeleteFavourite";
 import imagePaths from "../../image_paths_data/imagePathData";
 import AddFavourite from "./favourite_components/AddFavourite";
+import baseStyles from "../../global_styles/baseStyle";
+
 
 export default function Favourites({
   email,
@@ -136,41 +138,10 @@ export default function Favourites({
   };
 
   return (
-    <View style={styles.form}>
-      <Text style={styles.header}>Favourites List</Text>
+    <View style={baseStyles.form}>
+      <Text style={baseStyles.formHeader}>Favourites List</Text>
       {chooseDisplay()}
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  form: {
-    width: "100%",
-    maxHeight: 375,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-  },
-  header: {
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-});
+};

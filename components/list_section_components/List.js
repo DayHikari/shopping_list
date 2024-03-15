@@ -14,13 +14,13 @@ export default function List({
   const filterLists = () => {
     setUncheckedList(
       (prevList) =>
-        (prevList = shoppingList.filter(
+        prevList = shoppingList.filter(
           (itemObj) => itemObj["checked"] === false
-        ))
+        )
     );
     setCheckedList(
       (prevList) =>
-        (prevList = shoppingList.filter((itemObj) => itemObj.checked === true))
+        prevList = shoppingList.filter((itemObj) => itemObj.checked === true)
     );
   };
 
