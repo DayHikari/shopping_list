@@ -91,6 +91,31 @@ const baseStyles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 10,
   },
+  formItemContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 2,
+    paddingVertical: 5,
+    width: "100%",
+    maxHeight: 55,
+  },
+  formItemImage: {
+    width: 50,
+    height: 50,
+  },
+  formItemText: {
+    color: "#B3BFB8",
+    fontSize: 23,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  },
   formlLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
@@ -101,6 +126,14 @@ const baseStyles = StyleSheet.create({
     fontWeight: "700",
     alignSelf: "flex-start",
     paddingLeft: 20,
+  },
+  formScrollArea: {
+    width: "95%",
+    maxHeight: 350,
+  },
+  formScrollContentContainer: {
+    display: "flex",
+    alignItems: "center",
   },
   pageLabels: {
     fontSize: 17,

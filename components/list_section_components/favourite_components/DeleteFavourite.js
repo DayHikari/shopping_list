@@ -1,13 +1,11 @@
 import {
   Text,
-  View,
-  StyleSheet,
   ScrollView,
   Pressable,
-  Platform,
 } from "react-native";
 import DeleteFavouriteItem from "./DeleteFavouriteItem";
 import { supabase } from "../../../supabase";
+import baseStyles from "../../../global_styles/baseStyle";
 
 export default function DeleteList({
   favouritesList,
@@ -25,11 +23,12 @@ export default function DeleteList({
     setFavouritesList(prev => prev.filter(favourite => favourite.id !== id));
     setErrorMessage(null);
   };
+
   return (
     <>
       <ScrollView
-        style={styles.scrollArea}
-        contentContainerStyle={styles.contentContainer}
+        style={baseStyles.formScrollArea}
+        contentContainerStyle={baseStyles.formScrollContentContainer}
         nestedScrollEnabled={true}
       >
         {favouritesList.length !== 0 ? (
@@ -43,58 +42,14 @@ export default function DeleteList({
             );
           })
         ) : (
-          <Text style={styles.error}>
+          <Text style={baseStyles.error}>
             You have no favourites saved. Add one below!
           </Text>
         )}
       </ScrollView>
-      <Pressable style={styles.button} onPress={() => setDisplayedPage("list")}>
-        <Text style={styles.buttonText}>Cancel</Text>
+      <Pressable style={baseStyles.formButtons} onPress={() => setDisplayedPage("list")}>
+        <Text style={baseStyles.formButtonText}>Cancel</Text>
       </Pressable>
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  scrollArea: {
-    width: "95%",
-    maxHeight: 350,
-  },
-  contentContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontWeight: "700",
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
-    width: "80%",
-  },
-  button: {
-    borderRadius: 15,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "#034222",
-    fontSize: 18,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontWeight: "700",
-  },
-});
+};

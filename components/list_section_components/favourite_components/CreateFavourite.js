@@ -1,13 +1,12 @@
 import {
   Text,
   View,
-  StyleSheet,
   Pressable,
-  Platform,
   TextInput,
 } from "react-native";
 import { supabase } from "../../../supabase";
 import imagePaths from "../../../image_paths_data/imagePathData";
+import baseStyles from "../../../global_styles/baseStyle";
 
 export default function CreateFavourite({
   product,
@@ -65,84 +64,29 @@ export default function CreateFavourite({
 
   return (
     <>
-      <Text style={styles.subHeader}>Add new favourite.</Text>
+      <Text style={baseStyles.formlLabels}>Add new favourite.</Text>
       <TextInput
-        style={styles.textInput}
+        style={baseStyles.textInputs}
         placeholder="Enter new favourite."
         onChangeText={(text) => {
           setProduct(text);
         }}
         value={product}
       />
-      <View style={styles.buttonContainer}>
+      <View style={baseStyles.formButtonsSection}>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => {
             setErrorMessage(null);
             setDisplayedPage("list");
           }}
         >
-          <Text style={styles.buttonText}>Cancel</Text>
+          <Text style={baseStyles.formButtonText}>Cancel</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => handleCreate()}>
-          <Text style={styles.buttonText}>Submit</Text>
+        <Pressable style={baseStyles.formButtons} onPress={() => handleCreate()}>
+          <Text style={baseStyles.formButtonText}>Submit</Text>
         </Pressable>
       </View>
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  subHeader: {
-    fontSize: 22,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#B3BFB8",
-    fontWeight: "700",
-    marginBottom: 5,
-  },
-  textInput: {
-    backgroundColor: "#F0F7F4",
-    width: "90%",
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 2,
-    fontSize: 15,
-    color: "#034222",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    width: "60%",
-  },
-  button: {
-    borderRadius: 15,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "#034222",
-    fontSize: 18,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-});
+};
