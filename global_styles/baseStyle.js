@@ -115,7 +115,6 @@ const baseStyles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
   },
-  },
   formlLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
