@@ -57,8 +57,8 @@ export default function DeleteList({
         </Text>
       )}
       {selectedList && (
-        <Pressable style={baseStyles.buttons} onPress={() => handleSubmit()}>
-          <Text style={baseStyles.buttonText}>Confirm</Text>
+        <Pressable style={baseStyles.formButtons} onPress={() => handleSubmit()}>
+          <Text style={baseStyles.formButtonText}>Confirm</Text>
         </Pressable>
       )}
       {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}

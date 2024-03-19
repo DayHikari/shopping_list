@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +11,7 @@ import capitaliser from "../functions/capitaliser";
 import { supabase } from "../../supabase";
 import ListAccessButton from "./edit_list_components/ListAccessButton";
 import SharedUserList from "./edit_list_components/SharedUserList";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function EditListForm({
   selectedList,
@@ -86,10 +86,10 @@ export default function EditListForm({
   };
 
   return (
-    <View style={styles.form}>
-      <Text style={styles.subheaders}>Change name:</Text>
+    <View style={baseStyles.form}>
+      <Text style={baseStyles.labels}>Change name:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder={capitaliser(selectedList)}
         onChangeText={(text) => {
           setNewName(text);
@@ -97,15 +97,15 @@ export default function EditListForm({
         value={newName}
       />
       {changeSharingOptions()}
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-      {confirmation && <Text style={styles.error}>{confirmation}</Text>}
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
+      {confirmation && <Text style={baseStyles.formConfirmation}>{confirmation}</Text>}
       <Pressable
-        style={styles.submit}
+        style={baseStyles.formButtons}
         onPress={() => {
           handleSubmit();
         }}
       >
-        <Text style={styles.submitText}>Submit</Text>
+        <Text style={baseStyles.formButtonText}>Submit</Text>
       </Pressable>
     </View>
   );

@@ -1,5 +1,6 @@
-import { Pressable, ScrollView, View, StyleSheet, Text, Platform } from "react-native";
+import { Pressable, ScrollView, Text } from "react-native";
 import capitaliser from "../functions/capitaliser";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function ShareListOptions({ listNames, setSelectedList }) {
   return (
@@ -8,37 +9,14 @@ export default function ShareListOptions({ listNames, setSelectedList }) {
         listNames.map((list) => (
           <Pressable
           key={list.list_id}
-          style={styles.button}
+          style={baseStyles.formButtons}
             onPress={() => {
               setSelectedList(list);
             }}
           >
-            <Text style={styles.buttonText}>{capitaliser(list)}</Text>
+            <Text style={baseStyles.formButtonText}>{capitaliser(list)}</Text>
           </Pressable>
         ))}
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-
-  button: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-  },
-  buttonText: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontSize: 17,
-    fontWeight: "700",
-    color: "#B3BFB8",
-    paddingHorizontal: 10,
-    textAlign: "center",
-  },
-})

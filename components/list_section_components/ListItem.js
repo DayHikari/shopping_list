@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
-
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function ListItem({
   itemData,
@@ -46,7 +46,7 @@ export default function ListItem({
 
   return (
     <Pressable
-      style={styles.selectElement}
+      style={baseStyles.selectableElement}
       onPress={() => {
         setSelectedItem(itemData);
       }}
@@ -69,12 +69,6 @@ export default function ListItem({
 }
 
 const styles = StyleSheet.create({
-  selectElement: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   productLayout: {
     width: "100%",
     display: "flex",

@@ -143,6 +143,36 @@ const baseStyles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
+  formSubHeader: {
+    color: "#034222",
+    fontSize: Platform.select({
+      ios: 28,
+      android: 20,
+      default: 31,
+    }),
+    fontWeight: "700",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 10,
+  },
+  formSubHeaderThin: {
+    color: "#034222",
+    fontSize: Platform.select({
+      ios: 28,
+      android: 20,
+      default: 31,
+    }),
+    fontWeight: "400",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 10,
+  },
   pageLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
@@ -223,6 +253,12 @@ const baseStyles = StyleSheet.create({
       default: "notoserif",
     }),
     textAlign: "center",
+  },
+  selectableElement: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   separator: {
     marginVertical: 5,

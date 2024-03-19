@@ -1,7 +1,7 @@
-import { StyleSheet, ScrollView, Text, Platform } from "react-native";
+import { ScrollView, Text } from "react-native";
 import ListItem from "./ListItem";
-
 import { useState, useEffect } from "react";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function List({
   shoppingList,
@@ -32,8 +32,8 @@ export default function List({
 
   return (
     <ScrollView
-      style={styles.list}
-      contentContainerStyle={styles.contentContainer}
+      style={baseStyles.pageScrollArea}
+      contentContainerStyle={baseStyles.pageScrollContentContainer}
     >
       {uncheckedList && uncheckedList.length !== 0 ? (
         uncheckedList.map((shoppingItem) => {
@@ -47,7 +47,7 @@ export default function List({
           );
         })
       ) : (
-        <Text style={styles.message}>No items in list</Text>
+        <Text style={baseStyles.pageText}>No items in list</Text>
       )}
       {checkedList
         ? checkedList.map((shoppingItem) => {
@@ -63,29 +63,4 @@ export default function List({
         : null}
     </ScrollView>
   );
-}
-
-const styles = StyleSheet.create({
-  list: {
-    width: "100%",
-    borderRadius: 5,
-    paddingVertical: 5,
-  },
-  contentContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  message: {
-    borderWidth: 4,
-    borderColor: "#046835",
-    margin: 10,
-    width: "90%",
-    padding: 5,
-    textAlign: "center",
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-  },
-});
+};

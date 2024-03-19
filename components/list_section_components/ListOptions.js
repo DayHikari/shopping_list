@@ -1,41 +1,42 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function ListOptions({ setOptionSelected }) {
   return (
     <View style={styles.listOptions}>
-      <Text style={styles.header}>Choose an option:</Text>
+      <Text style={baseStyles.formHeader}>Choose an option:</Text>
       <View style={styles.container}>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => {
             setOptionSelected("add");
           }}
         >
-          <Text style={styles.buttonText}>Add</Text>
+          <Text style={baseStyles.formButtonText}>Add</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => {
             setOptionSelected("edit");
           }}
         >
-          <Text style={styles.buttonText}>Edit</Text>
+          <Text style={baseStyles.formButtonText}>Edit</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => {
             setOptionSelected("delete");
           }}
         >
-          <Text style={styles.buttonText}>Delete</Text>
+          <Text style={baseStyles.formButtonText}>Delete</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => {
             setOptionSelected("favourites")
           }}
         >
-          <Text style={styles.buttonText}>Favourites</Text>
+          <Text style={baseStyles.formButtonText}>Favourites</Text>
         </Pressable>
       </View>
     </View>
@@ -54,42 +55,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 10,
   },
-  header: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontSize: 22,
-    marginBottom: 10,
-  },
   container: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
-  },
-  button: {
-    width: "40%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#B3BFB8",
-    margin: 5,
-    borderRadius: 10,
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-  },
-  buttonText: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontSize: 17,
-    fontWeight: "700",
-    color: "#034222",
-    paddingHorizontal: 10,
-    textAlign: "center",
   },
 });
