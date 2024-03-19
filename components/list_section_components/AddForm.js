@@ -69,7 +69,7 @@ export default function AddForm({
         <Text style={styles.closeText}>X</Text>
       </Pressable>
       <Text style={baseStyles.formHeader}>Add an item</Text>
-      <Text style={baseStyles.formlLabels}>Product:</Text>
+      <Text style={baseStyles.formLabels}>Product:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Item name"
@@ -78,7 +78,7 @@ export default function AddForm({
         }}
         value={product}
       />
-      <Text style={baseStyles.formlLabels}>Quantity:</Text>
+      <Text style={baseStyles.formLabels}>Quantity:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="e.g.: 2 or 1 bag or 3 boxes"

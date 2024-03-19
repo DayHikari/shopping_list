@@ -69,8 +69,10 @@ const baseStyles = StyleSheet.create({
   formButtonsSection: {
     width: "100%",
     display: "flex",
+    flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    padding: 5,
   },
   formButtonText: {
     fontSize: 17,
@@ -124,7 +126,7 @@ const baseStyles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
   },
-  formlLabels: {
+  formLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
       ios: "Avenir-Heavy",
@@ -144,7 +146,7 @@ const baseStyles = StyleSheet.create({
     alignItems: "center",
   },
   formSubHeader: {
-    color: "#034222",
+    color: "#F0F7F4",
     fontSize: Platform.select({
       ios: 28,
       android: 20,
@@ -159,7 +161,7 @@ const baseStyles = StyleSheet.create({
     marginVertical: 10,
   },
   formSubHeaderThin: {
-    color: "#034222",
+    color: "#F0F7F4",
     fontSize: Platform.select({
       ios: 28,
       android: 20,
@@ -182,7 +184,7 @@ const baseStyles = StyleSheet.create({
     color: "#034222",
     fontWeight: "700",
     alignSelf: "flex-start",
-    paddingLeft: 20,
+    paddingLeft: 25,
   },
   pageHeader: {
     fontSize: Platform.select({
@@ -214,7 +216,7 @@ const baseStyles = StyleSheet.create({
     fontSize: Platform.select({
       ios: 30,
       android: 21,
-      default: 33,
+      default: 28,
     }),
     fontWeight: "700",
     fontFamily: Platform.select({

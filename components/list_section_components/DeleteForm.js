@@ -91,9 +91,9 @@ export default function DeleteForm({
         <Text style={styles.closeText}>X</Text>
       </Pressable>
       <Text style={baseStyles.formHeader}>Delete an item</Text>
-      <Text style={baseStyles.formlLabels}>Product:</Text>
+      <Text style={baseStyles.formLabels}>Product:</Text>
       <Text style={styles.item}>{productPlaceholder}</Text>
-      <Text style={baseStyles.formlLabels}>Quantity:</Text>
+      <Text style={baseStyles.formLabels}>Quantity:</Text>
       <Text style={styles.item}>{quantityPlaceholder}</Text>
       {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
       <View style={baseStyles.formButtonsSection}>

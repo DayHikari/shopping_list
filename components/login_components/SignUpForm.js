@@ -25,7 +25,7 @@ export default function SignUpForm({
       style={styles.signUpContainer}
       contentContainerStyle={styles.signUpContainerContent}
     >
-      <Text style={baseStyles.labels}>Email</Text>
+      <Text style={baseStyles.pageLabels}>Email</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Enter email address"
@@ -36,7 +36,7 @@ export default function SignUpForm({
         }}
         value={email}
       />
-      <Text style={baseStyles.labels}>Password</Text>
+      <Text style={baseStyles.pageLabels}>Password</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Enter password"
@@ -47,7 +47,7 @@ export default function SignUpForm({
         }}
         value={password}
       />
-      <Text style={baseStyles.labels}>Confirm Password</Text>
+      <Text style={baseStyles.pageLabels}>Confirm Password</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Confirm password"
@@ -58,7 +58,7 @@ export default function SignUpForm({
         }}
         value={passwordCheck}
       />
-        <Text style={baseStyles.labels}>Early Access Code</Text>
+        <Text style={baseStyles.pageLabels}>Early Access Code</Text>
         <TextInput
           style={baseStyles.textInputs}
           placeholder="Enter the early access code"
@@ -70,7 +70,7 @@ export default function SignUpForm({
         />
       <View style={baseStyles.buttonSection}>
         <Pressable style={baseStyles.buttons} onPress={() => handleSignUpPage()}>
-          <Text style={styles.buttonText}>Cancel</Text>
+          <Text style={baseStyles.buttonText}>Cancel</Text>
         </Pressable>
         <Pressable style={baseStyles.buttons} onPress={() => handleSignUp()}>
           <Text style={baseStyles.buttonText}>Sign Up</Text>

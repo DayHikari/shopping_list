@@ -64,7 +64,7 @@ export default function CreateFavourite({
 
   return (
     <>
-      <Text style={baseStyles.formlLabels}>Add new favourite.</Text>
+      <Text style={baseStyles.formLabels}>Add new favourite.</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Enter new favourite."

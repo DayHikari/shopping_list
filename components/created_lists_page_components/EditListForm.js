@@ -87,7 +87,7 @@ export default function EditListForm({
 
   return (
     <View style={baseStyles.form}>
-      <Text style={baseStyles.labels}>Change name:</Text>
+      <Text style={baseStyles.formLabels}>Change name:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder={capitaliser(selectedList)}

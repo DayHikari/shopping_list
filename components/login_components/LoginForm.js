@@ -4,7 +4,7 @@ import baseStyles from "../../global_styles/baseStyle";
 export default function LoginForm ({email, setEmail, password, setPassword, handleLogin, handleSignUpPage}) {
   return (
     <View style={styles.loginContainer}>
-        <Text style={baseStyles.labels}>Email</Text>
+        <Text style={baseStyles.pageLabels}>Email</Text>
         <TextInput
           style={baseStyles.textInputs}
           placeholder="Enter email address"
@@ -15,7 +15,7 @@ export default function LoginForm ({email, setEmail, password, setPassword, hand
           }}
           value={email}
         />
-        <Text style={baseStyles.labels}>Password</Text>
+        <Text style={baseStyles.pageLabels}>Password</Text>
         <TextInput
           style={baseStyles.textInputs}
           placeholder="Enter password"

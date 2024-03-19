@@ -5,7 +5,7 @@ export default function CreatedListsOptions({ setOptionSelected }) {
   return (
     <View style={styles.listOptions}>
       <Text style={baseStyles.formHeader}>Choose an option</Text>
-      <View style={baseStyles.buttonSection}>
+      <View style={baseStyles.formButtonsSection}>
         <Pressable
           style={baseStyles.formButtons}
           onPress={() => {

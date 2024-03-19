@@ -68,7 +68,7 @@ export default function EditForm({
         <Text style={styles.closeText}>X</Text>
       </Pressable>
       <Text style={baseStyles.formHeader}>Edit an item</Text>
-      <Text style={baseStyles.formlLabels}>Product:</Text>
+      <Text style={baseStyles.formLabels}>Product:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder={productPlaceholder}
@@ -77,7 +77,7 @@ export default function EditForm({
         }}
         value={product}
       />
-      <Text style={baseStyles.formlLabels}>Quantity:</Text>
+      <Text style={baseStyles.formLabels}>Quantity:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder={quantityPlaceholder}

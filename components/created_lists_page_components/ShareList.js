@@ -86,7 +86,7 @@ export default function ShareList({
           <Text style={baseStyles.formSubHeader}>
             Selected list: {capitaliser(selectedList)}
           </Text>
-          <Text style={baseStyles.formlLabels}>
+          <Text style={baseStyles.formLabels}>
             Enter an email address to share with:
           </Text>
           <TextInput

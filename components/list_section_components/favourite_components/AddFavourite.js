@@ -7,8 +7,8 @@ export default function AddFavourite({ handleAddSubmit, handleAddCancel, product
 
   return (
     <>
-      <Text style={baseStyles.formlLabels}>{`Add selected product: ${productName}`}</Text>
-      <Text style={baseStyles.formlLabels}>Quantity:</Text>
+      <Text style={baseStyles.formLabels}>{`Add selected product: ${productName}`}</Text>
+      <Text style={baseStyles.formLabels}>Quantity:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Enter quantity"
