@@ -1,13 +1,12 @@
 import { useState } from "react";
 import {
-  StyleSheet,
   Text,
   TextInput,
-  Platform,
   View,
   Pressable,
 } from "react-native";
 import { supabase } from "../../supabase";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function ChangePassword({ setSettingChoice }) {
   const [newPassword, setNewPassword] = useState("");
@@ -43,10 +42,10 @@ export default function ChangePassword({ setSettingChoice }) {
 
   return (
     <>
-      <Text style={styles.header}>Change Password</Text>
-      <Text style={styles.subHeaders}>New password</Text>
+      <Text style={baseStyles.pageHeader}>Change Password</Text>
+      <Text style={baseStyles.pageLabels}>New password</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Enter new password"
         secureTextEntry={true}
         onChangeText={(text) => {
@@ -54,9 +53,9 @@ export default function ChangePassword({ setSettingChoice }) {
         }}
         value={newPassword}
       />
-      <Text style={styles.subHeaders}>Confirm password</Text>
+      <Text style={baseStyles.pageLabels}>Confirm password</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Confirm new password"
         secureTextEntry={true}
         onChangeText={(text) => {
@@ -64,108 +63,21 @@ export default function ChangePassword({ setSettingChoice }) {
         }}
         value={confirmPassword}
       />
-      {errorMessage && (<Text style={styles.error}>{errorMessage}</Text>)}
-      {confirmation && (<Text style={styles.confirmation}>{confirmation}</Text>)}
-      <View style={styles.buttonContainer}>
+      {errorMessage && (<Text style={baseStyles.error}>{errorMessage}</Text>)}
+      {confirmation && (<Text style={baseStyles.confirmation}>{confirmation}</Text>)}
+      <View style={baseStyles.buttonSection}>
         <Pressable
-          style={styles.button}
+          style={baseStyles.buttons}
           onPress={() => {
             setSettingChoice("options");
           }}
         >
-          <Text style={styles.buttonText}>Cancel</Text>
+          <Text style={baseStyles.buttonText}>Cancel</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => {handleSubmit()}}>
-          <Text style={styles.buttonText}>Submit</Text>
+        <Pressable style={baseStyles.buttons} onPress={() => {handleSubmit()}}>
+          <Text style={baseStyles.buttonText}>Submit</Text>
         </Pressable>
       </View>
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  header: {
-    color: "#034222",
-    fontSize: 28,
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    paddingVertical: 5,
-    marginBottom: 15,
-    textAlign: "center",
-    textDecorationLine: "underline",
-    textDecorationColor: "#034222",
-  },
-  form: {
-    width: "90%",
-  },
-  subHeaders: {
-    color: "#034222",
-    fontSize: 20,
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    paddingVertical: 5,
-  },
-  textInputs: {
-    height: 40,
-    width: "80%",
-    backgroundColor: "white",
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginBottom: 15,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-  },
-  buttonContainer: {
-    width: "90%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  button: {
-    borderRadius: 10,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    margin: 10,
-  },
-  buttonText: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#034222",
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-    marginBottom: 5,
-  },
-  confirmation: {
-    color: "#034222",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-    marginBottom: 5,
-  },
-});
+};

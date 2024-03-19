@@ -5,11 +5,9 @@ import {
   Text,
   TextInput,
   View,
-  Platform,
 } from "react-native";
 import { supabase } from "../../supabase";
-import baseStyles from "../../global_styles/baseStyle.js";
-
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function AddList({ setListNames, setOptionSelected, email }) {
   const [newListName, setNewListName] = useState("");

@@ -1,46 +1,16 @@
 import { Pressable, Text, StyleSheet, Platform } from "react-native";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function SettingOptions ({ setSettingChoice }) {
   return (
     <>
-      <Text style={styles.header}>Settings</Text>
-      <Pressable style={styles.button} onPress={() => setSettingChoice("password")}>
-        <Text style={styles.text}>Change Password</Text>
+      <Text style={baseStyles.pageHeader}>Settings</Text>
+      <Pressable style={baseStyles.buttons} onPress={() => setSettingChoice("password")}>
+        <Text style={baseStyles.buttonText}>Change Password</Text>
       </Pressable>
-      <Pressable style={styles.button} onPress={() => setSettingChoice("logout")}>
-        <Text style={styles.text}>Logout</Text>
+      <Pressable style={baseStyles.buttons} onPress={() => setSettingChoice("logout")}>
+        <Text style={baseStyles.buttonText}>Logout</Text>
       </Pressable>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    color: "#034222",
-    fontSize: 28,
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    paddingVertical: 5,
-    marginBottom: 15,
-    textAlign: "center",
-    textDecorationLine: "underline",
-    textDecorationColor: "#034222",
-  },
-  button: {
-    marginVertical: 10,
-  },
-  text: {
-    color: "#034222",
-    fontSize: 20,
-    fontWeight: "700",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    marginVertical: 10,
-    textAlign: "center",
-  },
-})

@@ -81,6 +81,15 @@ const baseStyles = StyleSheet.create({
     color: "#034222",
     fontWeight: "700",
   },
+  formConfirmation: {
+    color: "red",
+    fontSize: 20,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    textAlign: "center",
+  },
   formHeader: {
     fontSize: 25,
     fontFamily: Platform.select({
@@ -161,6 +170,15 @@ const baseStyles = StyleSheet.create({
     textDecorationLine: "underline",
     marginVertical: 5
   },
+  pageScrollArea: {
+    width: "100%",
+    borderRadius: 10,
+    padding: 10,
+  },
+  pageScrollContentContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
   pageSubHeader: {
     color: "#034222",
     fontSize: Platform.select({
@@ -175,6 +193,36 @@ const baseStyles = StyleSheet.create({
     }),
     textAlign: "center",
     marginVertical: 10,
+  },
+  pageSubHeaderThin: {
+    color: "#034222",
+    fontSize: Platform.select({
+      ios: 30,
+      android: 21,
+      default: 33,
+    }),
+    fontWeight: "400",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 10,
+  },
+  pageText: {
+    fontSize: Platform.select({
+      ios: 28,
+      android: 21,
+      default: 30,
+    }),
+    color: "#034222",
+    fontWeight: "700",
+    margin: 5,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    textAlign: "center",
   },
   separator: {
     marginVertical: 5,

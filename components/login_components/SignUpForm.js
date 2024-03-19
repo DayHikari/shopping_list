@@ -4,9 +4,9 @@ import {
   TextInput,
   Pressable,
   StyleSheet,
-  Platform,
   ScrollView,
 } from "react-native";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function SignUpForm({
   email,
@@ -25,9 +25,9 @@ export default function SignUpForm({
       style={styles.signUpContainer}
       contentContainerStyle={styles.signUpContainerContent}
     >
-      <Text style={styles.labels}>Email</Text>
+      <Text style={baseStyles.labels}>Email</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Enter email address"
         autoComplete="email"
         inputMode="email"
@@ -36,9 +36,9 @@ export default function SignUpForm({
         }}
         value={email}
       />
-      <Text style={styles.labels}>Password</Text>
+      <Text style={baseStyles.labels}>Password</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Enter password"
         autoComplete="current-password"
         secureTextEntry={true}
@@ -47,9 +47,9 @@ export default function SignUpForm({
         }}
         value={password}
       />
-      <Text style={styles.labels}>Confirm Password</Text>
+      <Text style={baseStyles.labels}>Confirm Password</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Confirm password"
         autoComplete="new-password"
         secureTextEntry={true}
@@ -58,9 +58,9 @@ export default function SignUpForm({
         }}
         value={passwordCheck}
       />
-        <Text style={styles.labels}>Early Access Code</Text>
+        <Text style={baseStyles.labels}>Early Access Code</Text>
         <TextInput
-          style={styles.textInputs}
+          style={baseStyles.textInputs}
           placeholder="Enter the early access code"
           autoComplete="name"
           onChangeText={(text) => {
@@ -68,12 +68,12 @@ export default function SignUpForm({
           }}
           value={earlyAccessCode}
         />
-      <View style={styles.buttonSection}>
-        <Pressable style={styles.buttons} onPress={() => handleSignUpPage()}>
+      <View style={baseStyles.buttonSection}>
+        <Pressable style={baseStyles.buttons} onPress={() => handleSignUpPage()}>
           <Text style={styles.buttonText}>Cancel</Text>
         </Pressable>
-        <Pressable style={styles.buttons} onPress={() => handleSignUp()}>
-          <Text style={styles.buttonText}>Sign Up</Text>
+        <Pressable style={baseStyles.buttons} onPress={() => handleSignUp()}>
+          <Text style={baseStyles.buttonText}>Sign Up</Text>
         </Pressable>
       </View>
     </ScrollView>
@@ -88,64 +88,5 @@ const styles = StyleSheet.create({
   },
   signUpContainerContent: {
     alignItems: "center",
-  },
-  labels: {
-    fontSize: Platform.select({
-      ios: 28,
-      android: 21,
-      default: 30,
-    }),
-    color: "#034222",
-    fontWeight: "700",
-    margin: 5,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-  },
-  textInputs: {
-    height: 40,
-    width: "70%",
-    backgroundColor: "white",
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginBottom: 20,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontSize: Platform.select({
-      ios: 25,
-      android: 16,
-      default: 21,
-    }),
-  },
-  buttonSection: {
-    width: "85%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    margin: 10,
-  },
-  buttons: {
-    backgroundColor: "#034222",
-    width: "40%",
-    display: "flex",
-    alignItems: "center",
-    margin: 5,
-    padding: 10,
-    borderRadius: 15,
-  },
-  buttonText: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    color: "#F0F7F4",
-    fontSize: 15,
-    fontWeight: "700",
   },
 });
