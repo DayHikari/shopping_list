@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text, View } from "react-native";
 import { supabase } from "../../supabase";
 import FavouiteList from "./favourite_components/FavouriteList";
@@ -19,6 +19,15 @@ export default function Favourites({
   const [errorMessage, setErrorMessage] = useState(null);
   const [displayedPage, setDisplayedPage] = useState(null);
   const [product, setProduct] = useState("");
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   useEffect(() => {
     const fetchFavourites = async () => {
@@ -138,7 +147,7 @@ export default function Favourites({
   };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Text style={baseStyles.formHeader}>Favourites List</Text>
       {chooseDisplay()}
       {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}

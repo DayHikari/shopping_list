@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View, Platform } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
@@ -14,6 +14,15 @@ export default function EditForm({
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   const productPlaceholder = selectedItem ? selectedItem.product : "Please select an item.";
   const quantityPlaceholder = selectedItem ? selectedItem.quantity : "Please select an item.";
@@ -58,7 +67,7 @@ export default function EditForm({
   };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Pressable
         style={styles.close}
         onPress={() => {

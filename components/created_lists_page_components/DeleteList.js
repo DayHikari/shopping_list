@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ListOptions from "./ShareListOptions";
 import capitaliser from "../functions/capitaliser";
@@ -13,6 +13,15 @@ export default function DeleteList({
 }) {
   const [selectedList, setSelectedList] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   const handleSubmit = async () => {
     const tableName =
@@ -37,7 +46,7 @@ export default function DeleteList({
   };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Pressable
         style={styles.close}
         onPress={() => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import ListOptions from "./ShareListOptions";
 import EditListForm from "./EditListForm";
@@ -6,9 +6,18 @@ import baseStyles from "../../global_styles/baseStyle";
 
 export default function EditList({listNames, setOptionSelected, email, setListNames}) {
   const [selectedList, setSelectedList] = useState(null);
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Pressable
         style={styles.close}
         onPress={() => {

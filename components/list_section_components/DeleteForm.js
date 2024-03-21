@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import { supabase } from "../../supabase";
 import baseStyles from "../../global_styles/baseStyle";
@@ -14,6 +14,15 @@ export default function DeleteForm({
   const [confirmed, setConfirmed] = useState(false);
   const [checkedConfirmed, setCheckedConfirmed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   const productPlaceholder = selectedItem
     ? selectedItem.product
@@ -81,7 +90,7 @@ export default function DeleteForm({
   };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Pressable
         style={styles.close}
         onPress={() => {

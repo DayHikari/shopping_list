@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -20,6 +20,15 @@ export default function ShareList({
   const [errorMessage, setErrorMessage] = useState(null);
   const [shareEmail, setShareEmail] = useState("");
   const [confirmation, setConfirmation] = useState(null);
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
 
   const handleSubmit = async () => {
     if (shareEmail === "") {
@@ -67,7 +76,7 @@ export default function ShareList({
   };
 
   return (
-    <View style={baseStyles.form}>
+    <View style={baseStyles.form} ref={menuRef}>
       <Pressable
         style={styles.close}
         onPress={() => {

@@ -1,9 +1,20 @@
-import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import baseStyles from "../../global_styles/baseStyle";
+import { useRef } from "react";
 
 export default function ListOptions({ setOptionSelected }) {
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false)
+      };
+    });
+  };
+
   return (
-    <View style={styles.listOptions}>
+    <View style={styles.listOptions} ref={menuRef}>
       <Text style={baseStyles.formHeader}>Choose an option:</Text>
       <View style={styles.container}>
         <Pressable
