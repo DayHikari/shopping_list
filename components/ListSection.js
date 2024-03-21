@@ -10,6 +10,7 @@ import MenuButton from "./shared/MenuButton";
 import Favourites from "./list_section_components/Favourites";
 import capitaliser from "./functions/capitaliser";
 import baseStyles from "../global_styles/baseStyle";
+import FormModal from "./shared/FormModal";
 
 export default function ListSection({ email, selectedList }) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -39,51 +40,6 @@ export default function ListSection({ email, selectedList }) {
     fetchList();
   }, []);
 
-  const chooseOption = () => {
-    switch (optionSelected) {
-      case false:
-        return;
-      case true:
-        return <ListOptions setOptionSelected={setOptionSelected} />;
-      case "add":
-        return (
-          <AddForm
-            setOptionSelected={setOptionSelected}
-            setShoppingList={setShoppingList}
-            selectedList={selectedList}
-          />
-        );
-      case "edit":
-        return (
-          <EditForm
-            setOptionSelected={setOptionSelected}
-            setShoppingList={setShoppingList}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-          />
-        );
-      case "delete":
-        return (
-          <DeleteForm
-            setOptionSelected={setOptionSelected}
-            setShoppingList={setShoppingList}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            selectedList={selectedList}
-          />
-        );
-      case "favourites":
-        return (
-          <Favourites
-            email={email}
-            shoppingList={shoppingList}
-            setShoppingList={setShoppingList}
-            selectedList={selectedList}
-          />
-        );
-    }
-  };
-
   return (
     <>
       {errorMessage ? (
@@ -96,7 +52,7 @@ export default function ListSection({ email, selectedList }) {
             setSelectedItem={setSelectedItem}
             setShoppingList={setShoppingList}
           />
-          {chooseOption()}
+          {!optionSelected && <ListOptions optionSelected={optionSelected} setOptionSelected={setOptionSelected} shoppingList={shoppingList} setShoppingList={setShoppingList} selectedItem={selectedItem} setSelectedItem={setSelectedItem} selectedList={selectedList}}
           <View style={baseStyles.separator} />
           <MenuButton setOptionSelected={setOptionSelected} />
         </>

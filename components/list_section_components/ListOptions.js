@@ -1,9 +1,74 @@
-import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import baseStyles from "../../global_styles/baseStyle";
+import { useRef } from "react";
+import AddForm from "./AddForm";
+import EditForm from "./EditForm";
+import DeleteForm from "./DeleteForm";
+import Favourites from "./Favourites";
 
-export default function ListOptions({ setOptionSelected }) {
+export default function ListOptions({
+  optionSelected,
+  setOptionSelected,
+  shoppingList,
+  setShoppingList,
+  selectedItem,
+  setSelectedItem,
+  selectedList,
+  email,
+}) {
+  const menuRef = useRef(null);
+
+  if (typeof window !== undefined) {
+    window.addEventListener("click", (e) => {
+      if (e.target !== menuRef.current) {
+        setOptionSelected(false);
+      }
+    });
+  }
+
+  const chooseOption = () => {
+    switch (optionSelected) {
+      case "add":
+        return (
+          <AddForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+            selectedList={selectedList}
+          />
+        );
+      case "edit":
+        return (
+          <EditForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />
+        );
+      case "delete":
+        return (
+          <DeleteForm
+            setOptionSelected={setOptionSelected}
+            setShoppingList={setShoppingList}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            selectedList={selectedList}
+          />
+        );
+      case "favourites":
+        return (
+          <Favourites
+            email={email}
+            shoppingList={shoppingList}
+            setShoppingList={setShoppingList}
+            selectedList={selectedList}
+          />
+        );
+    }
+  };
+
   return (
-    <View style={styles.listOptions}>
+    <View style={styles.listOptions} ref={menuRef}>
       <Text style={baseStyles.formHeader}>Choose an option:</Text>
       <View style={styles.container}>
         <Pressable
@@ -33,7 +98,7 @@ export default function ListOptions({ setOptionSelected }) {
         <Pressable
           style={baseStyles.formButtons}
           onPress={() => {
-            setOptionSelected("favourites")
+            setOptionSelected("favourites");
           }}
         >
           <Text style={baseStyles.formButtonText}>Favourites</Text>
