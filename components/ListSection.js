@@ -10,7 +10,7 @@ import MenuButton from "./shared/MenuButton";
 import Favourites from "./list_section_components/Favourites";
 import capitaliser from "./functions/capitaliser";
 import baseStyles from "../global_styles/baseStyle";
-import FormModal from "./shared/FormModal";
+// import FormModal from "./shared/FormModal";
 
 export default function ListSection({ email, selectedList }) {
   const [optionSelected, setOptionSelected] = useState(false);
@@ -52,7 +52,7 @@ export default function ListSection({ email, selectedList }) {
             setSelectedItem={setSelectedItem}
             setShoppingList={setShoppingList}
           />
-          {!optionSelected && <ListOptions optionSelected={optionSelected} setOptionSelected={setOptionSelected} shoppingList={shoppingList} setShoppingList={setShoppingList} selectedItem={selectedItem} setSelectedItem={setSelectedItem} selectedList={selectedList}}
+          {optionSelected && <ListOptions optionSelected={optionSelected} setOptionSelected={setOptionSelected} shoppingList={shoppingList} setShoppingList={setShoppingList} selectedItem={selectedItem} setSelectedItem={setSelectedItem} selectedList={selectedList} />} 
           <View style={baseStyles.separator} />
           <MenuButton setOptionSelected={setOptionSelected} />
         </>

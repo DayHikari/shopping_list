@@ -10,6 +10,7 @@ import CreatedListsPage from "./components/CreatedListsPage";
 import ShareRequestPage from "./components/ShareRequest";
 import Settings from "./components/Settings";
 import UserInfoForm from "./components/UserInfoForm";
+import { ClickOutsideProvider } from "react-native-click-outside";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -72,6 +73,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
+      <ClickOutsideProvider>
       <StatusBar style="auto" />
       <View style={styles.viewContainer}>
         <View style={styles.appContainer}>
@@ -90,6 +92,7 @@ export default function App() {
           )}
         </View>
       </View>
+      </ClickOutsideProvider>
     </SafeAreaProvider>
   );
 };

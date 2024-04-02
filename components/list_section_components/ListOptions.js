@@ -1,10 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import baseStyles from "../../global_styles/baseStyle";
-import { useRef } from "react";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import DeleteForm from "./DeleteForm";
 import Favourites from "./Favourites";
+import { useRef } from "react";
+import { useClickOutside } from "react-native-click-outside";
 
 export default function ListOptions({
   optionSelected,
@@ -16,15 +17,16 @@ export default function ListOptions({
   selectedList,
   email,
 }) {
-  const menuRef = useRef(null);
+  const menuRef = useClickOutside(() => setOptionSelected(false))
+  
+  // if (typeof window !== undefined) {
+  //   window.addEventListener("click", (e) => {
+  //     if (e.target !== menuRef.current) {
+  //       setOptionSelected(false);
+  //     }
+  //   });
+  // }
 
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false);
-      }
-    });
-  }
 
   const chooseOption = () => {
     switch (optionSelected) {
@@ -68,43 +70,43 @@ export default function ListOptions({
   };
 
   return (
-    <View style={styles.listOptions} ref={menuRef}>
-      <Text style={baseStyles.formHeader}>Choose an option:</Text>
-      <View style={styles.container}>
-        <Pressable
-          style={baseStyles.formButtons}
-          onPress={() => {
-            setOptionSelected("add");
-          }}
-        >
-          <Text style={baseStyles.formButtonText}>Add</Text>
-        </Pressable>
-        <Pressable
-          style={baseStyles.formButtons}
-          onPress={() => {
-            setOptionSelected("edit");
-          }}
-        >
-          <Text style={baseStyles.formButtonText}>Edit</Text>
-        </Pressable>
-        <Pressable
-          style={baseStyles.formButtons}
-          onPress={() => {
-            setOptionSelected("delete");
-          }}
-        >
-          <Text style={baseStyles.formButtonText}>Delete</Text>
-        </Pressable>
-        <Pressable
-          style={baseStyles.formButtons}
-          onPress={() => {
-            setOptionSelected("favourites");
-          }}
-        >
-          <Text style={baseStyles.formButtonText}>Favourites</Text>
-        </Pressable>
+      <View style={styles.listOptions} ref={menuRef}>
+        <Text style={baseStyles.formHeader}>Choose an option:</Text>
+        <View style={styles.container}>
+          <Pressable
+            style={baseStyles.formButtons}
+            onPress={() => {
+              setOptionSelected("add");
+            }}
+          >
+            <Text style={baseStyles.formButtonText}>Add</Text>
+          </Pressable>
+          <Pressable
+            style={baseStyles.formButtons}
+            onPress={() => {
+              setOptionSelected("edit");
+            }}
+          >
+            <Text style={baseStyles.formButtonText}>Edit</Text>
+          </Pressable>
+          <Pressable
+            style={baseStyles.formButtons}
+            onPress={() => {
+              setOptionSelected("delete");
+            }}
+          >
+            <Text style={baseStyles.formButtonText}>Delete</Text>
+          </Pressable>
+          <Pressable
+            style={baseStyles.formButtons}
+            onPress={() => {
+              setOptionSelected("favourites");
+            }}
+          >
+            <Text style={baseStyles.formButtonText}>Favourites</Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
   );
 }
 
@@ -126,5 +128,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
+  },
+  modalTest: {
+    height: 400,
+    backgroundColor: "red",
   },
 });
