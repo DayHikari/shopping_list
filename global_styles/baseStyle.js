@@ -175,6 +175,28 @@ const baseStyles = StyleSheet.create({
     textAlign: "center",
     marginVertical: 10,
   },
+  menu: {
+    width: "100%",
+    maxHeight: 300,
+    backgroundColor: "#034222",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 5,
+    paddingVertical: 15,
+    borderRadius: 10,
+  },
+  menuButtons: {
+    width: "40%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#B3BFB8",
+    margin: 5,
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
   pageLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
@@ -200,7 +222,7 @@ const baseStyles = StyleSheet.create({
     color: "#034222",
     textAlign: "center",
     textDecorationLine: "underline",
-    marginVertical: 5
+    marginVertical: 5,
   },
   pageScrollArea: {
     width: "100%",

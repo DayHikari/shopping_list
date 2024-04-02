@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -18,15 +18,6 @@ export default function AddForm({
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-  const menuRef = useRef(null);
-
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
 
   const handleSubmit = async () => {
     if (product === "" || quantity === "") {
@@ -68,15 +59,7 @@ export default function AddForm({
   };
 
   return (
-    <View style={baseStyles.form} ref={menuRef}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
+    <View style={baseStyles.form}>
       <Text style={baseStyles.formHeader}>Add an item</Text>
       <Text style={baseStyles.formLabels}>Product:</Text>
       <TextInput
@@ -102,17 +85,4 @@ export default function AddForm({
       </Pressable>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
-});
+};

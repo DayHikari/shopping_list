@@ -1,24 +1,13 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import baseStyles from "../../global_styles/baseStyle";
-import { useRef } from "react";
 
 export default function ListOptions({ setOptionSelected }) {
-  const menuRef = useRef(null);
-
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
-
   return (
-    <View style={styles.listOptions} ref={menuRef}>
+    <View style={baseStyles.menu}>
       <Text style={baseStyles.formHeader}>Choose an option:</Text>
-      <View style={styles.container}>
+      <View style={baseStyles.formButtonsSection}>
         <Pressable
-          style={baseStyles.formButtons}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("add");
           }}
@@ -26,7 +15,7 @@ export default function ListOptions({ setOptionSelected }) {
           <Text style={baseStyles.formButtonText}>Add</Text>
         </Pressable>
         <Pressable
-          style={baseStyles.formButtons}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("edit");
           }}
@@ -34,7 +23,7 @@ export default function ListOptions({ setOptionSelected }) {
           <Text style={baseStyles.formButtonText}>Edit</Text>
         </Pressable>
         <Pressable
-          style={baseStyles.formButtons}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("delete");
           }}
@@ -42,7 +31,7 @@ export default function ListOptions({ setOptionSelected }) {
           <Text style={baseStyles.formButtonText}>Delete</Text>
         </Pressable>
         <Pressable
-          style={baseStyles.formButtons}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("favourites")
           }}
@@ -52,25 +41,4 @@ export default function ListOptions({ setOptionSelected }) {
       </View>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  listOptions: {
-    width: "100%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    paddingHorizontal: 5,
-    paddingVertical: 15,
-    borderRadius: 10,
-  },
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+};

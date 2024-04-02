@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ListOptions from "./ShareListOptions";
 import capitaliser from "../functions/capitaliser";
@@ -13,15 +13,6 @@ export default function DeleteList({
 }) {
   const [selectedList, setSelectedList] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const menuRef = useRef(null);
-
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
 
   const handleSubmit = async () => {
     const tableName =
@@ -46,15 +37,7 @@ export default function DeleteList({
   };
 
   return (
-    <View style={baseStyles.form} ref={menuRef}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
+    <View style={baseStyles.form}>
       <Text style={baseStyles.formHeader}>
         {!selectedList ? "Choose a list to delete:" : "Delete the list."}
       </Text>
@@ -73,17 +56,4 @@ export default function DeleteList({
       {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
-});
+};

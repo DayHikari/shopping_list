@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
 import { supabase } from "../../supabase";
 import baseStyles from "../../global_styles/baseStyle";
@@ -14,15 +14,6 @@ export default function DeleteForm({
   const [confirmed, setConfirmed] = useState(false);
   const [checkedConfirmed, setCheckedConfirmed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
-  const menuRef = useRef(null);
-
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
 
   const productPlaceholder = selectedItem
     ? selectedItem.product
@@ -90,16 +81,8 @@ export default function DeleteForm({
   };
 
   return (
-    <View style={baseStyles.form} ref={menuRef}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
-      <Text style={baseStyles.formHeader}>Delete an item</Text>
+    <View style={baseStyles.form}>
+      <Text style={baseStyles.formHeader}>Delete item(s)</Text>
       <Text style={baseStyles.formLabels}>Product:</Text>
       <Text style={styles.item}>{productPlaceholder}</Text>
       <Text style={baseStyles.formLabels}>Quantity:</Text>
@@ -118,16 +101,6 @@ export default function DeleteForm({
 }
 
 const styles = StyleSheet.create({
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
   item: {
     fontSize: 20,
     fontFamily: Platform.select({

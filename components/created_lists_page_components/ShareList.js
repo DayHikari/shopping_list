@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -20,15 +20,7 @@ export default function ShareList({
   const [errorMessage, setErrorMessage] = useState(null);
   const [shareEmail, setShareEmail] = useState("");
   const [confirmation, setConfirmation] = useState(null);
-  const menuRef = useRef(null);
 
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
 
   const handleSubmit = async () => {
     if (shareEmail === "") {
@@ -76,15 +68,7 @@ export default function ShareList({
   };
 
   return (
-    <View style={baseStyles.form} ref={menuRef}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
+    <View style={baseStyles.form}>
       <Text style={baseStyles.formHeader}>
         {!selectedList ? "Choose a list to share:" : "Share the list."}
       </Text>
@@ -118,16 +102,3 @@ export default function ShareList({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#B3BFB8",
-    fontWeight: "700",
-  },
-});

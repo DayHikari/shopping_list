@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View, Platform } from "react-native";
 import imagePaths from "../../image_paths_data/imagePathData";
 import { supabase } from "../../supabase";
@@ -14,15 +14,6 @@ export default function EditForm({
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-  const menuRef = useRef(null);
-
-  if (typeof window !== undefined) {
-    window.addEventListener("click", (e) => {
-      if (e.target !== menuRef.current) {
-        setOptionSelected(false)
-      };
-    });
-  };
 
   const productPlaceholder = selectedItem ? selectedItem.product : "Please select an item.";
   const quantityPlaceholder = selectedItem ? selectedItem.quantity : "Please select an item.";
@@ -67,15 +58,7 @@ export default function EditForm({
   };
 
   return (
-    <View style={baseStyles.form} ref={menuRef}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
+    <View style={baseStyles.form}>
       <Text style={baseStyles.formHeader}>Edit an item</Text>
       <Text style={baseStyles.formLabels}>Product:</Text>
       <TextInput
@@ -101,90 +84,4 @@ export default function EditForm({
       </Pressable>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  form: {
-    width: "100%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-  },
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
-  header: {
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  subHeaders: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#B3BFB8",
-    fontWeight: "700",
-    alignSelf: "flex-start",
-    paddingLeft: 20,
-  },
-  textInputs: {
-    backgroundColor: "#F0F7F4",
-    width: "90%",
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 2,
-    fontSize: 15,
-    color: "#034222",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-  submit: {
-    borderRadius: 10,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginTop: 10,
-  },
-  submitText: {
-    fontSize: 20,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#034222",
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-});
+};
