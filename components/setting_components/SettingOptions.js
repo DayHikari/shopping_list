@@ -1,4 +1,4 @@
-import { Pressable, Text, StyleSheet, Platform } from "react-native";
+import { Pressable, Text } from "react-native";
 import baseStyles from "../../global_styles/baseStyle";
 
 export default function SettingOptions ({ setSettingChoice }) {

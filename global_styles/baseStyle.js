@@ -25,6 +25,7 @@ const baseStyles = StyleSheet.create({
     color: "#F0F7F4",
     fontSize: 15,
     fontWeight: "700",
+    textAlign: "center",
   },
   confirmation: {
     color: "#034222",
@@ -65,6 +66,7 @@ const baseStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     margin: 10,
+    minHeight: 40,
   },
   formButtonsSection: {
     width: "100%",
@@ -82,6 +84,7 @@ const baseStyles = StyleSheet.create({
     }),
     color: "#034222",
     fontWeight: "700",
+    textAlign: "center",
   },
   formConfirmation: {
     color: "red",
