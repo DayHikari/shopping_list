@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   appContainer: {
     width: "100%",
     maxWidth: 500,
+    minWidth: 340,
     height: Platform.select({
       ios: "100%",
       android: "100%",

@@ -246,7 +246,7 @@ const baseStyles = StyleSheet.create({
       default: "serif",
     }),
     textAlign: "center",
-    marginVertical: 10,
+    marginVertical: 5,
   },
   pageSubHeaderThin: {
     color: "#034222",
@@ -261,7 +261,7 @@ const baseStyles = StyleSheet.create({
       default: "serif",
     }),
     textAlign: "center",
-    marginVertical: 10,
+    marginVertical: 5,
   },
   pageText: {
     fontSize: Platform.select({
@@ -301,7 +301,7 @@ const baseStyles = StyleSheet.create({
     marginBottom: 10,
   },
   textInputs: {
-    backgroundColor: "#F0F7F4",
+    backgroundColor: "white",
     width: "90%",
     height: 40,
     borderRadius: 10,

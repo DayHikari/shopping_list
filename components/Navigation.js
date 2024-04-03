@@ -12,7 +12,7 @@ export default function ({ setDisplayedPage }) {
     <View style={styles.container}>
       <View style={styles.navigation}>
         <Pressable
-          style={baseStyles.buttons}
+          style={styles.buttons}
           onPress={() => {
             setDisplayedPage("shareRequest");
           }}
@@ -20,7 +20,7 @@ export default function ({ setDisplayedPage }) {
           <Text style={baseStyles.buttonText}>Requests</Text>
         </Pressable>
         <Pressable
-          style={baseStyles.buttons}
+          style={styles.buttons}
           onPress={() => {
             setDisplayedPage("createdLists");
           }}
@@ -28,7 +28,7 @@ export default function ({ setDisplayedPage }) {
           <Text style={baseStyles.buttonText}>Lists</Text>
         </Pressable>
         <Pressable
-          style={baseStyles.buttons}
+          style={styles.buttons}
           onPress={() => {
             setDisplayedPage("settings");
           }}
@@ -38,9 +38,18 @@ export default function ({ setDisplayedPage }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
+  buttons: {
+    backgroundColor: "#034222",
+    width: "27%",
+    display: "flex",
+    alignItems: "center",
+    margin: 5,
+    padding: 10,
+    borderRadius: 15,
+  },
   container: {
     backgroundColor: "#034222",
     width: Platform.select({
@@ -64,7 +73,7 @@ const styles = StyleSheet.create({
     width: Platform.select({
       ios: "100%",
       android: "100%",
-      default: "30vw",
+      default: "40vw",
     }),
     minWidth: 340,
     display: "flex",
