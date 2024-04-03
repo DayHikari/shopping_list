@@ -5,9 +5,9 @@ import {
   Text,
   TextInput,
   View,
-  Platform,
 } from "react-native";
 import { supabase } from "../../supabase";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function AddList({ setListNames, setOptionSelected, email }) {
   const [newListName, setNewListName] = useState("");
@@ -55,122 +55,26 @@ export default function AddList({ setListNames, setOptionSelected, email }) {
   };
 
   return (
-    <View style={styles.form}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
-      <Text style={styles.header}>Add new list</Text>
-      <Text style={styles.subHeaders}>List name:</Text>
+    <View style={baseStyles.form}>
+      <Text style={baseStyles.formHeader}>Add new list</Text>
+      <Text style={baseStyles.formLabels}>List name:</Text>
       <TextInput
-        style={styles.textInputs}
+        style={baseStyles.textInputs}
         placeholder="Enter list name"
         onChangeText={(text) => {
           setNewListName(text);
         }}
         value={newListName}
       />
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+      {errorMessage && <Text style={baseStyles.error}>{errorMessage}</Text>}
       <Pressable
-        style={styles.submit}
+        style={baseStyles.formButtons}
         onPress={() => {
           handleSubmit();
         }}
       >
-        <Text style={styles.submitText}>Submit</Text>
+        <Text style={baseStyles.formButtonText}>Submit</Text>
       </Pressable>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  form: {
-    width: "100%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-  },
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
-  header: {
-    fontSize: 25,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  subHeaders: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#B3BFB8",
-    fontWeight: "700",
-    alignSelf: "flex-start",
-    paddingLeft: 20,
-  },
-  textInputs: {
-    backgroundColor: "#F0F7F4",
-    width: "90%",
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#B3BFB8",
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 2,
-    fontSize: 15,
-    color: "#046835",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-  submit: {
-    borderRadius: 10,
-    backgroundColor: "#FF8833",
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    margin: 10,
-  },
-  submitText: {
-    fontSize: 17,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#034222",
-    fontWeight: "700",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-  },
-});
+};

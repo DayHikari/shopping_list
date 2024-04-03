@@ -14,7 +14,6 @@ export default function MenuButton({setOptionSelected}) {
 
 const styles = StyleSheet.create({
   menu: {
-    // height: "12%",
     height: Platform.select({
       android: "12%",
       ios: "12%",

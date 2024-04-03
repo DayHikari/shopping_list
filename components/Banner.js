@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    minWidth: 340,
   },
   bannerHeader: {
     fontSize: 30,

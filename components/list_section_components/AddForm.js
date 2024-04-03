@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Pressable,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -11,7 +10,7 @@ import { supabase } from "../../supabase";
 import baseStyles from "../../global_styles/baseStyle";
 
 export default function AddForm({
-  setOptionSelected,
+  shoppingList,
   setShoppingList,
   selectedList,
 }) {
@@ -22,6 +21,12 @@ export default function AddForm({
   const handleSubmit = async () => {
     if (product === "" || quantity === "") {
       return setErrorMessage("Please add both a product and quantity");
+    };
+
+    const itemAlreadyPresent = shoppingList.filter(itemInfo => itemInfo.product.toLocaleLowerCase() == product.toLocaleLowerCase());
+
+    if (itemAlreadyPresent.length !== 0) {
+      return setErrorMessage("Item already in list.");
     };
 
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
@@ -53,23 +58,14 @@ export default function AddForm({
       setShoppingList((prev) => [...prev, data[0]]);
       setProduct("");
       setQuantity("");
-      setErrorMessage(false);
-      setOptionSelected(false);
+      setErrorMessage("Item added.");
     }
   };
 
   return (
     <View style={baseStyles.form}>
-      <Pressable
-        style={styles.close}
-        onPress={() => {
-          setOptionSelected(false);
-        }}
-      >
-        <Text style={styles.closeText}>X</Text>
-      </Pressable>
       <Text style={baseStyles.formHeader}>Add an item</Text>
-      <Text style={baseStyles.formlLabels}>Product:</Text>
+      <Text style={baseStyles.formLabels}>Product:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="Item name"
@@ -78,7 +74,7 @@ export default function AddForm({
         }}
         value={product}
       />
-      <Text style={baseStyles.formlLabels}>Quantity:</Text>
+      <Text style={baseStyles.formLabels}>Quantity:</Text>
       <TextInput
         style={baseStyles.textInputs}
         placeholder="e.g.: 2 or 1 bag or 3 boxes"
@@ -93,17 +89,4 @@ export default function AddForm({
       </Pressable>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  close: {
-    position: "absolute",
-    top: "2%",
-    right: "5%",
-  },
-  closeText: {
-    fontSize: 17,
-    color: "#FF8833",
-    fontWeight: "700",
-  },
-});
+};

@@ -1,18 +1,19 @@
-import { ScrollView, StyleSheet, Text, Platform } from "react-native";
+import { ScrollView, Text } from "react-native";
 import ListName from "./ListName";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function CreatedListsSection({ listNames, handleListSelect }) {
   return (
     <ScrollView
-      style={styles.list}
-      contentContainerStyle={styles.contentContainer}
+      style={baseStyles.pageScrollArea}
+      contentContainerStyle={baseStyles.pageScrollContentContainer}
     >
       {listNames.length === 0 ? (
-        <Text style={styles.text}>
+        <Text style={baseStyles.pageText}>
           You do not have any lists. Please add one from the menu below!
         </Text>
       ) : (
-        listNames.map((listName, index) => {
+        listNames.map((listName) => {
           return (
             <ListName
               listName={listName}
@@ -24,31 +25,4 @@ export default function CreatedListsSection({ listNames, handleListSelect }) {
       )}
     </ScrollView>
   );
-}
-
-const styles = StyleSheet.create({
-  list: {
-    width: "100%",
-    borderRadius: 10,
-    padding: 10,
-  },
-  contentContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: Platform.select({
-      ios: 28,
-      android: 21,
-      default: 30,
-    }),
-    color: "#034222",
-    fontWeight: "700",
-    margin: 5,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    textAlign: "center",
-  },
-});
+};

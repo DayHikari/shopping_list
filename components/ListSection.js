@@ -48,7 +48,7 @@ export default function ListSection({ email, selectedList }) {
       case "add":
         return (
           <AddForm
-            setOptionSelected={setOptionSelected}
+            shoppingList={shoppingList}
             setShoppingList={setShoppingList}
             selectedList={selectedList}
           />

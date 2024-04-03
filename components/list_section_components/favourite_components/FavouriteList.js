@@ -1,12 +1,11 @@
 import {
   Text,
   View,
-  StyleSheet,
   ScrollView,
   Pressable,
-  Platform,
 } from "react-native";
 import FavouriteItem from "./FavouriteItem";
+import baseStyles from "../../../global_styles/baseStyle";
 
 export default function FavouiteList({
   favouritesList,
@@ -16,8 +15,8 @@ export default function FavouiteList({
   return (
     <>
       <ScrollView
-        style={styles.scrollArea}
-        contentContainerStyle={styles.contentContainer}
+        style={baseStyles.formScrollArea}
+        contentContainerStyle={baseStyles.formScrollContentContainer}
         nestedScrollEnabled={true}
       >
         {favouritesList.length !== 0 ? (
@@ -31,71 +30,27 @@ export default function FavouiteList({
             );
           })
         ) : (
-          <Text style={styles.error}>
+          <Text style={baseStyles.error}>
             You have no favourites saved. Add one below!
           </Text>
         )}
       </ScrollView>
-      <View style={styles.buttonContainer}>
+      <View style={baseStyles.formButtonsSection}>
         <Pressable
-          style={styles.button}
+          style={baseStyles.formButtons}
           onPress={() => setDisplayedPage("create")}
         >
-          <Text style={styles.buttonText}>Create</Text>
+          <Text style={baseStyles.formButtonText}>Create</Text>
         </Pressable>
         {favouritesList && (
           <Pressable
-            style={styles.button}
+            style={baseStyles.formButtons}
             onPress={() => setDisplayedPage("delete")}
           >
-            <Text style={styles.buttonText}>Delete</Text>
+            <Text style={baseStyles.formButtonText}>Delete</Text>
           </Pressable>
         )}
       </View>
     </>
   );
-}
-
-const styles = StyleSheet.create({
-  scrollArea: {
-    width: "95%",
-    maxHeight: 350,
-  },
-  contentContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontWeight: "700",
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
-    width: "80%",
-  },
-  button: {
-    borderRadius: 15,
-    backgroundColor: "#FF8833",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "#034222",
-    fontSize: 18,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-    fontWeight: "700",
-  },
-});
+};

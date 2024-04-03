@@ -1,30 +1,26 @@
-import { Pressable, StyleSheet, View, Text, Platform } from "react-native";
+import { Pressable, StyleSheet, View, Text } from "react-native";
 import capitaliser from "../functions/capitaliser";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function ListName({ listName, handleListSelect }) {
   return (
     <>
       <Pressable
-        style={styles.selectElement}
+        style={baseStyles.selectableElement}
         onPress={() => handleListSelect(listName)}
       >
         <View style={styles.itemLayout}>
-          <Text style={styles.text}>
+          <Text style={baseStyles.pageText}>
             {listName ? capitaliser(listName) : "No lists available."}
           </Text>
         </View>
       </Pressable>
-      <View style={styles.separator} />
+      <View style={baseStyles.separator} />
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  selectElement: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-  },
   itemLayout: {
     margin: 10,
     padding: 5,
@@ -33,20 +29,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 21,
-    fontWeight: "700",
-    color: "#034222",
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "serif",
-    }),
-  },
-  separator: {
-    marginVertical: 5,
-    borderBottomColor: "#046835",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "85%",
   },
 });

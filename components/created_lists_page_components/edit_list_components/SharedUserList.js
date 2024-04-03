@@ -1,4 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text, View, Platform } from "react-native";
+import baseStyles from "../../../global_styles/baseStyle";
 
 export default function SharedUserList({
   sharedData,
@@ -7,7 +8,7 @@ export default function SharedUserList({
 }) {
   return sharedData.length !== 0 ? (
     <View style={styles.scrollContainer}>
-      <Text style={styles.scrollContainerSubheader}>
+      <Text style={baseStyles.formSubHeaderThin}>
         Select a user to unshare:
       </Text>
       <ScrollView>
@@ -31,7 +32,7 @@ export default function SharedUserList({
       </ScrollView>
     </View>
   ) : (
-    <Text style={styles.error}>List is not shared with any other users.</Text>
+    <Text style={baseStyles.error}>List is not shared with any other users.</Text>
   );
 };
 
@@ -72,15 +73,5 @@ const styles = StyleSheet.create({
     }),
     fontSize: 18,
     alignSelf: "center",
-  },
-  error: {
-    color: "red",
-    fontSize: 16,
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontWeight: "700",
-    textAlign: "center",
   },
 })

@@ -1,96 +1,44 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import baseStyles from "../../global_styles/baseStyle";
 
 export default function CreatedListsOptions({ setOptionSelected }) {
   return (
-    <View style={styles.listOptions}>
-      <Text style={styles.header}>Choose an option</Text>
-      <View style={styles.container}>
+    <View style={baseStyles.menu}>
+      <Text style={baseStyles.formHeader}>Choose an option</Text>
+      <View style={baseStyles.formButtonsSection}>
         <Pressable
-          style={styles.button}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("add");
           }}
         >
-          <Text style={styles.buttonText}>Add list</Text>
+          <Text style={baseStyles.formButtonText}>Add list</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("edit");
           }}
         >
-          <Text style={styles.buttonText}>Edit list</Text>
+          <Text style={baseStyles.formButtonText}>Edit list</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("delete");
           }}
         >
-          <Text style={styles.buttonText}>Delete list</Text>
+          <Text style={baseStyles.formButtonText}>Delete list</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
+          style={baseStyles.menuButtons}
           onPress={() => {
             setOptionSelected("share");
           }}
         >
-          <Text style={styles.buttonText}>Share list</Text>
+          <Text style={baseStyles.formButtonText}>Share list</Text>
         </Pressable>
       </View>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  listOptions: {
-    width: "100%",
-    // height: "40%",
-    maxHeight: 300,
-    backgroundColor: "#034222",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    paddingHorizontal: 5,
-    paddingVertical: 15,
-    borderRadius: 10,
-  },
-  header: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    color: "#F0F7F4",
-    fontSize: 22,
-    marginBottom: 10,
-  },
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  button: {
-    width: "40%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#B3BFB8",
-    margin: 5,
-    borderRadius: 10,
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-  },
-  buttonText: {
-    fontFamily: Platform.select({
-      ios: "Avenir-Heavy",
-      default: "notoserif",
-    }),
-    fontSize: 17,
-    fontWeight: "700",
-    color: "#034222",
-    paddingHorizontal: 10,
-    textAlign: "center",
-  },
-});
+};

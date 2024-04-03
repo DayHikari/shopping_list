@@ -25,6 +25,7 @@ const baseStyles = StyleSheet.create({
     color: "#F0F7F4",
     fontSize: 15,
     fontWeight: "700",
+    textAlign: "center",
   },
   confirmation: {
     color: "#034222",
@@ -65,12 +66,15 @@ const baseStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     margin: 10,
+    minHeight: 40,
   },
   formButtonsSection: {
     width: "100%",
     display: "flex",
+    flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    padding: 5,
   },
   formButtonText: {
     fontSize: 17,
@@ -80,6 +84,16 @@ const baseStyles = StyleSheet.create({
     }),
     color: "#034222",
     fontWeight: "700",
+    textAlign: "center",
+  },
+  formConfirmation: {
+    color: "red",
+    fontSize: 20,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    textAlign: "center",
   },
   formHeader: {
     fontSize: 25,
@@ -91,7 +105,31 @@ const baseStyles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 10,
   },
-  formlLabels: {
+  formItemContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 2,
+    paddingVertical: 5,
+    width: "100%",
+    maxHeight: 55,
+  },
+  formItemImage: {
+    width: 50,
+    height: 50,
+  },
+  formItemText: {
+    color: "#B3BFB8",
+    fontSize: 23,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  formLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
       ios: "Avenir-Heavy",
@@ -102,6 +140,66 @@ const baseStyles = StyleSheet.create({
     alignSelf: "flex-start",
     paddingLeft: 20,
   },
+  formScrollArea: {
+    width: "95%",
+    maxHeight: 350,
+  },
+  formScrollContentContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  formSubHeader: {
+    color: "#F0F7F4",
+    fontSize: Platform.select({
+      ios: 28,
+      android: 20,
+      default: 31,
+    }),
+    fontWeight: "700",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 10,
+  },
+  formSubHeaderThin: {
+    color: "#F0F7F4",
+    fontSize: Platform.select({
+      ios: 28,
+      android: 20,
+      default: 31,
+    }),
+    fontWeight: "400",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 10,
+  },
+  menu: {
+    width: "100%",
+    maxHeight: 300,
+    backgroundColor: "#034222",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 5,
+    paddingVertical: 15,
+    borderRadius: 10,
+  },
+  menuButtons: {
+    width: "40%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#B3BFB8",
+    margin: 5,
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
   pageLabels: {
     fontSize: 17,
     fontFamily: Platform.select({
@@ -111,7 +209,7 @@ const baseStyles = StyleSheet.create({
     color: "#034222",
     fontWeight: "700",
     alignSelf: "flex-start",
-    paddingLeft: 20,
+    paddingLeft: 25,
   },
   pageHeader: {
     fontSize: Platform.select({
@@ -127,14 +225,23 @@ const baseStyles = StyleSheet.create({
     color: "#034222",
     textAlign: "center",
     textDecorationLine: "underline",
-    marginVertical: 5
+    marginVertical: 5,
+  },
+  pageScrollArea: {
+    width: "100%",
+    borderRadius: 10,
+    padding: 10,
+  },
+  pageScrollContentContainer: {
+    display: "flex",
+    alignItems: "center",
   },
   pageSubHeader: {
     color: "#034222",
     fontSize: Platform.select({
       ios: 30,
       android: 21,
-      default: 33,
+      default: 28,
     }),
     fontWeight: "700",
     fontFamily: Platform.select({
@@ -142,7 +249,43 @@ const baseStyles = StyleSheet.create({
       default: "serif",
     }),
     textAlign: "center",
-    marginVertical: 10,
+    marginVertical: 5,
+  },
+  pageSubHeaderThin: {
+    color: "#034222",
+    fontSize: Platform.select({
+      ios: 30,
+      android: 21,
+      default: 33,
+    }),
+    fontWeight: "400",
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "serif",
+    }),
+    textAlign: "center",
+    marginVertical: 5,
+  },
+  pageText: {
+    fontSize: Platform.select({
+      ios: 28,
+      android: 21,
+      default: 30,
+    }),
+    color: "#034222",
+    fontWeight: "700",
+    margin: 5,
+    fontFamily: Platform.select({
+      ios: "Avenir-Heavy",
+      default: "notoserif",
+    }),
+    textAlign: "center",
+  },
+  selectableElement: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   separator: {
     marginVertical: 5,
@@ -161,7 +304,7 @@ const baseStyles = StyleSheet.create({
     marginBottom: 10,
   },
   textInputs: {
-    backgroundColor: "#F0F7F4",
+    backgroundColor: "white",
     width: "90%",
     height: 40,
     borderRadius: 10,

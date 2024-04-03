@@ -10,6 +10,7 @@ import CreatedListsPage from "./components/CreatedListsPage";
 import ShareRequestPage from "./components/ShareRequest";
 import Settings from "./components/Settings";
 import UserInfoForm from "./components/UserInfoForm";
+import { ClickOutsideProvider } from "react-native-click-outside";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -42,10 +43,13 @@ export default function App() {
             setInitialLoad={setInitialLoad}
           />
         );
-        case "userInfo":
-          return (
-            <UserInfoForm email={user.user.email} setDisplayedPage={setDisplayedPage}/>
-          )
+      case "userInfo":
+        return (
+          <UserInfoForm
+            email={user.user.email}
+            setDisplayedPage={setDisplayedPage}
+          />
+        );
       case "createdLists":
         return (
           <CreatedListsPage
@@ -72,27 +76,29 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <View style={styles.viewContainer}>
-        <View style={styles.appContainer}>
-          <Banner />
-          {!loggedIn ? (
-            <LoginPage
-              setUser={setUser}
-              setLoggedIn={setLoggedIn}
-              setDisplayedPage={setDisplayedPage}
-            />
-          ) : (
-            <>
-              <View style={styles.bodyContainer}>{display()}</View>
-              <Navigation setDisplayedPage={setDisplayedPage} />
-            </>
-          )}
+      <ClickOutsideProvider>
+        <StatusBar style="auto" />
+        <View style={styles.viewContainer}>
+          <View style={styles.appContainer}>
+            <Banner />
+            {!loggedIn ? (
+              <LoginPage
+                setUser={setUser}
+                setLoggedIn={setLoggedIn}
+                setDisplayedPage={setDisplayedPage}
+              />
+            ) : (
+              <>
+                <View style={styles.bodyContainer}>{display()}</View>
+                <Navigation setDisplayedPage={setDisplayedPage} />
+              </>
+            )}
+          </View>
         </View>
-      </View>
+      </ClickOutsideProvider>
     </SafeAreaProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -103,6 +109,7 @@ const styles = StyleSheet.create({
   appContainer: {
     width: "100%",
     maxWidth: 500,
+    minWidth: 340,
     height: Platform.select({
       ios: "100%",
       android: "100%",
