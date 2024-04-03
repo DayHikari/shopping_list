@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Pressable,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -11,7 +10,7 @@ import { supabase } from "../../supabase";
 import baseStyles from "../../global_styles/baseStyle";
 
 export default function AddForm({
-  setOptionSelected,
+  shoppingList,
   setShoppingList,
   selectedList,
 }) {
@@ -22,6 +21,12 @@ export default function AddForm({
   const handleSubmit = async () => {
     if (product === "" || quantity === "") {
       return setErrorMessage("Please add both a product and quantity");
+    };
+
+    const itemAlreadyPresent = shoppingList.filter(itemInfo => itemInfo.product.toLocaleLowerCase() == product.toLocaleLowerCase());
+
+    if (itemAlreadyPresent.length !== 0) {
+      return setErrorMessage("Item already in list.");
     };
 
     const imageCheck = product.toLocaleLowerCase().trim().replaceAll(" ", "_");
@@ -53,8 +58,7 @@ export default function AddForm({
       setShoppingList((prev) => [...prev, data[0]]);
       setProduct("");
       setQuantity("");
-      setErrorMessage(false);
-      setOptionSelected(false);
+      setErrorMessage("Item added.");
     }
   };
 
